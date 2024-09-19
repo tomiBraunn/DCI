@@ -1,0 +1,173 @@
+* {
+    font-family: "JetBrains ", monospace;
+    user-select: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: #222;
+    overflow: hidden;
+    display: flex;
+}
+
+img {
+    pointer-events: none;
+}
+
+.background {
+    background: linear-gradient(
+        135deg,
+        rgb(255 179 0 / 27%),
+        rgb(171 0 255 / 16%)
+    );
+    filter: blur(80px);
+    min-width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: -500;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow: hidden;
+    flex-wrap: nowrap;
+}
+
+main > div {
+    min-width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.pagina1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+h1 {
+    color: white;
+    font-size: 90px;
+    text-align: center;
+    animation: entrada 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.pagina1 > button {
+    padding: 0.7em 1.6em;
+    font-size: 70px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 20px;
+    font-weight: bold;
+    border: none;
+    animation: opacidad 1s ease-out forwards;
+    animation-delay: 0.5s;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.pagina2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor_opciones_pagina2 {
+    position: absolute;
+    top: 9%;
+}
+
+.opciones_pagina2 {
+    width: 580px;
+    height: 650px;
+    font-size: 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    mask-image: radial-gradient(
+        circle 80px at center top,
+        transparent,
+        transparent 100%,
+        black 100%
+    );
+    mask-size: 100%;
+    mask-position: center top;
+    mask-repeat: no-repeat;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(80px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.icono_Usuario {
+    width: 193px;
+    position: absolute;
+    top: 4.7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+.shake {
+    animation: shake 0.5s ease-in-out forwards;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+@keyframes opacidad {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes entrada {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
