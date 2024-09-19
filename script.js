@@ -45,7 +45,7 @@ document.getElementById('invitado').addEventListener('click', () => establecerTi
 document.getElementById('admin').addEventListener('click', () => establecerTipoUsuario('Admin'));
 
 // Botón de avanzar una vez que se ingresaron los datos
-document.getElementById('avanzar').addEventListener('click', function(event) {
+document.getElementById('btn_avanzar').addEventListener('click', function(event) {
     event.preventDefault();
 
     // Validar inputs según el tipo de usuario

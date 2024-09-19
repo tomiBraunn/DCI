@@ -42,6 +42,8 @@ main > div {
     position: relative;
 }
 
+/*Pagina 1*/
+
 .pagina1 {
     display: flex;
     align-items: center;
@@ -60,14 +62,6 @@ h1 {
 .pagina1 > button {
     padding: 0.7em 1.6em;
     font-size: 70px;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0)
-    );
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     border-radius: 20px;
     font-weight: bold;
     border: none;
@@ -75,25 +69,30 @@ h1 {
     animation-delay: 0.5s;
     text-decoration: none;
     color: white;
-    cursor: pointer;
 }
 
-.pagina2 {
+/*Pagina 2 y 3*/
+
+.pagina2 , .pagina3 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.contenedor_opciones_pagina2 {
+.contenedor_opciones_pagina2 , .contenedor_opciones_pagina3 {
     position: absolute;
-    top: 9%;
+    top: 12%;
 }
 
-.opciones_pagina2 {
+.opciones_pagina2 , .opciones_pagina_3 {
     width: 580px;
     height: 650px;
     font-size: 40px;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     text-decoration: none;
     mask-image: radial-gradient(
         circle 80px at center top,
@@ -104,25 +103,109 @@ h1 {
     mask-size: 100%;
     mask-position: center top;
     mask-repeat: no-repeat;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0)
-    );
-    backdrop-filter: blur(80px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+}
+
+/*Pagina 2*/
+
+.opciones_pagina2 > p {
+    color: white;
+    position: relative;
+    margin-top: 2em;
+}
+
+.opciones_pagina2 > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.opciones_pagina2 > div > button {
+    color: white;
+    width: 10.5em;
+    height: 2.8em;
+    border: none;
+    margin: 0.1em 0;
+    font-size: 40px;
+}
+
+.opciones_pagina2 > div > button:nth-child(4) {
+    height: 1.8em;
 }
 
 .icono_Usuario {
     width: 193px;
     position: absolute;
-    top: 4.7%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+}
+
+/*Pagina 3*/
+
+.opciones_pagina_3 > p {
+    color: white;
+    width: 10.5em;
+    height: 2.8em;
+    border: none;
+    margin: 0.1em 0;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.inputs_pagina_3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: auto;
+}
+
+.inputs_pagina_3 > input {
+    color: white;
+}
+
+
+
+
+
+.glass {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+      );
+      backdrop-filter: blur(80px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.contenedor_home_back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    display: flex;
+}
+
+.contenedor_home_back > button {
+    width: 8em;
+    aspect-ratio: 1/1;
+    padding: .2em;
+    margin: .7em;
+    border: none;
+    color: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+}
 
 .shake {
     animation: shake 0.5s ease-in-out forwards;
@@ -130,6 +213,7 @@ h1 {
 
 button:active {
     transform: scale(0.96);
+    cursor: pointer;
 }
 
 @keyframes opacidad {
