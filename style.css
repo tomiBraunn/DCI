@@ -122,7 +122,6 @@ h1 {
 }
 
 .opciones_pagina2 > div > button {
-    color: white;
     width: 10.5em;
     height: 2.8em;
     border: none;
@@ -145,7 +144,6 @@ h1 {
 /*Pagina 3*/
 
 .opciones_pagina_3 > p {
-    color: white;
     width: 10.5em;
     height: 2.8em;
     border: none;
@@ -166,12 +164,66 @@ h1 {
 }
 
 .inputs_pagina_3 > input {
+    position: relative;
+    top: -3em;
+    width: 14em;
+    height: 2.3em;
+    font-size: 30px;
+    padding: 0px 0.5em;
+}
+
+.opciones_pagina_3 > button {
+    width: 10.5em;
+    height: 2.8em;
+    border: none;
+    margin: 0.1em 0;
+    font-size: 40px;
+}
+
+/*Pagina 4*/
+
+.pagina4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagina4 > div:nth-child(1) {
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pagina4 > div > p {
+    width: 100vw;
+    font-size: 80px;
+    text-align: center;
     color: white;
 }
 
+.pagina4 > div > p > b {
+    color: #e8cf10;
+}
 
+.desbloqueo_pagina4 {
+    position: relative;
+    top: 3em;
+    font-size: 45px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em 6em;
+}
 
+/*Pagina 5*/
 
+.pagina5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .glass {
     background: linear-gradient(
@@ -183,6 +235,7 @@ h1 {
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      color: white;
 }
 
 .contenedor_home_back {
@@ -205,7 +258,7 @@ h1 {
     justify-content: center;
     align-items: center;
   }
-}
+
 
 .shake {
     animation: shake 0.5s ease-in-out forwards;
@@ -214,6 +267,10 @@ h1 {
 button:active {
     transform: scale(0.96);
     cursor: pointer;
+}
+
+input::placeholder {
+    color: white;
 }
 
 @keyframes opacidad {

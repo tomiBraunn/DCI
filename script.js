@@ -56,7 +56,7 @@ document.getElementById('btn_avanzar').addEventListener('click', function(event)
     const curso = document.getElementById('curso_usuario');
     const division = document.getElementById('division');
     const especialidad = document.getElementById('especialidad');
-    const botonAvanzar = document.getElementById('avanzar');
+    const botonAvanzar = document.getElementById('btn_avanzar');
 
 
     if (tipoUsuario === 'Alumno/a' || tipoUsuario === 'Profesor/a') {
