@@ -81,12 +81,12 @@ h1 {
 
 .contenedor_opciones_pagina2 , .contenedor_opciones_pagina3 {
     position: absolute;
-    top: 12%;
+    top: 6em;
 }
 
 .opciones_pagina2 , .opciones_pagina_3 {
-    width: 580px;
-    height: 650px;
+    width: 14.5em;
+    height: 16.2em;
     font-size: 40px;
     border-radius: 5px;
     display: flex;
@@ -134,7 +134,7 @@ h1 {
 }
 
 .icono_Usuario {
-    width: 193px;
+    width: 12em;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
