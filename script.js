@@ -18,7 +18,7 @@ document.getElementById('btn_inicio').addEventListener('click', function(event) 
 function establecerTipoUsuario(tipo) {
     tipoUsuario = tipo;
     document.getElementById('tipousuario').textContent = tipo;
-    
+
     document.getElementById('DNIusuario').style.display = 'none';
     document.getElementById('NyAusuario').style.display = 'none';
     document.getElementById('Claveadmin').style.display = 'none';
@@ -58,7 +58,6 @@ document.getElementById('btn_avanzar').addEventListener('click', function(event)
     const especialidad = document.getElementById('especialidad');
     const botonAvanzar = document.getElementById('btn_avanzar');
 
-
     if (tipoUsuario === 'Alumno/a' || tipoUsuario === 'Profesor/a') {
         if (!dni) valid = false;
     } else if (tipoUsuario === 'Invitado/a') {
@@ -81,22 +80,6 @@ document.getElementById('btn_avanzar').addEventListener('click', function(event)
         setTimeout(() => {
             botonAvanzar.classList.remove('shake');
         }, 2000);
-    }
-});
-
-// Funcionalidad del botón de desbloqueo facial o con huella digital
-document.getElementById('pulgar').addEventListener('click', function(event) {
-    event.preventDefault();
-
-    // Desplazar a la página 6 si el tipo de usuario es Administrador, sino a la página 5
-    if (tipoUsuario === 'Admin') {
-        document.getElementById('pagina5').style.display = 'none';
-        document.getElementById('opcionesnorm').style.display = 'none';
-        document.getElementById('opcionesadmin').style.display = 'block';
-        desplazarALaPagina('pagina6');
-    } else {
-        desplazarALaPagina('pagina5');
-        document.getElementById('opcionesadmin').style.display = 'none';
     }
 });
 
@@ -149,13 +132,105 @@ document.getElementById('back4').addEventListener('click', function(event) {
     desplazarALaPagina('pagina3');
 });
 
-document.getElementById('back5').addEventListener('click', function(event) {
-    event.preventDefault();
-    desplazarALaPagina('pagina4');
-});
-
 // Botón reinicio página admin 
 document.getElementById('opcionesadmin_reiniciar').addEventListener('click', function(event) {
     event.preventDefault();
     location.reload();
+});
+
+// Funcionalidades de la API
+
+const video = document.getElementById("video");
+const overlayCanvas = document.getElementById("overlayCanvas");
+const imageUpload = document.getElementById("imageUpload");
+const capturedImage = document.getElementById("capturedImage");
+const captureButton = document.getElementById("captureButton");
+const compareButton = document.getElementById("compareButton");
+const resultMessage = document.getElementById("resultMessage");
+
+let uploadedFaceData;
+let capturedFaceData;
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Cargar los modelos
+    await faceapi.nets.ssdMobilenetv1.loadFromUri('./models');
+    await faceapi.nets.faceLandmark68Net.loadFromUri('./models');
+    await faceapi.nets.faceRecognitionNet.loadFromUri('./models');
+    startVideo();
+});
+
+// Start the camera
+function startVideo() {
+    navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+            video.srcObject = stream;
+        })
+        .catch((err) => {
+            console.error("Error accessing the camera: ", err);
+            alert("Could not access the camera.");
+        });
+}
+
+// Handle image upload and face detection
+imageUpload.addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const img = await faceapi.bufferToImage(file);
+        uploadedImage.src = img.src;
+        uploadedFaceData = await faceapi
+            .detectSingleFace(img)
+            .withFaceLandmarks()
+            .withFaceDescriptor();
+
+        if (!uploadedFaceData) {
+            alert('No face detected in the uploaded image.');
+        }
+    }
+});
+
+// Capture photo from video feed
+captureButton.addEventListener("click", async () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imgDataUrl = canvas.toDataURL('image/jpeg');
+    capturedImage.src = imgDataUrl;
+
+    const img = await faceapi.fetchImage(imgDataUrl);
+    capturedFaceData = await faceapi
+        .detectSingleFace(img)
+        .withFaceLandmarks()
+        .withFaceDescriptor();
+
+    if (!capturedFaceData) {
+        alert('No face detected in the captured image.');
+    }
+});
+
+// Compare faces using Euclidean distance
+compareButton.addEventListener("click", async () => {
+    if (!uploadedFaceData || !capturedFaceData) {
+        alert("Both images need to be detected for comparison.");
+        return;
+    }
+
+    // Calculate the Euclidean distance between the two face descriptors
+    const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
+    console.log("Distance between descriptors: ", distance);
+
+    // Define a threshold (0.6 is a common threshold for face matching)
+    const threshold = 0.4;
+    const isSamePerson = distance < threshold;
+    console.log("Is same person: ", isSamePerson);
+
+    // Desplazarse a la página 5 y ocultar los elementos según el resultado
+    desplazarALaPagina('pagina5');
+    if (isSamePerson) {
+        console.log("Las caras son las mismas.");
+        document.getElementById('usuarioNOverificado_pagina5').style.display = 'none';
+    } else {
+        document.getElementById('usuarioverificado_pagina5').style.display = 'none';
+    }
 });

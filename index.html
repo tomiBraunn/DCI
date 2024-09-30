@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width" />
         <title>DCI</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
+        <script src="./face-api.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -19,6 +20,7 @@
       </head>
 <body>
     <div class="background"></div>
+    <span class="background_glass"><img src="card_bg.png"></span>
     <main class="scroll-container">
         <div class="pagina1" id="pagina1">
             <h1>Desbloqueo de Carro <br> Inteligente</h1>
@@ -106,9 +108,16 @@
         <div class="pagina4" id="pagina4">
             <div class="contenedor_pagina4">
                 <p class="bienvenida_pagina4">Bienvenido/a, (<b id="nombre">nombre</b>)</p>
-                <div class="desbloqueo_pagina4 glass" id="pulgar" >
-                    <p>Pon tu dedo en el lector</p>
-                    <b>>>></b>
+                <div class="desbloqueo_pagina4 glass" id="cara">
+                    <div class="camaras">
+                        <video id="video" autoplay playsinline></video>
+                        <img id="capturedImage" style="display: none;"/>
+                    </div>
+                    <div class="opciones_desbloqueo">
+                        <button id="captureButton">Take Photo</button>
+                        <input type="file" id="imageUpload" accept="image/*" />
+                        <button id="compareButton">Compare Images</button>
+                    </div>
                   </div>
             </div>
             <div class="contenedor_home_back">
@@ -164,10 +173,10 @@
                 <div class="opciones_admin" id="opcionesadmin">
                     <b>Modo administrador</b>
                     <div id="configadmin">
-                        <button>Registros</button>
-                        <button>Configuración</button>
-                        <button>Retirar computadora</button>
-                        <button id="opcionesadmin_reiniciar">Reiniciar</button>
+                        <button class="glass">Registros</button>
+                        <button class="glass">Configuración</button>
+                        <button class="glass">Retirar computadora</button>
+                        <button id="opcionesadmin_reiniciar" class="glass">Reiniciar</button>
                     </div>
                 </div>
             </div>

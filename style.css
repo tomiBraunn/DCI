@@ -28,6 +28,14 @@ img {
     z-index: -500;
 }
 
+.background_glass > img {
+    min-width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: -400;
+    opacity: 50%;
+}
+
 main {
     display: flex;
     flex-direction: row;
@@ -172,13 +180,20 @@ h1 {
 
 .curso_usuario_pagina3 {
     display: flex;
-    width: auto;
-    height: auto;
+    justify-content: center;
+    align-items: center;
+    width: 14em;
+    height: 2.3em;
+}
+
+.curso_usuario_pagina3 > select {
+    width: 7.5em;
+    height: 3.5em;
+    font-size: 20px;
 }
 
 .inputs_pagina_3 > input {
     position: relative;
-    top: -3em;
     width: 14em;
     height: 2.3em;
     font-size: 30px;
@@ -214,6 +229,8 @@ h1 {
     font-size: 80px;
     text-align: center;
     color: white;
+    position: relative;
+    margin-top: 1em;
 }
 
 .pagina4 > div > p > b {
@@ -222,12 +239,19 @@ h1 {
 
 .desbloqueo_pagina4 {
     position: relative;
-    top: 3em;
     font-size: 45px;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     padding: 2em 6em;
+    height: 8em;
+}
+
+.camaras > video {
+    height: 450px;
+    position: relative;
+    top: -1.5em;
 }
 
 /*Pagina 5*/
@@ -241,7 +265,6 @@ h1 {
 .contenedor_pagina5,
 .contenedor_pagina6 {
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -357,6 +380,40 @@ h1 {
     height: 2em;
 }
 
+.opciones_admin {
+    height: auto;
+    position: relative;
+    top: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.opciones_admin > b {
+    position: relative;
+    top: -.8em;
+    font-size: 55px;
+    text-align: center;
+    color: white;
+}
+
+.opciones_admin > div {
+    width: 100vw;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-column-gap: 60px;
+    grid-row-gap: 60px;
+}
+
+.opciones_admin > div > button {
+    font-size: 70px;
+    width: 8.2em;
+    height: 2.5em;
+}
+
 .glass {
     background: linear-gradient(
         135deg,
@@ -368,6 +425,20 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     color: white;
+}
+
+.glass_blur {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(80px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    color: white;
+    background-image: url("card_bg.png");
 }
 
 .contenedor_home_back {
@@ -394,7 +465,6 @@ h1 {
 .shake {
     animation: shake 0.5s ease-in-out forwards;
 }
-
 
 button {
     cursor: pointer;
