@@ -238,20 +238,50 @@ h1 {
 }
 
 .desbloqueo_pagina4 {
-    position: relative;
-    font-size: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    padding: 2em 6em;
-    height: 8em;
+    width: 100vw;
+    height: 40vw;
 }
 
-.camaras > video {
-    height: 450px;
-    position: relative;
-    top: -1.5em;
+.camara {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75vw;
+    position: absolute;
+}
+
+.camara > video , .camara > img {
+    width: 110%;
+    aspect-ratio: 16/7;
+    padding: 1em;
+}
+
+.opciones_camara {
+    position: absolute;
+    right: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    padding: 2.5em;
+}
+
+.opciones_camara > button {
+    width: 7em;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .5em 0;
+}
+
+.opciones_camara > button > svg {
+    width: 4em;
+    aspect-ratio: 1/1;
 }
 
 /*Pagina 5*/

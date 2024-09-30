@@ -69,8 +69,6 @@ document.getElementById('btn_avanzar').addEventListener('click', function(event)
     if (valid) {
         desplazarALaPagina('pagina4');
     } else {
-        // alert('Por favor, completa todos los campos necesarios.');
-
         if (botonAvanzar.classList.contains("shake")) {
             botonAvanzar.classList.remove('shake');
         }
@@ -207,6 +205,10 @@ captureButton.addEventListener("click", async () => {
     if (!capturedFaceData) {
         alert('No face detected in the captured image.');
     }
+
+    // Ocultar video y mostrar la imagen capturada
+    document.getElementById('video').style.display = 'none';
+    document.getElementById('capturedImage').style.display = 'block';
 });
 
 // Compare faces using Euclidean distance
@@ -233,4 +235,16 @@ compareButton.addEventListener("click", async () => {
     } else {
         document.getElementById('usuarioverificado_pagina5').style.display = 'none';
     }
+});
+
+// Mostrar video y ocultar imagen capturada al presionar 'retry'
+document.getElementById('retry').addEventListener('click', function() {
+    document.getElementById('video').style.display = 'block';
+    document.getElementById('capturedImage').style.display = 'none';
+});
+
+// Mostrar imagen capturada y ocultar video al presionar 'captureButton'
+document.getElementById('captureButton').addEventListener('click', function() {
+    document.getElementById('video').style.display = 'none';
+    document.getElementById('capturedImage').style.display = 'block';
 });

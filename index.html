@@ -24,6 +24,7 @@
     <main class="scroll-container">
         <div class="pagina1" id="pagina1">
             <h1>Desbloqueo de Carro <br> Inteligente</h1>
+            
             <button id="btn_inicio" class="glass">Iniciar</button>
         </div>
 
@@ -108,15 +109,19 @@
         <div class="pagina4" id="pagina4">
             <div class="contenedor_pagina4">
                 <p class="bienvenida_pagina4">Bienvenido/a, (<b id="nombre">nombre</b>)</p>
-                <div class="desbloqueo_pagina4 glass" id="cara">
-                    <div class="camaras">
+                <div class="desbloqueo_pagina4" id="cara">
+                    <div class="camara glass">
                         <video id="video" autoplay playsinline></video>
                         <img id="capturedImage" style="display: none;"/>
+                        <canvas id="overlayCanvas" style="position: absolute;"></canvas>
                     </div>
-                    <div class="opciones_desbloqueo">
-                        <button id="captureButton">Take Photo</button>
+                    <div class="opciones_camara">
+                        <button id="captureButton" class="glass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="url(#grad1)"> <defs> <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1;" /> <stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1;" /> </linearGradient> </defs> <path d="M479.5-267q72.5 0 121.5-49t49-121.5q0-72.5-49-121T479.5-607q-72.5 0-121 48.5t-48.5 121q0 72.5 48.5 121.5t121 49Zm0-60q-47.5 0-78.5-31.5t-31-79q0-47.5 31-78.5t78.5-31q47.5 0 79 31t31.5 78.5q0 47.5-31.5 79t-79 31.5ZM140-120q-24 0-42-18t-18-42v-513q0-23 18-41.5t42-18.5h147l73-87h240l73 87h147q23 0 41.5 18.5T880-693v513q0 24-18.5 42T820-120H140Zm0-60h680v-513H645l-73-87H388l-73 87H140v513Zm340-257Z"/> </svg></button>
+                        <img id="capturedImage" style="display: none;"/>
+                        <button id="compareButton" class="glass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="url(#grad1)"> <defs> <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1;" /> <stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1;" /> </linearGradient> </defs> <path d="M273-160 80-353l193-193 42 42-121 121h316v60H194l121 121-42 42Zm414-254-42-42 121-121H450v-60h316L645-758l42-42 193 193-193 193Z"/> </svg><button>
+                        <button id="retry" class="glass"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <defs> <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1;" /> <stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1;" /> </linearGradient> </defs> <path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="url(#grad1)" /> </svg></button>
                         <input type="file" id="imageUpload" accept="image/*" />
-                        <button id="compareButton">Compare Images</button>
+                        <img id="uploadedImage" style="display: none;"/>
                     </div>
                   </div>
             </div>
@@ -128,7 +133,7 @@
 
         <div class="pagina5" id="pagina5">
             <div class="contenedor_pagina5">
-                <div class="usuarioverificado_pagina5">
+                <div class="usuarioverificado_pagina5" id="usuarioverificado_pagina5">
                     <div class="mostrarveridicado_pagina5y6">
                       <p>Usuario verificado</p>
                       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" > <defs> <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%" > <stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; " /> <stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0); stop-opacity: 1; " /> </linearGradient> </defs> <style type="text/css"> .st0 { fill: none; } </style> <path d="M19.3,5.3L9,15.6l-4.3-4.3l-1.4,1.4l5,5L9,18.4l0.7-0.7l11-11L19.3,5.3z" fill="url(#grad1)" /> <rect class="st0" width="24" height="24" /> </svg>
@@ -138,7 +143,7 @@
                         <button id="devolver" class="glass">Devolver netbook</button>
                     </div>
                 </div>
-                <div class="usuarioNOverificado_pagina5">
+                <div class="usuarioNOverificado_pagina5" id="usuarioNOverificado_pagina5">
                     <div class="mostrarNOverificado">
                         <p><b>Error</b> en la <br/>verificación</p>
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <defs> <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%" > <stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; " /> <stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0); stop-opacity: 1; " /> </linearGradient> </defs> <rect x="0" fill="none" width="20" height="20" /> <g> <path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z" fill="url(#grad1)" /> </g> </svg>
