@@ -33,6 +33,10 @@ function establecerTipoUsuario(tipo) {
     } else if (tipo === 'Admin') {
         document.getElementById('DNIusuario').style.display = 'block';
         document.getElementById('Claveadmin').style.display = 'block';
+        document.getElementById('opcionesadmin').style.display = 'flex';
+        document.getElementById('contenedor_pagina6').style.display = 'none';
+        document.getElementById('pagina4').style.display = 'none';
+        document.getElementById('pagina5').style.display = 'none';
     }
 
     desplazarALaPagina('pagina3');
@@ -67,14 +71,21 @@ document.getElementById('btn_avanzar').addEventListener('click', function(event)
     }
 
     if (valid) {
-        desplazarALaPagina('pagina4');
+        // Verificar a qué página debe avanzar según el tipo de usuario
+        if (tipoUsuario === 'Admin') {
+            desplazarALaPagina('pagina6');  // Página para administradores
+        } else if (tipoUsuario === 'Alumno/a' || tipoUsuario === 'Profesor/a') {
+            desplazarALaPagina('pagina4');  // Página para alumnos/profesores
+        } else if (tipoUsuario === 'Invitado/a') {
+            desplazarALaPagina('pagina5');  // Página para invitados
+        }
     } else {
         if (botonAvanzar.classList.contains("shake")) {
             botonAvanzar.classList.remove('shake');
         }
         botonAvanzar.classList.add('shake');
 
-        // Quitar la clase 'shake' después de 
+        // Quitar la clase 'shake' después de 2 segundos
         setTimeout(() => {
             botonAvanzar.classList.remove('shake');
         }, 2000);
@@ -203,7 +214,7 @@ captureButton.addEventListener("click", async () => {
         .withFaceDescriptor();
 
     if (!capturedFaceData) {
-        alert('No face detected in the captured image.');
+        alert('No se detectó ninguna cara en la foto');
     }
 
     // Ocultar video y mostrar la imagen capturada
@@ -232,8 +243,10 @@ compareButton.addEventListener("click", async () => {
     if (isSamePerson) {
         console.log("Las caras son las mismas.");
         document.getElementById('usuarioNOverificado_pagina5').style.display = 'none';
+        document.getElementById('usuarioverificado_pagina5').style.display = 'flex';
     } else {
         document.getElementById('usuarioverificado_pagina5').style.display = 'none';
+        document.getElementById('usuarioNOverificado_pagina5').style.display = 'flex';
     }
 });
 

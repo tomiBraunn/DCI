@@ -154,18 +154,21 @@ h1 {
 /*Pagina 3*/
 
 .opciones_pagina_3 > p {
+    position: absolute;
     width: 10.5em;
     height: 2.8em;
     border: none;
-    margin: 0.1em 0;
     font-size: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1.2em;
+    top: 2.5em;
 }
 
+
 .inputs_pagina_3 {
+    top: 5.5em;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -201,6 +204,8 @@ h1 {
 }
 
 .opciones_pagina_3 > button {
+    position: absolute;
+    top: 12.4em;
     width: 10.5em;
     height: 2.8em;
     border: none;
@@ -251,6 +256,7 @@ h1 {
     align-items: center;
     width: 75vw;
     position: absolute;
+    transform: rotateY(180deg);
 }
 
 .camara > video , .camara > img {
@@ -426,6 +432,7 @@ h1 {
     font-size: 55px;
     text-align: center;
     color: white;
+    margin-top: 1.5em;
 }
 
 .opciones_admin > div {
@@ -481,7 +488,7 @@ h1 {
 }
 
 .contenedor_home_back > button {
-    width: 8em;
+    width: 7em;
     aspect-ratio: 1/1;
     padding: 0.2em;
     margin: 0.7em;
