@@ -21,6 +21,7 @@ img {
         rgb(255 179 0 / 27%),
         rgb(171 0 255 / 16%)
     );
+    background-image: url(bg.svg);
     filter: blur(80px);
     min-width: 100vw;
     height: 100vh;
@@ -63,7 +64,7 @@ h1 {
     color: white;
     font-size: 90px;
     text-align: center;
-    animation: entrada 1s ease-out forwards;
+    animation: entrada 2s ease-in-out forwards;
     animation-delay: 0.5s;
 }
 
@@ -73,7 +74,7 @@ h1 {
     border-radius: 20px;
     font-weight: bold;
     border: none;
-    animation: opacidad 1s ease-out forwards;
+    animation: opacidad 2s ease-out forwards;
     animation-delay: 0.5s;
     text-decoration: none;
     color: white;
@@ -201,6 +202,7 @@ h1 {
     height: 2.3em;
     font-size: 30px;
     padding: 0px 0.5em;
+    transition: .3s;
 }
 
 .opciones_pagina_3 > button {
@@ -211,6 +213,10 @@ h1 {
     border: none;
     margin: 0.1em 0;
     font-size: 40px;
+}
+
+.opciones_pagina_3 > button:active {
+    transform: scale(1);
 }
 
 /*Pagina 4*/
@@ -451,6 +457,31 @@ h1 {
     height: 2.5em;
 }
 
+/*Botones navegacion*/
+
+.contenedor_home_back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    display: flex;
+}
+
+.contenedor_home_back > button {
+    width: 7em;
+    aspect-ratio: 1/1;
+    padding: 0.2em;
+    margin: 0.7em;
+    border: none;
+    color: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Estilos por clases*/
+
 .glass {
     background: linear-gradient(
         135deg,
@@ -478,29 +509,25 @@ h1 {
     background-image: url("card_bg.png");
 }
 
-.contenedor_home_back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    display: flex;
-}
-
-.contenedor_home_back > button {
-    width: 7em;
-    aspect-ratio: 1/1;
-    padding: 0.2em;
-    margin: 0.7em;
-    border: none;
-    color: initial;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .shake {
     animation: shake 0.5s ease-in-out forwards;
+}
+
+.incompleto {
+    background: linear-gradient(
+        135deg,
+        rgba(136, 75, 75, 0.694),
+        rgba(133, 12, 12, 0.162)
+    );
+    backdrop-filter: blur(80px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(137, 75, 75, 0.37);
+    color: white;
+}
+
+canvas {
+    display: none;
 }
 
 button {
