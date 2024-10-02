@@ -181,7 +181,7 @@ document.getElementById('opcionesadmin_reiniciar').addEventListener('click', fun
     location.reload();
 });
 
-// Funcionalidades de la API
+// Funcionalidad api
 const video = document.getElementById("video");
 const overlayCanvas = document.getElementById("overlayCanvas");
 const imageUpload = document.getElementById("imageUpload");
@@ -194,16 +194,22 @@ let capturedFaceData;
 // Esperar a que se cargue el DOM
 document.addEventListener('DOMContentLoaded', async () => {
     // Cargar los modelos de face-api.js
-    await faceapi.nets.ssdMobilenetv1.loadFromUri('./models');
+    await faceapi.nets.tinyFaceDetector.loadFromUri('./models');
     await faceapi.nets.faceLandmark68Net.loadFromUri('./models');
     await faceapi.nets.faceRecognitionNet.loadFromUri('./models');
     startVideo();
 });
 
-// Iniciar la cámara
+// Opciones para tinyFaceDetector
+const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
+    inputSize: 160, // Puedes ajustar este valor para mejorar el rendimiento
+    scoreThreshold: 0.5 // Puedes ajustar este valor para controlar la sensibilidad
+});
+
+// Iniciar la cámara con resolución predeterminada (puedes ajustar la resolución aquí si lo prefieres)
 function startVideo() {
     navigator.mediaDevices
-        .getUserMedia({ video: true })
+        .getUserMedia({ video: true })  // Agrega una resolución si lo necesitas, ej: { width: 1280, height: 720 }
         .then((stream) => {
             video.srcObject = stream;
             video.addEventListener('play', () => {
@@ -213,7 +219,7 @@ function startVideo() {
                 const displaySize = { width: video.videoWidth, height: video.videoHeight };
                 faceapi.matchDimensions(overlayCanvas, displaySize);
                 setInterval(async () => {
-                    const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors();
+                    const detections = await faceapi.detectAllFaces(video, tinyFaceDetectorOptions).withFaceLandmarks().withFaceDescriptors();
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
                     overlayCanvas.getContext('2d').clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
                     faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
@@ -227,18 +233,18 @@ function startVideo() {
         });
 }
 
-// Capturar foto del video
+// Capturar foto del video con resolución 1920x1080
 captureButton.addEventListener("click", async () => {
     const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = 1920;  // Ajuste a 1920 de ancho
+    canvas.height = 1080; // Ajuste a 1080 de alto
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
     const imgDataUrl = canvas.toDataURL('image/jpeg');
     capturedImage.src = imgDataUrl;
 
     const img = await faceapi.fetchImage(imgDataUrl);
     capturedFaceData = await faceapi
-        .detectSingleFace(img)
+        .detectSingleFace(img, tinyFaceDetectorOptions)
         .withFaceLandmarks()
         .withFaceDescriptor();
 
@@ -278,7 +284,7 @@ imageUpload.addEventListener('change', async (event) => {
 
     const img = await faceapi.fetchImage(URL.createObjectURL(file));
     uploadedFaceData = await faceapi
-        .detectSingleFace(img)
+        .detectSingleFace(img, tinyFaceDetectorOptions)
         .withFaceLandmarks()
         .withFaceDescriptor();
 

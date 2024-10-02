@@ -29,6 +29,17 @@ img {
     z-index: -500;
 }
 
+.background_glass {
+    background: #ffffff00;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    opacity: 10%;
+    transition: .3s;
+    z-index: -100;
+}
+
+
 .background_glass > img {
     min-width: 100vw;
     height: 100vh;
@@ -532,10 +543,15 @@ canvas {
 
 button {
     cursor: pointer;
+    transition: .3s;
 }
 
 button:active {
     transform: scale(0.96);
+}
+
+.button_hover:hover {
+    transform: scale(1.05);
 }
 
 input::placeholder {
