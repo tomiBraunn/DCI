@@ -79,7 +79,7 @@ h1 {
     animation-delay: 0.5s;
 }
 
-.pagina1 > button {
+.btn_inicio {
     padding: 0.7em 1.6em;
     font-size: 70px;
     border-radius: 20px;
@@ -89,6 +89,72 @@ h1 {
     animation-delay: 0.5s;
     text-decoration: none;
     color: white;
+}
+
+.btn_info_dci {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    margin: .2em;
+    width: 1em;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    font-size: 70px;
+    animation: opacidad 2s ease-out forwards;
+    animation-delay: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_info_dci > svg {
+    width: 1em;
+}
+
+.info_dci {
+    width: auto;
+    height: auto;
+    position: absolute;
+    font-size: 40px;
+    z-index: 100;
+    display: flex;
+    justify-items: flex-start;
+    flex-direction: column;
+}
+
+.info_dci > * {
+    padding: .5em;
+    display: block;
+}
+
+.info_dci > b {
+    font-size: 50px;
+}
+
+.info_dci > p {
+    font-size: 25.5px;
+}
+
+.info_dci > p > button {
+    font-size: 40px;
+    padding: .1em 1em;
+    margin: 0 .2em;
+}
+
+.info_dci > button {
+    position: absolute;
+    right: 0;
+    width: 7em;
+    aspect-ratio: 1/1;
+    padding: 0.2em;
+    margin: 0.7em;
+    border: none;
+    color: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Pagina 2 y 3*/

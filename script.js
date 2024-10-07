@@ -14,6 +14,17 @@ document.getElementById('btn_inicio').addEventListener('click', function(event) 
     desplazarALaPagina('pagina2');
 });
 
+// Mostrar el elemento con id 'info_dci' al hacer clic en el botón con id 'btn_info_dci'
+document.getElementById('btn_info_dci').addEventListener('click', function() {
+    document.getElementById('info_dci').style.display = 'flex';
+});
+
+// Ocultar el elemento con id 'info_dci' al hacer clic en el elemento con id 'back_info'
+document.getElementById('back_info').addEventListener('click', function() {
+    document.getElementById('info_dci').style.display = 'none';
+});
+
+
 // Definir qué inputs son necesarios según el tipo de usuario
 function establecerTipoUsuario(tipo) {
     tipoUsuario = tipo;
