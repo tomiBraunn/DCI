@@ -17,11 +17,13 @@ document.getElementById('btn_inicio').addEventListener('click', function(event) 
 // Mostrar el elemento con id 'info_dci' al hacer clic en el botón con id 'btn_info_dci'
 document.getElementById('btn_info_dci').addEventListener('click', function() {
     document.getElementById('info_dci').style.display = 'flex';
+    document.getElementById('btn_info_dci').style.display = 'none';
 });
 
 // Ocultar el elemento con id 'info_dci' al hacer clic en el elemento con id 'back_info'
 document.getElementById('back_info').addEventListener('click', function() {
     document.getElementById('info_dci').style.display = 'none';
+    document.getElementById('btn_info_dci').style.display = 'flex';
 });
 
 

@@ -118,6 +118,7 @@ h1 {
     height: auto;
     position: absolute;
     font-size: 40px;
+    margin: 2em;
     z-index: 100;
     display: flex;
     justify-items: flex-start;
@@ -131,6 +132,11 @@ h1 {
 
 .info_dci > b {
     font-size: 50px;
+    height: .3em;
+    display: flex;
+    align-items: center;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .info_dci > p {
@@ -138,15 +144,17 @@ h1 {
 }
 
 .info_dci > p > button {
-    font-size: 40px;
+    font-size: 30px;
     padding: .1em 1em;
     margin: 0 .2em;
+    box-shadow: none;
+    height: .3em;
 }
 
 .info_dci > button {
     position: absolute;
     right: 0;
-    width: 7em;
+    width: 4em;
     aspect-ratio: 1/1;
     padding: 0.2em;
     margin: 0.7em;
@@ -155,6 +163,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
 }
 
 /*Pagina 2 y 3*/
