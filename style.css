@@ -130,13 +130,18 @@ h1 {
     display: block;
 }
 
-.info_dci > b {
-    font-size: 50px;
-    height: .3em;
+.navbar_info {
+    height: .05em;
+    width: auto;
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    background: rgba(78, 73, 73, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .info_dci > p {
@@ -148,10 +153,9 @@ h1 {
     padding: .1em 1em;
     margin: 0 .2em;
     box-shadow: none;
-    height: .3em;
 }
 
-.info_dci > button {
+.navbar_info > button {
     position: absolute;
     right: 0;
     width: 4em;
