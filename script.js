@@ -4,32 +4,33 @@ let tipoUsuario = "";
 function desplazarALaPagina(paginaId) {
     document.querySelector(".scroll-container").scrollTo({
         left: document.getElementById(paginaId).offsetLeft,
-        behavior: "smooth"
+        behavior: "smooth",
     });
 }
 
 // Botón de inicio en la primera página
-document.getElementById("btn_inicio").addEventListener("click", function(event) {
-    event.preventDefault();
-    desplazarALaPagina("pagina2");
-});
+document
+    .getElementById("btn_inicio")
+    .addEventListener("click", function (event) {
+        event.preventDefault();
+        desplazarALaPagina("pagina2");
+    });
 
 // Mostrar el elemento con id "info_dci" al hacer clic en el botón con id "btn_info_dci"
-document.getElementById("btn_info_dci").addEventListener("click", function() {
+document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("info_dci").style.display = "flex";
     document.getElementById("btn_info_dci").style.display = "none";
-    document.querySelector("h1").style.display = "none"
+    document.querySelector("h1").style.display = "none";
     document.getElementById("btn_inicio").style.display = "none";
 });
 
 // Ocultar el elemento con id "info_dci" al hacer clic en el elemento con id "back_info"
-document.getElementById("back_info").addEventListener("click", function() {
+document.getElementById("back_info").addEventListener("click", function () {
     document.getElementById("info_dci").style.display = "none";
     document.getElementById("btn_info_dci").style.display = "flex";
-    document.querySelector("h1").style.display = "block"
+    document.querySelector("h1").style.display = "block";
     document.getElementById("btn_inicio").style.display = "block";
 });
-
 
 // Definir qué inputs son necesarios según el tipo de usuario
 function establecerTipoUsuario(tipo) {
@@ -60,143 +61,234 @@ function establecerTipoUsuario(tipo) {
 }
 
 // Definir el tipo de usuario
-document.getElementById("alumno").addEventListener("click", () => establecerTipoUsuario("Alumno/a"));
-document.getElementById("profesor").addEventListener("click", () => establecerTipoUsuario("Profesor/a"));
-document.getElementById("invitado").addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
-document.getElementById("admin").addEventListener("click", () => establecerTipoUsuario("Admin"));
-
-
+document
+    .getElementById("alumno")
+    .addEventListener("click", () => establecerTipoUsuario("Alumno/a"));
+document
+    .getElementById("profesor")
+    .addEventListener("click", () => establecerTipoUsuario("Profesor/a"));
+document
+    .getElementById("invitado")
+    .addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
+document
+    .getElementById("admin")
+    .addEventListener("click", () => establecerTipoUsuario("Admin"));
 
 // Botón de avanzar una vez que se ingresaron los datos
-document.getElementById("btn_avanzar").addEventListener("click", function(event) {
-    event.preventDefault();
+document
+    .getElementById("btn_avanzar")
+    .addEventListener("click", function (event) {
+        event.preventDefault();
 
-    let valid = true;
-    const dni = document.getElementById("DNIusuario").value.trim();
-    const nombreApellido = document.getElementById("NyAusuario").value.trim();
-    const claveAdmin = document.getElementById("Claveadmin").value.trim();
-    const curso = document.getElementById("curso_usuario");
-    const division = document.getElementById("division");
-    const especialidad = document.getElementById("especialidad");
-    const botonAvanzar = document.getElementById("btn_avanzar");
+        let valid = true;
+        const dni = document.getElementById("DNIusuario").value.trim();
+        const nombreApellido = document
+            .getElementById("NyAusuario")
+            .value.trim();
+        const claveAdmin = document.getElementById("Claveadmin").value.trim();
+        const curso = document.getElementById("curso_usuario");
+        const division = document.getElementById("division");
+        const especialidad = document.getElementById("especialidad");
+        const botonAvanzar = document.getElementById("btn_avanzar");
 
-    // Resetear la clase "incompleto" de todos los campos
-    document.querySelectorAll(".incompleto").forEach(el => el.classList.remove("incompleto"));
+        // Resetear la clase "incompleto" de todos los campos
+        document
+            .querySelectorAll(".incompleto")
+            .forEach((el) => el.classList.remove("incompleto"));
 
-    if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
-        if (!dni) {
-            valid = false;
-            document.getElementById("DNIusuario").classList.add("incompleto"); 
-        }
-    } else if (tipoUsuario === "Invitado/a") {
-        if (!dni) {
-            valid = false;
-            document.getElementById("DNIusuario").classList.add("incompleto");
-        }
-        if (!nombreApellido) {
-            valid = false;
-            document.getElementById("NyAusuario").classList.add("incompleto");
-        }
-        if (curso.selectedIndex === 0) {
-            valid = false;
-            curso.classList.add("incompleto");
-        }
-        if (division.selectedIndex === 0) {
-            valid = false;
-            division.classList.add("incompleto");
-        }
-        if (especialidad.selectedIndex === 0) {
-            valid = false;
-            especialidad.classList.add("incompleto");
-        }
-    } else if (tipoUsuario === "Admin") {
-        if (!dni) {
-            valid = false;
-            document.getElementById("DNIusuario").classList.add("incompleto");
-        }
-        if (!claveAdmin) {
-            valid = false;
-            document.getElementById("Claveadmin").classList.add("incompleto");
-        }
-    }
-
-    if (valid) {
-        // Verificar a qué página debe avanzar según el tipo de usuario
-        if (tipoUsuario === "Admin") {
-            desplazarALaPagina("pagina6");  
-        } else if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
-            desplazarALaPagina("pagina4");  
+        if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
+            if (!dni) {
+                valid = false;
+                document
+                    .getElementById("DNIusuario")
+                    .classList.add("incompleto");
+            }
         } else if (tipoUsuario === "Invitado/a") {
-            desplazarALaPagina("pagina5"); 
+            if (!dni) {
+                valid = false;
+                document
+                    .getElementById("DNIusuario")
+                    .classList.add("incompleto");
+            }
+            if (!nombreApellido) {
+                valid = false;
+                document
+                    .getElementById("NyAusuario")
+                    .classList.add("incompleto");
+            }
+            if (curso.selectedIndex === 0) {
+                valid = false;
+                curso.classList.add("incompleto");
+            }
+            if (division.selectedIndex === 0) {
+                valid = false;
+                division.classList.add("incompleto");
+            }
+            if (especialidad.selectedIndex === 0) {
+                valid = false;
+                especialidad.classList.add("incompleto");
+            }
+        } else if (tipoUsuario === "Admin") {
+            if (!dni) {
+                valid = false;
+                document
+                    .getElementById("DNIusuario")
+                    .classList.add("incompleto");
+            }
+            if (!claveAdmin) {
+                valid = false;
+                document
+                    .getElementById("Claveadmin")
+                    .classList.add("incompleto");
+            }
         }
-    } else {
-        if (botonAvanzar.classList.contains("shake")) {
-            botonAvanzar.classList.remove("shake");
+
+        if (valid) {
+            // Verificar a qué página debe avanzar según el tipo de usuario
+            if (tipoUsuario === "Admin") {
+                desplazarALaPagina("pagina6");
+            } else if (
+                tipoUsuario === "Alumno/a" ||
+                tipoUsuario === "Profesor/a"
+            ) {
+                desplazarALaPagina("pagina4");
+            } else if (tipoUsuario === "Invitado/a") {
+                desplazarALaPagina("pagina5");
+            }
+        } else {
+            if (botonAvanzar.classList.contains("shake")) {
+                botonAvanzar.classList.remove("shake");
+            }
+            botonAvanzar.classList.add("shake");
+
+            setTimeout(() => {
+                botonAvanzar.classList.remove("shake");
+            }, 2000);
         }
-        botonAvanzar.classList.add("shake");
-
-        // Quitar la clase "shake" después de 2 segundos
-        setTimeout(() => {
-            botonAvanzar.classList.remove("shake");
-        }, 2000);
-    }
-});
-
+    });
 
 // Volver a la página anterior si falla la autenticación
-document.getElementById("volver_a_intentar").addEventListener("click", function(event) {
-    event.preventDefault();
-    desplazarALaPagina("pagina4");
-});
+document
+    .getElementById("volver_a_intentar")
+    .addEventListener("click", function (event) {
+        event.preventDefault();
+        desplazarALaPagina("pagina4");
+    });
 
 // Retirar o devolver computadora en la última página u opciones de admin
-document.getElementById("retirar").addEventListener("click", function(event) {
+document.getElementById("retirar").addEventListener("click", function (event) {
     event.preventDefault();
     document.getElementById("devolver_compu").style.display = "none";
     desplazarALaPagina("pagina6");
 });
 
-document.getElementById("devolver").addEventListener("click", function(event) {
+document.getElementById("devolver").addEventListener("click", function (event) {
     event.preventDefault();
     document.getElementById("retirar_compu").style.display = "none";
     desplazarALaPagina("pagina6");
 });
 
 // Botón reinicio
-document.getElementById("reiniciar").addEventListener("click", function(event) {
-    event.preventDefault();
-    location.reload();
-});
+document
+    .getElementById("reiniciar")
+    .addEventListener("click", function (event) {
+        event.preventDefault();
+        location.reload();
+    });
 
 // Botones home
-document.querySelectorAll(".home").forEach(button => {
-    button.addEventListener("click", function(event) {
+document.querySelectorAll(".home").forEach((button) => {
+    button.addEventListener("click", function (event) {
         event.preventDefault();
         location.reload();
     });
 });
 
 // Botones back
-document.getElementById("back2").addEventListener("click", function(event) {
+document.getElementById("back2").addEventListener("click", function (event) {
     event.preventDefault();
     desplazarALaPagina("pagina1");
 });
 
-document.getElementById("back3").addEventListener("click", function(event) {
+document.getElementById("back3").addEventListener("click", function (event) {
     event.preventDefault();
     desplazarALaPagina("pagina2");
 });
 
-document.getElementById("back4").addEventListener("click", function(event) {
+document.getElementById("back4").addEventListener("click", function (event) {
     event.preventDefault();
     desplazarALaPagina("pagina3");
 });
 
-// Botón reinicio página admin 
-document.getElementById("opcionesadmin_reiniciar").addEventListener("click", function(event) {
-    event.preventDefault();
-    location.reload();
-});
+// Botón reinicio página admin
+document
+    .getElementById("opcionesadmin_reiniciar")
+    .addEventListener("click", function (event) {
+        event.preventDefault();
+        location.reload();
+    });
+
+// Escuchar el valor de la barra de búsqueda para /admin
+document
+    .getElementById("search_bar_nav_bar")
+    .addEventListener("input", function () {
+        const searchBar = document.getElementById("search_bar_nav_bar");
+        const searchBarValue = searchBar.value.trim();
+
+        if (searchBarValue.length > 8) {
+            searchBar.value = "";
+            searchBar.placeholder = "¿Qué-es-DCI?";
+            return;
+        };
+
+        if (searchBarValue === "/reset") {
+            searchBar.value = "";
+            searchBar.placeholder = "¿Qué-es-DCI?";
+            event.preventDefault();
+            location.reload();
+        };
+
+        if (searchBarValue === "/credits") {
+            document.getElementById("creditos").style.display = "flex"
+            searchBar.value = "";
+            searchBar.placeholder = "¿Qué-es-DCI?";
+        };
+
+        document.getElementById("back_creditos").addEventListener("click", function (event) {
+            document.getElementById("creditos").style.display = "none"
+        });
+        
+
+        // Verificar si el valor ingresado es "/admin"
+        if (searchBarValue === "/admin") {
+            setTimeout(() => {
+                const claveIngresada = prompt("");
+
+                // Verificar si la clave ingresada es correcta
+                if (claveIngresada === "admin") {
+                    const paginas = document.querySelectorAll(".pagina");
+
+                    paginas.forEach((pagina) => {
+                        pagina.style.display = "none";
+                    });
+
+                    document.getElementById("pagina2").style.display = "block";
+                    document.getElementById(
+                        "contenedor_opciones_pagina2"
+                    ).style.display = "none";
+                    document.getElementById(
+                        "contenedor_home_back"
+                    ).style.display = "none";
+                    establecerTipoUsuario("Admin");
+
+                    desplazarALaPagina("pagina2");
+                } else {
+                    searchBar.value = "";
+                    searchBar.placeholder = "¿Qué-es-DCI?";
+                }
+            }, 500);
+        }
+    });
 
 // Funcionalidad api
 const video = document.getElementById("video");
@@ -220,27 +312,49 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Opciones para tinyFaceDetector
 const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
     inputSize: 160, // Puedes ajustar este valor para mejorar el rendimiento
-    scoreThreshold: 0.5 // Puedes ajustar este valor para controlar la sensibilidad
+    scoreThreshold: 0.5, // Puedes ajustar este valor para controlar la sensibilidad
 });
 
 // Iniciar la cámara con resolución predeterminada (puedes ajustar la resolución aquí si lo prefieres)
 function startVideo() {
     navigator.mediaDevices
-        .getUserMedia({ video: true })  // Agrega una resolución si lo necesitas, ej: { width: 1280, height: 720 }
+        .getUserMedia({ video: true }) // Agrega una resolución si lo necesitas, ej: { width: 1280, height: 720 }
         .then((stream) => {
             video.srcObject = stream;
             video.addEventListener("play", () => {
                 // Sincronizar el canvas con el video
                 const canvas = faceapi.createCanvasFromMedia(video);
                 document.body.append(canvas);
-                const displaySize = { width: video.videoWidth, height: video.videoHeight };
+                const displaySize = {
+                    width: video.videoWidth,
+                    height: video.videoHeight,
+                };
                 faceapi.matchDimensions(overlayCanvas, displaySize);
                 setInterval(async () => {
-                    const detections = await faceapi.detectAllFaces(video, tinyFaceDetectorOptions).withFaceLandmarks().withFaceDescriptors();
-                    const resizedDetections = faceapi.resizeResults(detections, displaySize);
-                    overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
-                    faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
-                    faceapi.draw.drawFaceLandmarks(overlayCanvas, resizedDetections);
+                    const detections = await faceapi
+                        .detectAllFaces(video, tinyFaceDetectorOptions)
+                        .withFaceLandmarks()
+                        .withFaceDescriptors();
+                    const resizedDetections = faceapi.resizeResults(
+                        detections,
+                        displaySize
+                    );
+                    overlayCanvas
+                        .getContext("2d")
+                        .clearRect(
+                            0,
+                            0,
+                            overlayCanvas.width,
+                            overlayCanvas.height
+                        );
+                    faceapi.draw.drawDetections(
+                        overlayCanvas,
+                        resizedDetections
+                    );
+                    faceapi.draw.drawFaceLandmarks(
+                        overlayCanvas,
+                        resizedDetections
+                    );
                 }, 100);
             });
         })
@@ -253,7 +367,7 @@ function startVideo() {
 // Capturar foto del video con resolución 1920x1080
 captureButton.addEventListener("click", async () => {
     const canvas = document.createElement("canvas");
-    canvas.width = 1920;  // Ajuste a 1920 de ancho
+    canvas.width = 1920; // Ajuste a 1920 de ancho
     canvas.height = 1080; // Ajuste a 1080 de alto
     canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
     const imgDataUrl = canvas.toDataURL("image/jpeg");
@@ -276,18 +390,25 @@ captureButton.addEventListener("click", async () => {
         return;
     }
 
-    const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
+    const distance = faceapi.euclideanDistance(
+        uploadedFaceData.descriptor,
+        capturedFaceData.descriptor
+    );
     const threshold = 0.4;
     const isSamePerson = distance < threshold;
 
     // Navegar a la página 5 según el resultado
     desplazarALaPagina("pagina5");
     if (isSamePerson) {
-        document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
-        document.getElementById("usuarioverificado_pagina5").style.display = "flex";
+        document.getElementById("usuarioNOverificado_pagina5").style.display =
+            "none";
+        document.getElementById("usuarioverificado_pagina5").style.display =
+            "flex";
     } else {
-        document.getElementById("usuarioverificado_pagina5").style.display = "none";
-        document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
+        document.getElementById("usuarioverificado_pagina5").style.display =
+            "none";
+        document.getElementById("usuarioNOverificado_pagina5").style.display =
+            "flex";
     }
 });
 

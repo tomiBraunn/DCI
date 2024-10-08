@@ -74,8 +74,7 @@ h1 {
     color: white;
     font-size: 90px;
     text-align: center;
-    animation: entrada 2s ease-in-out forwards;
-    animation-delay: 0.5s;
+    animation: entrada 1s ease-out forwards;
 }
 
 .btn_inicio {
@@ -84,8 +83,7 @@ h1 {
     border-radius: 20px;
     font-weight: bold;
     border: none;
-    animation: opacidad 2s ease-out forwards;
-    animation-delay: 0.5s;
+    animation: opacidad 1s ease-out forwards;
     text-decoration: none;
     color: white;
 }
@@ -101,8 +99,7 @@ h1 {
     aspect-ratio: 1/1;
     border-radius: 100%;
     font-size: 70px;
-    animation: opacidad 2s ease-out forwards;
-    animation-delay: 0.5s;
+    animation: opacidad 1s ease-out forwards;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,6 +121,7 @@ h1 {
     display: flex;
     justify-items: flex-start;
     flex-direction: column;
+    animation: opacidad_blur .3s ease-out forwards;
 }
 
 .info_dci > * {
@@ -145,7 +143,29 @@ h1 {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.navbar_info > div {
+
+.navbar_info > input {
+    font-size: 24px;
+    font-style: italic;
+    color: #cececf;
+    background: none;
+    border: none;
+    text-align: center;
+}
+
+.navbar_info > input::placeholder {
+    font-size: 24px;
+    font-style: italic;
+    color: #cececf;
+}
+
+.navbar_info > input:focus {
+    border: none;
+    outline: none;
+    caret-color: transparent;
+}
+
+.opciones_nav_bar {
     position: absolute;
     display: flex;
     justify-content: space-evenly;
@@ -155,30 +175,69 @@ h1 {
     left: 0;
 }
 
-.navbar_info > p {
-    font-size: 24px;
-    font-style: italic;
-    color: #cececf;
+.circulos_nav_bar {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.navbar_info > div > span {
+.circulos_nav_bar > span {
     border-radius: 100%;
     width: 0.4em;
     aspect-ratio: 1/1;
     margin: 0 0.1em;
 }
 
-.navbar_info > div > span:nth-child(1) {
+.circulos_nav_bar > span:nth-child(1) {
     background: #ff5f56;
     margin-left: 0.2em;
 }
-
-.navbar_info > div > span:nth-child(2) {
+.circulos_nav_bar > span:nth-child(2) {
     background: #ffbd2e;
 }
 
-.navbar_info > div > span:nth-child(3) {
+.circulos_nav_bar > span:nth-child(3) {
     background: #27c93f;
+}
+
+.flechas_nav_bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    font-size: 30px;
+    top: -0.05em;
+}
+
+.flechas_nav_bar > p {
+    padding: 0 .1em;
+    color: #cececf;
+}
+
+.flechas_nav_bar > p:active {
+    transform: scale(1.1);
+}
+
+.flechas_nav_bar > p:nth-child(2) {
+    margin-left: .2em;
+}
+
+.share_nav_bar {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: auto;
+    height: auto;
+    right: 0;
+    aspect-ratio: 1/1;
+    width: .7em;
+    margin-right: 0.2em;
+}
+
+.flechas_nav_bar > p:active , .share_nav_bar:active  {
+    transform: scale(1.1);
 }
 
 /*Ayuda posta*/
@@ -190,17 +249,16 @@ h1 {
     flex-direction: column;
 }
 
-
 .info_tutorial_dci > b {
     font-size: 40px;
-    padding-bottom: .4em;
+    padding-bottom: 0.4em;
 }
 
 .info_tutorial_dci > p {
-    font-size: 25.5px;
+    font-size: 22px;
 }
 
-.info_tutorial_dci > button {
+.info_tutorial_dci > button , .btns_alm_profe_info > button {
     position: relative;
     left: -2em;
     width: 10.5em;
@@ -211,8 +269,72 @@ h1 {
     cursor: default;
 }
 
-.info_tutorial_dci > button:active {
-    transform: scale(.7);
+.btns_alm_profe_info > button:nth-child(2) {
+    left: -6em;
+}
+
+.info_tutorial_dci > button:active , .btns_alm_profe_info > button:active {
+    transform: scale(0.7);
+}
+
+/*Creditos*/
+
+.contenedor_creditos {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    background: #0000001b;
+    animation: opacidad_blur .3s ease-out forwards;
+}
+
+.creditos {
+    width: 30vw;
+    height: 60vh;
+    z-index: 300;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.creditos > button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 100%;
+    z-index: 200;
+    font-size: 50px;
+    width: 1em;
+    aspect-ratio: 1/1;
+}
+
+
+.creditos > b {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: rgba(78, 73, 73, 0.1);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: .5em 0;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.creditos > ul {
+    top: 0.5em;
+}
+
+.creditos > ul > li {
+    padding: .5em 0;
 }
 
 /*Pagina 2 y 3*/
@@ -273,7 +395,7 @@ h1 {
     justify-content: space-evenly;
     flex-direction: column;
     position: relative;
-    top: -.5em;
+    top: -0.5em;
 }
 
 .opciones_pagina2 > div > button {
@@ -286,6 +408,7 @@ h1 {
 
 .opciones_pagina2 > div > button:nth-child(4) {
     height: 1.8em;
+    display: none;
 }
 
 .icono_Usuario {
@@ -698,6 +821,20 @@ input::placeholder {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes opacidad_blur {
+    from {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0px);
+        transform: scale(1);
     }
 }
 
