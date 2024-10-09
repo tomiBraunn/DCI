@@ -838,23 +838,6 @@ input::placeholder {
     }
 }
 
-@keyframes opacidad_blur_fade {
-    
-    to {
-        opacity: 1;
-        filter: blur(0px);
-        transform: scale(1);
-    }
-
-    
-    from {
-        opacity: 0;
-        filter: blur(20px);
-        transform: scale(.7);
-        display: none;
-    }
-}
-
 @keyframes entrada {
     from {
         opacity: 0;
