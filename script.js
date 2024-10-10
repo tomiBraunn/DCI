@@ -19,6 +19,7 @@ document
 // Mostrar el elemento con id "info_dci" al hacer clic en el botón con id "btn_info_dci"
 document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("info_dci").style.display = "flex";
+    document.getElementById("info_dci").classList.remove("opacidad_blur_fade");
     document.getElementById("btn_info_dci").style.display = "none";
     document.querySelector("h1").style.display = "none";
     document.getElementById("btn_inicio").style.display = "none";
@@ -26,7 +27,8 @@ document.getElementById("btn_info_dci").addEventListener("click", function () {
 
 // Ocultar el elemento con id "info_dci" al hacer clic en el elemento con id "back_info"
 document.getElementById("back_info").addEventListener("click", function () {
-    document.getElementById("info_dci").style.display = "none";
+    // document.getElementById("info_dci").style.display = "none";
+    document.getElementById("info_dci").classList.add("opacidad_blur_fade");
     document.getElementById("btn_info_dci").style.display = "flex";
     document.querySelector("h1").style.display = "block";
     document.getElementById("btn_inicio").style.display = "block";
@@ -91,7 +93,7 @@ document
         const especialidad = document.getElementById("especialidad");
         const botonAvanzar = document.getElementById("btn_avanzar");
 
-        // Resetear la clase "incompleto" de todos los campos
+        // Resetear la clase "incompleto" de todos los inputs
         document
             .querySelectorAll(".incompleto")
             .forEach((el) => el.classList.remove("incompleto"));
@@ -241,7 +243,7 @@ document
             return;
         }
 
-        if (searchBarValue === "/reset") {
+        if (searchBarValue === "/restart") {
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
             event.preventDefault();
@@ -250,6 +252,7 @@ document
 
         if (searchBarValue === "/credits") {
             document.getElementById("creditos").style.display = "flex";
+            document.getElementById("creditos").classList.remove("opacidad_blur_fade");
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
         }
@@ -263,7 +266,8 @@ document
         document
             .getElementById("back_creditos")
             .addEventListener("click", function (event) {
-                document.getElementById("creditos").style.display = "none";
+                // document.getElementById("creditos").style.display = "none";
+                document.getElementById("creditos").classList.add("opacidad_blur_fade");
             });
 
         // Verificar si el valor ingresado es "/admin"
@@ -294,6 +298,39 @@ document
                     searchBar.placeholder = "¿Qué-es-DCI?";
                 }
             }, 500);
+        }
+
+        if (searchBarValue === "/rick") {
+            // Crear el elemento de audio solo si no existe
+            let rickAudio = document.getElementById("rickAudio");
+            
+            if (!rickAudio) {
+                rickAudio = document.createElement("audio");
+                rickAudio.id = "rickAudio";
+
+                // Crear la fuente de audio y agregarla al elemento audio
+                const source = document.createElement("source");
+                source.src = "media/rick.mp3"; 
+                source.type = "audio/mpeg";
+                
+                // Agregar la fuente al elemento de audio
+                rickAudio.appendChild(source);
+
+                // Agregar el elemento de audio al cuerpo del documento
+                document.body.appendChild(rickAudio);
+            }
+
+            // Reproducir desde el segundo 0
+            rickAudio.currentTime = 0;
+            rickAudio.play();
+
+            // Reproducir solo 10 segundos y luego pausar
+            setTimeout(function() {
+                rickAudio.pause();
+            }, 18000); // 10,000 milisegundos = 10 segundos
+
+            // Limpiar el input después
+            searchBar.value = "";
         }
     });
 

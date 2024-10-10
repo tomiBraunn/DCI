@@ -23,7 +23,7 @@ img {
     );
     background-image: url(bg.svg);
     filter: blur(80px);
-    min-width: 100vw;
+    width: 100vw;
     height: 100vh;
     position: absolute;
     z-index: -500;
@@ -99,7 +99,7 @@ h1 {
     aspect-ratio: 1/1;
     border-radius: 100%;
     font-size: 70px;
-    animation: opacidad 1s ease-out forwards;
+    animation: opacidad 0.2s ease-out forwards;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,7 +121,7 @@ h1 {
     display: flex;
     justify-items: flex-start;
     flex-direction: column;
-    animation: opacidad_blur .3s ease-out forwards;
+    animation: opacidad_blur 0.3s ease-out forwards;
 }
 
 .info_dci > * {
@@ -142,7 +142,6 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
-
 
 .navbar_info > input {
     font-size: 24px;
@@ -211,7 +210,7 @@ h1 {
 }
 
 .flechas_nav_bar > p {
-    padding: 0 .1em;
+    padding: 0 0.1em;
     color: #cececf;
 }
 
@@ -220,7 +219,7 @@ h1 {
 }
 
 .flechas_nav_bar > p:nth-child(2) {
-    margin-left: .2em;
+    margin-left: 0.2em;
 }
 
 .share_nav_bar {
@@ -232,11 +231,12 @@ h1 {
     height: auto;
     right: 0;
     aspect-ratio: 1/1;
-    width: .7em;
+    width: 0.7em;
     margin-right: 0.2em;
 }
 
-.flechas_nav_bar > p:active , .share_nav_bar:active  {
+.flechas_nav_bar > p:active,
+.share_nav_bar:active {
     transform: scale(1.1);
 }
 
@@ -258,7 +258,8 @@ h1 {
     font-size: 22px;
 }
 
-.info_tutorial_dci > button , .btns_alm_profe_info > button {
+.info_tutorial_dci > button,
+.btns_alm_profe_info > button {
     position: relative;
     left: -2em;
     width: 10.5em;
@@ -273,7 +274,8 @@ h1 {
     left: -6em;
 }
 
-.info_tutorial_dci > button:active , .btns_alm_profe_info > button:active {
+.info_tutorial_dci > button:active,
+.btns_alm_profe_info > button:active {
     transform: scale(0.7);
 }
 
@@ -289,7 +291,7 @@ h1 {
     align-items: center;
     z-index: 200;
     background: #0000001b;
-    animation: opacidad_blur .3s ease-out forwards;
+    animation: opacidad_blur 0.3s ease-out forwards;
 }
 
 .creditos {
@@ -312,17 +314,26 @@ h1 {
     font-size: 50px;
     width: 1em;
     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .2em;
 }
 
+.creditos > button > svg {
+    width: 0.6em;
+    aspect-ratio: 1 / 1;
+}
 
 .creditos > b {
     position: absolute;
     top: 0;
     width: 100%;
     background: rgba(78, 73, 73, 0.1);
+    background-image: url(card_bg.png);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    padding: .5em 0;
+    padding: 0.5em 0;
     font-size: 40px;
     display: flex;
     justify-content: center;
@@ -334,7 +345,7 @@ h1 {
 }
 
 .creditos > ul > li {
-    padding: .5em 0;
+    padding: 0.5em 0;
 }
 
 /*Pagina 2 y 3*/
@@ -747,7 +758,7 @@ h1 {
     align-items: center;
 }
 
-/*Estilos por clases*/
+/*Estilos por clases y tipos de elementos*/
 
 .glass {
     background: linear-gradient(
@@ -773,7 +784,7 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     color: white;
-    background-image: url("card_bg.png");
+    background-image: url(card_bg.png);
 }
 
 .shake {
@@ -814,6 +825,11 @@ input::placeholder {
     color: white;
 }
 
+.opacidad_blur_fade {
+    animation: opacidad_blur_fade 0.2s ease-out forwards;
+}
+
+/*Animaciones*/
 @keyframes opacidad {
     from {
         opacity: 0;
@@ -828,13 +844,35 @@ input::placeholder {
     from {
         opacity: 0;
         filter: blur(20px);
-        transform: scale(.7);
+        transform: scale(0.7);
     }
 
     to {
         opacity: 1;
         filter: blur(0px);
         transform: scale(1);
+    }
+}
+
+@keyframes opacidad_blur_fade {
+    0% {
+        display: flex;
+    }
+
+    1% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: scale(1);
+    }
+
+    99% {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(0.7);
+    }
+
+    100% {
+        display: none;
     }
 }
 
