@@ -16,7 +16,7 @@ document
         desplazarALaPagina("pagina2");
     });
 
-// Mostrar el elemento con id "info_dci" al hacer clic en el botón con id "btn_info_dci"
+// Abrir menu de ayuda cuando se da click al boton de info
 document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("info_dci").style.display = "flex";
     document.getElementById("info_dci").classList.remove("opacidad_blur_fade");
@@ -25,7 +25,7 @@ document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("btn_inicio").style.display = "none";
 });
 
-// Ocultar el elemento con id "info_dci" al hacer clic en el elemento con id "back_info"
+// Cerrar menu de ayuda cuando se da click al boton de cerrar
 document.getElementById("back_info").addEventListener("click", function () {
     // document.getElementById("info_dci").style.display = "none";
     document.getElementById("info_dci").classList.add("opacidad_blur_fade");
@@ -54,9 +54,6 @@ function establecerTipoUsuario(tipo) {
         document.getElementById("DNIusuario").style.display = "block";
         document.getElementById("Claveadmin").style.display = "block";
         document.getElementById("opcionesadmin").style.display = "flex";
-        document.getElementById("contenedor_pagina6").style.display = "none";
-        document.getElementById("pagina4").style.display = "none";
-        document.getElementById("pagina5").style.display = "none";
     }
 
     desplazarALaPagina("pagina3");
@@ -93,7 +90,7 @@ document
         const especialidad = document.getElementById("especialidad");
         const botonAvanzar = document.getElementById("btn_avanzar");
 
-        // Resetear la clase "incompleto" de todos los inputs
+        // Aplicar un estilo a los inputs incompletos
         document
             .querySelectorAll(".incompleto")
             .forEach((el) => el.classList.remove("incompleto"));
@@ -117,18 +114,6 @@ document
                 document
                     .getElementById("NyAusuario")
                     .classList.add("incompleto");
-            }
-            if (curso.selectedIndex === 0) {
-                valid = false;
-                curso.classList.add("incompleto");
-            }
-            if (division.selectedIndex === 0) {
-                valid = false;
-                division.classList.add("incompleto");
-            }
-            if (especialidad.selectedIndex === 0) {
-                valid = false;
-                especialidad.classList.add("incompleto");
             }
         } else if (tipoUsuario === "Admin") {
             if (!dni) {
@@ -165,11 +150,11 @@ document
 
             setTimeout(() => {
                 botonAvanzar.classList.remove("shake");
-            }, 2000);
+            }, 500);
         }
     });
 
-// Volver a la página anterior si falla la autenticación
+// Volver a la página si la cara no coincide
 document
     .getElementById("volver_a_intentar")
     .addEventListener("click", function (event) {
@@ -177,7 +162,7 @@ document
         desplazarALaPagina("pagina4");
     });
 
-// Retirar o devolver computadora en la última página u opciones de admin
+// Retirar o devolver computadora en la última página
 document.getElementById("retirar").addEventListener("click", function (event) {
     event.preventDefault();
     document.getElementById("devolver_compu").style.display = "none";
@@ -190,7 +175,7 @@ document.getElementById("devolver").addEventListener("click", function (event) {
     desplazarALaPagina("pagina6");
 });
 
-// Botón reinicio
+// Botón reinicio de la ultima pagina
 document
     .getElementById("reiniciar")
     .addEventListener("click", function (event) {
@@ -230,7 +215,7 @@ document
         location.reload();
     });
 
-// Escuchar el valor de la barra de búsqueda para /admin
+// Funcionalidad de la barra de busqueda adentro de la pagina con informacion
 document
     .getElementById("search_bar_nav_bar")
     .addEventListener("input", function () {
@@ -243,6 +228,14 @@ document
             return;
         }
 
+        if (searchBarValue.length > 1) {
+            document.getElementById("search_bar_nav_bar").style.caretColor =
+                "#cececf";
+        } else {
+            document.getElementById("search_bar_nav_bar").style.caretColor =
+                "transparent";
+        }
+
         if (searchBarValue === "/restart") {
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
@@ -252,7 +245,9 @@ document
 
         if (searchBarValue === "/credits") {
             document.getElementById("creditos").style.display = "flex";
-            document.getElementById("creditos").classList.remove("opacidad_blur_fade");
+            document
+                .getElementById("creditos")
+                .classList.remove("opacidad_blur_fade");
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
         }
@@ -267,15 +262,15 @@ document
             .getElementById("back_creditos")
             .addEventListener("click", function (event) {
                 // document.getElementById("creditos").style.display = "none";
-                document.getElementById("creditos").classList.add("opacidad_blur_fade");
+                document
+                    .getElementById("creditos")
+                    .classList.add("opacidad_blur_fade");
             });
 
-        // Verificar si el valor ingresado es "/admin"
         if (searchBarValue === "/admin") {
             setTimeout(() => {
                 const claveIngresada = prompt("");
 
-                // Verificar si la clave ingresada es correcta
                 if (claveIngresada === "admin") {
                     const paginas = document.querySelectorAll(".pagina");
 
@@ -301,35 +296,28 @@ document
         }
 
         if (searchBarValue === "/rick") {
-            // Crear el elemento de audio solo si no existe
             let rickAudio = document.getElementById("rickAudio");
-            
+
             if (!rickAudio) {
                 rickAudio = document.createElement("audio");
                 rickAudio.id = "rickAudio";
 
-                // Crear la fuente de audio y agregarla al elemento audio
                 const source = document.createElement("source");
-                source.src = "media/rick.mp3"; 
+                source.src = "media/rick.mp3";
                 source.type = "audio/mpeg";
-                
-                // Agregar la fuente al elemento de audio
+
                 rickAudio.appendChild(source);
 
-                // Agregar el elemento de audio al cuerpo del documento
                 document.body.appendChild(rickAudio);
             }
 
-            // Reproducir desde el segundo 0
             rickAudio.currentTime = 0;
             rickAudio.play();
 
-            // Reproducir solo 10 segundos y luego pausar
-            setTimeout(function() {
+            setTimeout(function () {
                 rickAudio.pause();
-            }, 18000); // 10,000 milisegundos = 10 segundos
+            }, 18000);
 
-            // Limpiar el input después
             searchBar.value = "";
         }
     });
@@ -344,29 +332,24 @@ const captureButton = document.getElementById("captureButton");
 let uploadedFaceData;
 let capturedFaceData;
 
-// Esperar a que se cargue el DOM
 document.addEventListener("DOMContentLoaded", async () => {
-    // Cargar los modelos de face-api.js
     await faceapi.nets.tinyFaceDetector.loadFromUri("./models");
     await faceapi.nets.faceLandmark68Net.loadFromUri("./models");
     await faceapi.nets.faceRecognitionNet.loadFromUri("./models");
     startVideo();
 });
 
-// Opciones para tinyFaceDetector
 const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
-    inputSize: 160, // Puedes ajustar este valor para mejorar el rendimiento
-    scoreThreshold: 0.5, // Puedes ajustar este valor para controlar la sensibilidad
+    inputSize: 160,
+    scoreThreshold: 0.5,
 });
 
-// Iniciar la cámara con resolución predeterminada (puedes ajustar la resolución aquí si lo prefieres)
 function startVideo() {
     navigator.mediaDevices
-        .getUserMedia({ video: true }) // Agrega una resolución si lo necesitas, ej: { width: 1280, height: 720 }
+        .getUserMedia({ video: true })
         .then((stream) => {
             video.srcObject = stream;
             video.addEventListener("play", () => {
-                // Sincronizar el canvas con el video
                 const canvas = faceapi.createCanvasFromMedia(video);
                 document.body.append(canvas);
                 const displaySize = {
@@ -408,11 +391,10 @@ function startVideo() {
         });
 }
 
-// Capturar foto del video con resolución 1920x1080
 captureButton.addEventListener("click", async () => {
     const canvas = document.createElement("canvas");
-    canvas.width = 1920; // Ajuste a 1920 de ancho
-    canvas.height = 1080; // Ajuste a 1080 de alto
+    canvas.width = 1920;
+    canvas.height = 1080;
     canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
     const imgDataUrl = canvas.toDataURL("image/jpeg");
     capturedImage.src = imgDataUrl;
@@ -428,7 +410,6 @@ captureButton.addEventListener("click", async () => {
         return;
     }
 
-    // Comparar las caras
     if (!uploadedFaceData || !capturedFaceData) {
         alert("Ambas imágenes necesitan ser detectadas para la comparación.");
         return;
@@ -441,7 +422,7 @@ captureButton.addEventListener("click", async () => {
     const threshold = 0.4;
     const isSamePerson = distance < threshold;
 
-    // Navegar a la página 5 según el resultado
+    // Mostrar si la cara es la misma
     desplazarALaPagina("pagina5");
     if (isSamePerson) {
         document.getElementById("usuarioNOverificado_pagina5").style.display =
@@ -456,7 +437,6 @@ captureButton.addEventListener("click", async () => {
     }
 });
 
-// Subir imagen para comparación
 imageUpload.addEventListener("change", async (event) => {
     const file = event.target.files[0];
     if (!file) {

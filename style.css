@@ -473,6 +473,10 @@ h1 {
     font-size: 20px;
 }
 
+.curso_usuario_pagina3 > select > option {
+    background:#3e3d3f;
+}
+
 .inputs_pagina_3 > input {
     position: relative;
     width: 14em;
@@ -784,9 +788,8 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     color: white;
-    background-image: url(card_bg.png);
+    background-image: url(card_bg3.png);
 }
-
 .shake {
     animation: shake 0.5s ease-in-out forwards;
 }
