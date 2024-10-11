@@ -788,7 +788,7 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     color: white;
-    background-image: url(card_bg3.png);
+    background-image: url(card_bg1.png);
 }
 .shake {
     animation: shake 0.5s ease-in-out forwards;
