@@ -209,7 +209,6 @@ h1 {
 
 .flechas_nav_bar {
     position: relative;
-    flex-direction: row-reverse;
     font-size: 30px;
     top: -0.05em;
 }

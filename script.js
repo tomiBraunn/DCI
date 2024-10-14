@@ -34,6 +34,20 @@ document.getElementById("back_info").addEventListener("click", function () {
     document.getElementById("btn_inicio").style.display = "block";
 });
 
+// Definir el tipo de usuario
+document
+    .getElementById("alumno")
+    .addEventListener("click", () => establecerTipoUsuario("Alumno/a"));
+document
+    .getElementById("profesor")
+    .addEventListener("click", () => establecerTipoUsuario("Profesor/a"));
+document
+    .getElementById("invitado")
+    .addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
+document
+    .getElementById("admin")
+    .addEventListener("click", () => establecerTipoUsuario("Admin"));
+
 // Definir qué inputs son necesarios según el tipo de usuario
 function establecerTipoUsuario(tipo) {
     tipoUsuario = tipo;
@@ -59,19 +73,6 @@ function establecerTipoUsuario(tipo) {
     desplazarALaPagina("pagina3");
 }
 
-// Definir el tipo de usuario
-document
-    .getElementById("alumno")
-    .addEventListener("click", () => establecerTipoUsuario("Alumno/a"));
-document
-    .getElementById("profesor")
-    .addEventListener("click", () => establecerTipoUsuario("Profesor/a"));
-document
-    .getElementById("invitado")
-    .addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
-document
-    .getElementById("admin")
-    .addEventListener("click", () => establecerTipoUsuario("Admin"));
 
 // Botón de avanzar una vez que se ingresaron los datos
 document
@@ -133,17 +134,11 @@ document
         if (valid) {
             console.log("Tipo de usuario:", tipoUsuario);
             console.log("DNI:", dni);
-            postData("mandarDatosUsuario"), { tipoUsuario, dni};
+            // postData("mandarDatosUsuario"), { tipoUsuario, dni};
             console.log("mandado a soquetic");
 
-
             // Verificar a qué página debe avanzar según el tipo de usuario
-            if (tipoUsuario === "Admin") {
-                desplazarALaPagina("pagina6");
-            } else if (
-                tipoUsuario === "Alumno/a" ||
-                tipoUsuario === "Profesor/a"
-            ) {
+            if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
                 desplazarALaPagina("pagina4");
             } else if (tipoUsuario === "Invitado/a") {
                 desplazarALaPagina("pagina5");
@@ -198,19 +193,11 @@ document.querySelectorAll(".home").forEach((button) => {
 });
 
 // Botones back
-document.getElementById("back2").addEventListener("click", function (event) {
-    event.preventDefault();
-    desplazarALaPagina("pagina1");
-});
-
-document.getElementById("back3").addEventListener("click", function (event) {
-    event.preventDefault();
-    desplazarALaPagina("pagina2");
-});
-
-document.getElementById("back4").addEventListener("click", function (event) {
-    event.preventDefault();
-    desplazarALaPagina("pagina3");
+["back2", "back3", "back4"].forEach((id, index) => {
+    document.getElementById(id).addEventListener("click", (event) => {
+        event.preventDefault();
+        desplazarALaPagina(`pagina${index + 1}`);
+    });
 });
 
 // Botón reinicio página admin
@@ -330,15 +317,14 @@ document
 
 // SoqueTIC
 
-    // document.getElementById("btn_avanzar").addEventListener("click", async () => {
-    //     if ((tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") && dni !== "")  {
+// document.getElementById("btn_avanzar").addEventListener("click", async () => {
+//     if ((tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") && dni !== "")  {
 
-    //     console.log(tipoUsuario);
-    //     console.log(dni);
-    // };
+//     console.log(tipoUsuario);
+//     console.log(dni);
+// };
 
-
-    //     postData("mandarDatosUsuario"), { msg: input.value }});
+//     postData("mandarDatosUsuario"), { msg: input.value }});
 
 // Funcionalidad api
 const video = document.getElementById("video");
@@ -407,8 +393,8 @@ function startVideo() {
             console.error("Error accessing the camera: ", err);
             alert("Could not access the camera.");
         });
-        document.querySelector(".scroll-container").style.display = "flex";
-        document.querySelector(".loader").style.display = "none";
+    document.querySelector(".scroll-container").style.display = "flex";
+    // document.querySelector(".loader").style.display = "none";
 }
 
 captureButton.addEventListener("click", async () => {
@@ -469,7 +455,6 @@ imageUpload.addEventListener("change", async (event) => {
         .detectSingleFace(img, tinyFaceDetectorOptions)
         .withFaceLandmarks()
         .withFaceDescriptor();
-        
 
     if (!uploadedFaceData) {
         alert("No se detectó ninguna cara en la imagen subida");
