@@ -131,6 +131,12 @@ document
         }
 
         if (valid) {
+            console.log("Tipo de usuario:", tipoUsuario);
+            console.log("DNI:", dni);
+            postData("mandarDatosUsuario"), { tipoUsuario, dni};
+            console.log("mandado a soquetic");
+
+
             // Verificar a qué página debe avanzar según el tipo de usuario
             if (tipoUsuario === "Admin") {
                 desplazarALaPagina("pagina6");
@@ -322,6 +328,18 @@ document
         }
     });
 
+// SoqueTIC
+
+    // document.getElementById("btn_avanzar").addEventListener("click", async () => {
+    //     if ((tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") && dni !== "")  {
+
+    //     console.log(tipoUsuario);
+    //     console.log(dni);
+    // };
+
+
+    //     postData("mandarDatosUsuario"), { msg: input.value }});
+
 // Funcionalidad api
 const video = document.getElementById("video");
 const overlayCanvas = document.getElementById("overlayCanvas");
@@ -389,6 +407,8 @@ function startVideo() {
             console.error("Error accessing the camera: ", err);
             alert("Could not access the camera.");
         });
+        document.querySelector(".scroll-container").style.display = "flex";
+        document.querySelector(".loader").style.display = "none";
 }
 
 captureButton.addEventListener("click", async () => {
@@ -449,6 +469,7 @@ imageUpload.addEventListener("change", async (event) => {
         .detectSingleFace(img, tinyFaceDetectorOptions)
         .withFaceLandmarks()
         .withFaceDescriptor();
+        
 
     if (!uploadedFaceData) {
         alert("No se detectó ninguna cara en la imagen subida");
