@@ -14,6 +14,7 @@ document
     .addEventListener("click", function (event) {
         event.preventDefault();
         desplazarALaPagina("pagina2");
+        console.log("boton inicio")
     });
 
 // Abrir menu de ayuda cuando se da click al boton de info
@@ -327,6 +328,7 @@ document
 //     postData("mandarDatosUsuario"), { msg: input.value }});
 
 // Funcionalidad api
+// Funcionalidad api
 const video = document.getElementById("video");
 const overlayCanvas = document.getElementById("overlayCanvas");
 const imageUpload = document.getElementById("imageUpload");
@@ -337,9 +339,14 @@ let uploadedFaceData;
 let capturedFaceData;
 
 document.addEventListener("DOMContentLoaded", async () => {
+    console.log("Carga inicial: DOMContentLoaded");
+    
+    console.time("Cargar modelos");
     await faceapi.nets.tinyFaceDetector.loadFromUri("./models");
     await faceapi.nets.faceLandmark68Net.loadFromUri("./models");
     await faceapi.nets.faceRecognitionNet.loadFromUri("./models");
+    console.timeEnd("Cargar modelos");
+
     startVideo();
 });
 
@@ -349,43 +356,38 @@ const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
 });
 
 function startVideo() {
+    console.log("Iniciando video...");
+
     navigator.mediaDevices
         .getUserMedia({ video: true })
         .then((stream) => {
             video.srcObject = stream;
+            console.log("Video iniciado.");
+
             video.addEventListener("play", () => {
+                console.log("Evento play detectado.");
                 const canvas = faceapi.createCanvasFromMedia(video);
-                document.body.append(canvas);
+                document.querySelector(".loader").style.display = "none";
+                document.querySelector(".scroll-container").style.display = "flex";
+
+
                 const displaySize = {
                     width: video.videoWidth,
                     height: video.videoHeight,
                 };
                 faceapi.matchDimensions(overlayCanvas, displaySize);
+
                 setInterval(async () => {
                     const detections = await faceapi
                         .detectAllFaces(video, tinyFaceDetectorOptions)
                         .withFaceLandmarks()
                         .withFaceDescriptors();
-                    const resizedDetections = faceapi.resizeResults(
-                        detections,
-                        displaySize
-                    );
-                    overlayCanvas
-                        .getContext("2d")
-                        .clearRect(
-                            0,
-                            0,
-                            overlayCanvas.width,
-                            overlayCanvas.height
-                        );
-                    faceapi.draw.drawDetections(
-                        overlayCanvas,
-                        resizedDetections
-                    );
-                    faceapi.draw.drawFaceLandmarks(
-                        overlayCanvas,
-                        resizedDetections
-                    );
+
+                    const resizedDetections = faceapi.resizeResults(detections, displaySize);
+                    overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+
+                    faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                    faceapi.draw.drawFaceLandmarks(overlayCanvas, resizedDetections);
                 }, 100);
             });
         })
@@ -393,11 +395,13 @@ function startVideo() {
             console.error("Error accessing the camera: ", err);
             alert("Could not access the camera.");
         });
+    
     document.querySelector(".scroll-container").style.display = "flex";
-    // document.querySelector(".loader").style.display = "none";
 }
 
 captureButton.addEventListener("click", async () => {
+    console.log("Captura de imagen iniciada...");
+    
     const canvas = document.createElement("canvas");
     canvas.width = 1920;
     canvas.height = 1080;
@@ -406,6 +410,8 @@ captureButton.addEventListener("click", async () => {
     capturedImage.src = imgDataUrl;
 
     const img = await faceapi.fetchImage(imgDataUrl);
+    console.log("Imagen capturada.");
+
     capturedFaceData = await faceapi
         .detectSingleFace(img, tinyFaceDetectorOptions)
         .withFaceLandmarks()
@@ -421,29 +427,26 @@ captureButton.addEventListener("click", async () => {
         return;
     }
 
-    const distance = faceapi.euclideanDistance(
-        uploadedFaceData.descriptor,
-        capturedFaceData.descriptor
-    );
+    const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
     const threshold = 0.4;
     const isSamePerson = distance < threshold;
 
     // Mostrar si la cara es la misma
+    console.log("Resultado de la comparación:", isSamePerson);
     desplazarALaPagina("pagina5");
+    
     if (isSamePerson) {
-        document.getElementById("usuarioNOverificado_pagina5").style.display =
-            "none";
-        document.getElementById("usuarioverificado_pagina5").style.display =
-            "flex";
+        document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
+        document.getElementById("usuarioverificado_pagina5").style.display = "flex";
     } else {
-        document.getElementById("usuarioverificado_pagina5").style.display =
-            "none";
-        document.getElementById("usuarioNOverificado_pagina5").style.display =
-            "flex";
+        document.getElementById("usuarioverificado_pagina5").style.display = "none";
+        document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
     }
 });
 
 imageUpload.addEventListener("change", async (event) => {
+    console.log("Cargando imagen subida...");
+
     const file = event.target.files[0];
     if (!file) {
         alert("Por favor selecciona una imagen.");
@@ -460,4 +463,6 @@ imageUpload.addEventListener("change", async (event) => {
         alert("No se detectó ninguna cara en la imagen subida");
         return;
     }
+
+    console.log("Imagen subida y detectada.");
 });
