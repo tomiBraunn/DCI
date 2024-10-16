@@ -9,15 +9,12 @@ function desplazarALaPagina(paginaId) {
 }
 
 // Botón de inicio en la primera página
-document
-    .getElementById("btn_inicio")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        desplazarALaPagina("pagina2");
-        console.log("boton inicio")
-    });
+document.getElementById("btn_inicio").addEventListener("click", function (event) {
+    event.preventDefault();
+    desplazarALaPagina("pagina2");
+});
 
-// Abrir menu de ayuda cuando se da click al boton de info
+// Abrir menú de ayuda cuando se da clic al botón de info
 document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("info_dci").style.display = "flex";
     document.getElementById("info_dci").classList.remove("opacidad_blur_fade");
@@ -26,9 +23,8 @@ document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("btn_inicio").style.display = "none";
 });
 
-// Cerrar menu de ayuda cuando se da click al boton de cerrar
+// Cerrar menú de ayuda cuando se da clic al botón de cerrar
 document.getElementById("back_info").addEventListener("click", function () {
-    // document.getElementById("info_dci").style.display = "none";
     document.getElementById("info_dci").classList.add("opacidad_blur_fade");
     document.getElementById("btn_info_dci").style.display = "flex";
     document.querySelector("h1").style.display = "block";
@@ -36,29 +32,22 @@ document.getElementById("back_info").addEventListener("click", function () {
 });
 
 // Definir el tipo de usuario
-document
-    .getElementById("alumno")
-    .addEventListener("click", () => establecerTipoUsuario("Alumno/a"));
-document
-    .getElementById("profesor")
-    .addEventListener("click", () => establecerTipoUsuario("Profesor/a"));
-document
-    .getElementById("invitado")
-    .addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
-document
-    .getElementById("admin")
-    .addEventListener("click", () => establecerTipoUsuario("Admin"));
+document.getElementById("alumno").addEventListener("click", () => establecerTipoUsuario("Alumno/a"));
+document.getElementById("profesor").addEventListener("click", () => establecerTipoUsuario("Profesor/a"));
+document.getElementById("invitado").addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
+document.getElementById("admin").addEventListener("click", () => establecerTipoUsuario("Admin"));
 
-// Definir qué inputs son necesarios según el tipo de usuario
 function establecerTipoUsuario(tipo) {
     tipoUsuario = tipo;
     document.getElementById("tipousuario").textContent = tipo;
 
+    // Ocultar campos inicialmente
     document.getElementById("DNIusuario").style.display = "none";
     document.getElementById("NyAusuario").style.display = "none";
     document.getElementById("Claveadmin").style.display = "none";
     document.getElementById("curso_usuario").style.display = "none";
 
+    // Mostrar campos según el tipo de usuario
     if (tipo === "Alumno/a" || tipo === "Profesor/a") {
         document.getElementById("DNIusuario").style.display = "block";
     } else if (tipo === "Invitado/a") {
@@ -74,95 +63,74 @@ function establecerTipoUsuario(tipo) {
     desplazarALaPagina("pagina3");
 }
 
-
 // Botón de avanzar una vez que se ingresaron los datos
-document
-    .getElementById("btn_avanzar")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
+document.getElementById("btn_avanzar").addEventListener("click", function (event) {
+    event.preventDefault();
 
-        let valid = true;
-        const dni = document.getElementById("DNIusuario").value.trim();
-        const nombreApellido = document
-            .getElementById("NyAusuario")
-            .value.trim();
-        const claveAdmin = document.getElementById("Claveadmin").value.trim();
-        const curso = document.getElementById("curso_usuario");
-        const division = document.getElementById("division");
-        const especialidad = document.getElementById("especialidad");
-        const botonAvanzar = document.getElementById("btn_avanzar");
+    let valid = true;
+    const dni = document.getElementById("DNIusuario").value.trim();
+    const nombreApellido = document.getElementById("NyAusuario").value.trim();
+    const claveAdmin = document.getElementById("Claveadmin").value.trim();
+    const botonAvanzar = document.getElementById("btn_avanzar");
 
-        // Aplicar un estilo a los inputs incompletos
-        document
-            .querySelectorAll(".incompleto")
-            .forEach((el) => el.classList.remove("incompleto"));
+    document.querySelectorAll(".incompleto").forEach((el) => el.classList.remove("incompleto"));
+
+    // Validación según tipo de usuario
+    if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
+        if (!dni) {
+            valid = false;
+            document.getElementById("DNIusuario").classList.add("incompleto");
+        }
+    } else if (tipoUsuario === "Invitado/a") {
+        if (!dni) {
+            valid = false;
+            document.getElementById("DNIusuario").classList.add("incompleto");
+        }
+        if (!nombreApellido) {
+            valid = false;
+            document.getElementById("NyAusuario").classList.add("incompleto");
+        }
+    } else if (tipoUsuario === "Admin") {
+        if (!dni) {
+            valid = false;
+            document.getElementById("DNIusuario").classList.add("incompleto");
+        }
+        if (!claveAdmin) {
+            valid = false;
+            document.getElementById("Claveadmin").classList.add("incompleto");
+        }
+    }
+
+    // Manejo de avance o error
+    if (valid) {
+        console.log("Tipo de usuario:", tipoUsuario);
+        console.log("DNI:", dni);
+        postData("verificarUsuario", { tipoUsuario, dni });
+        console.log("Datos enviados a SoqueTIC");
 
         if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
-            if (!dni) {
-                valid = false;
-                document
-                    .getElementById("DNIusuario")
-                    .classList.add("incompleto");
-            }
+            desplazarALaPagina("pagina4");
         } else if (tipoUsuario === "Invitado/a") {
-            if (!dni) {
-                valid = false;
-                document
-                    .getElementById("DNIusuario")
-                    .classList.add("incompleto");
-            }
-            if (!nombreApellido) {
-                valid = false;
-                document
-                    .getElementById("NyAusuario")
-                    .classList.add("incompleto");
-            }
-        } else if (tipoUsuario === "Admin") {
-            if (!dni) {
-                valid = false;
-                document
-                    .getElementById("DNIusuario")
-                    .classList.add("incompleto");
-            }
-            if (!claveAdmin) {
-                valid = false;
-                document
-                    .getElementById("Claveadmin")
-                    .classList.add("incompleto");
-            }
+            desplazarALaPagina("pagina5");
         }
-
-        if (valid) {
-            console.log("Tipo de usuario:", tipoUsuario);
-            console.log("DNI:", dni);
-            // postData("mandarDatosUsuario"), { tipoUsuario, dni};
-            console.log("mandado a soquetic");
-
-            // Verificar a qué página debe avanzar según el tipo de usuario
-            if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
-                desplazarALaPagina("pagina4");
-            } else if (tipoUsuario === "Invitado/a") {
-                desplazarALaPagina("pagina5");
-            }
-        } else {
-            if (botonAvanzar.classList.contains("shake")) {
-                botonAvanzar.classList.remove("shake");
-            }
-            botonAvanzar.classList.add("shake");
-
-            setTimeout(() => {
-                botonAvanzar.classList.remove("shake");
-            }, 500);
+    } else {
+        // Agregar clase shake si los datos no son válidos
+        if (botonAvanzar.classList.contains("shake")) {
+            botonAvanzar.classList.remove("shake");
         }
-    });
+        botonAvanzar.classList.add("shake");
 
-// Volver a la página si la cara no coincide
-document
-    .getElementById("volver_a_intentar")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        desplazarALaPagina("pagina4");
-    });
+        setTimeout(() => {
+            botonAvanzar.classList.remove("shake");
+        }, 500);
+    }
+});
+
+// Volver a intentar si la cara no coincide
+document.getElementById("volver_a_intentar").addEventListener("click", function (event) {
+    event.preventDefault();
+    desplazarALaPagina("pagina4");
+});
 
 // Retirar o devolver computadora en la última página
 document.getElementById("retirar").addEventListener("click", function (event) {
@@ -177,13 +145,11 @@ document.getElementById("devolver").addEventListener("click", function (event) {
     desplazarALaPagina("pagina6");
 });
 
-// Botón reinicio de la ultima pagina
-document
-    .getElementById("reiniciar")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        location.reload();
-    });
+// Botón reiniciar de la última página
+document.getElementById("reiniciar").addEventListener("click", function (event) {
+    event.preventDefault();
+    location.reload();
+});
 
 // Botones home
 document.querySelectorAll(".home").forEach((button) => {
@@ -201,76 +167,63 @@ document.querySelectorAll(".home").forEach((button) => {
     });
 });
 
-// Botón reinicio página admin
-document
-    .getElementById("opcionesadmin_reiniciar")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
+// Botón reiniciar página admin
+document.getElementById("opcionesadmin_reiniciar").addEventListener("click", function (event) {
+    event.preventDefault();
+    location.reload();
+});
+
+// Funcionalidad de la barra de búsqueda dentro de la página con información
+document.getElementById("search_bar_nav_bar").addEventListener("input", function () {
+    const searchBar = document.getElementById("search_bar_nav_bar");
+    const searchBarValue = searchBar.value.trim();
+
+    if (searchBarValue.length > 20) {
+        searchBar.value = "";
+        searchBar.placeholder = "¿Qué-es-DCI?";
+        return;
+    }
+
+    if (searchBarValue.length > 1) {
+        searchBar.style.caretColor = "#cececf";
+    } else {
+        searchBar.style.caretColor = "transparent";
+    }
+
+    if (searchBarValue === "/restart") {
+        searchBar.value = "";
+        searchBar.placeholder = "¿Qué-es-DCI?";
         location.reload();
+    }
+
+    if (searchBarValue === "/credits") {
+        document.getElementById("creditos").style.display = "flex";
+        document.getElementById("creditos").classList.remove("opacidad_blur_fade");
+        searchBar.value = "";
+        searchBar.placeholder = "¿Qué-es-DCI?";
+    }
+
+    document.addEventListener("click", function (event) {
+        if (!searchBar.contains(event.target)) {
+            searchBar.value = "";
+        }
     });
 
-// Funcionalidad de la barra de busqueda adentro de la pagina con informacion
-document
-    .getElementById("search_bar_nav_bar")
-    .addEventListener("input", function () {
-        const searchBar = document.getElementById("search_bar_nav_bar");
-        const searchBarValue = searchBar.value.trim();
+    document.getElementById("back_creditos").addEventListener("click", function () {
+        document.getElementById("creditos").classList.add("opacidad_blur_fade");
+    });
 
-        if (searchBarValue.length > 20) {
-            searchBar.value = "";
-            searchBar.placeholder = "¿Qué-es-DCI?";
-            return;
-        }
+    if (searchBarValue === "/admin") {
+        setTimeout(() => {
+            const claveIngresada = prompt("Ingrese clave de administrador:");
 
-        if (searchBarValue.length > 1) {
-            document.getElementById("search_bar_nav_bar").style.caretColor =
-                "#cececf";
-        } else {
-            document.getElementById("search_bar_nav_bar").style.caretColor =
-                "transparent";
-        }
+            if (claveIngresada === "admin") {
+                const paginas = document.querySelectorAll(".pagina");
 
-        if (searchBarValue === "/restart") {
-            searchBar.value = "";
-            searchBar.placeholder = "¿Qué-es-DCI?";
-            event.preventDefault();
-            location.reload();
-        }
 
-        if (searchBarValue === "/credits") {
-            document.getElementById("creditos").style.display = "flex";
-            document
-                .getElementById("creditos")
-                .classList.remove("opacidad_blur_fade");
-            searchBar.value = "";
-            searchBar.placeholder = "¿Qué-es-DCI?";
-        }
-
-        document.addEventListener("click", function (event) {
-            if (!searchBar.contains(event.target)) {
-                searchBar.value = "";
-            }
-        });
-
-        document
-            .getElementById("back_creditos")
-            .addEventListener("click", function (event) {
-                // document.getElementById("creditos").style.display = "none";
-                document
-                    .getElementById("creditos")
-                    .classList.add("opacidad_blur_fade");
-            });
-
-        if (searchBarValue === "/admin") {
-            setTimeout(() => {
-                const claveIngresada = prompt("");
-
-                if (claveIngresada === "admin") {
-                    const paginas = document.querySelectorAll(".pagina");
-
-                    paginas.forEach((pagina) => {
-                        pagina.style.display = "none";
-                    });
+                paginas.forEach((pagina) => {
+                    pagina.style.display = "none";
+                });
 
                     document.getElementById("pagina2").style.display = "block";
                     document.getElementById(
@@ -351,7 +304,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
-    inputSize: 160,
+    inputSize:  160,
     scoreThreshold: 0.5,
 });
 
