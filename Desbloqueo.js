@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await faceapi.nets.faceLandmark68Net.loadFromUri("./face-api/models");
     await faceapi.nets.faceRecognitionNet.loadFromUri("./face-api/models");
     console.timeEnd("Cargar modelos");
+    document.querySelector(".loader").style.display = "none";
 
     startVideo();
 });
@@ -35,7 +36,6 @@ function startVideo() {
 
             video.addEventListener("play", () => {
                 const canvas = faceapi.createCanvasFromMedia(video);
-                document.querySelector(".loader").style.display = "none";
                 document.querySelector(".scroll-container").style.display = "flex";
 
                 const displaySize = {

@@ -11,9 +11,6 @@ body {
     display: flex;
 }
 
-img {
-    pointer-events: none;
-}
 
 .background {
     background: linear-gradient(
@@ -45,6 +42,21 @@ img {
     position: absolute;
     z-index: -400;
     opacity: 50%;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .1s;
+}
+
+.loader > img {
+    width: 100vw;
+    height: 100vh;
+    transform: scale(2);
+    filter: opacity(30%);
 }
 
 main {
@@ -718,6 +730,10 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(137, 75, 75, 0.37);
     color: white;
+}
+
+img {
+    pointer-events: none;
 }
 
 button {
