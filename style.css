@@ -562,10 +562,12 @@ h1 {
 
 .mostrarNOverificado > p {
     margin-left: 0.7em;
+    font-size: 80px;
+    color: white;
 }
 
 .mostrarNOverificado > svg {
-    width: 2.5em;
+    width: 12em;
     aspect-ratio: 1/1;
 }
 
