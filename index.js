@@ -1,82 +1,32 @@
-const fs = require('fs');
-const path = require('path');
+import { onEvent, sendEvent, startServer } from 'soquetic';
+import fs from 'fs';
 
-// Definir la ruta para el almacenamiento JSON
-const filePath = path.join(__dirname, 'usuarios.json');
+// Cargar usuarios del archivo JSON
+const cargarUsuarios = () => {
+  const data = fs.readFileSync('usuarios.json', 'utf8');
+  return JSON.parse(data);
+};
 
-// Función para leer los usuarios existentes del archivo JSON
-function leerUsuarios() {
-  if (!fs.existsSync(filePath)) {
-    return [];
-  }
-  const data = fs.readFileSync(filePath, 'utf-8');
-  return data ? JSON.parse(data) : [];
-}
+// Leer usuarios al inicio
+let usuarios = cargarUsuarios();
 
-// Función para guardar los usuarios en el archivo JSON
-function guardarUsuarios(usuarios) {
-  fs.writeFileSync(filePath, JSON.stringify(usuarios, null, 2));
-}
-
-// Función para agregar un nuevo usuario
-function agregarUsuario(tipoUsuario, datosUsuario) {
-  let nuevoUsuario = {
-    tipo: tipoUsuario,
-    ...datosUsuario,
-  };
-
-  const usuarios = leerUsuarios();
-  usuarios.push(nuevoUsuario);
-  guardarUsuarios(usuarios);
-  console.log('Usuario agregado:', nuevoUsuario);
-}
-
-// Función para verificar el login
-function verificarLogin(usuario, contrasena) {
-  const usuarios = leerUsuarios();
+// Evento para verificar si el usuario está en la lista de usuarios
+onEvent('verificarUsuario', ({ tipoUsuario, dni }) => {
   const usuarioEncontrado = usuarios.find(
-    (user) => user.usuario === usuario && user.contrasena === contrasena
+    (user) => user.dni === dni && user.tipoUsuario === tipoUsuario
   );
 
   if (usuarioEncontrado) {
-    console.log('Login correcto:', usuario);
-    return true;
+    return { exito: true, usuario: usuarioEncontrado };
   } else {
-    console.log('Login incorrecto');
-    return false;
+    return { exito: false };
   }
-}
-
-// Ejemplo de uso para agregar usuarios
-agregarUsuario('Invitado/a', {
-  usuario: 'invitado1',
-  contrasena: 'password123',
-  dni: '12345678',
-  nombre: 'Juan',
-  apellido: 'Perez',
-  division: '1B',
-  especialidad: 'Informatica'
 });
 
-agregarUsuario('Profesor/a', {
-  dni: '87654321'
+// Evento para simular desconexión (no es necesario realmente en SoqueTIC)
+onEvent('disconnect', () => {
+  console.log('Usuario desconectado');
 });
 
-agregarUsuario('Admin', {
-  usuario: 'admin1',
-  contrasena: 'adminPassword',
-  dni: '11223344',
-  claveAdmin: 'claveAdmin123'
-});
-
-agregarUsuario('Alumno/a', {
-  dni: '55667788'
-});
-
-agregarUsuario('Profesor/a', {
-  dni: '99887766'
-});
-
-// Ejemplo de uso para verificar login
-verificarLogin('invitado1', 'password123');
-verificarLogin('admin1', 'wrongPassword');
+// Iniciar el servidor SoqueTIC
+startServer(3000); // Puedes cambiar el puerto si lo deseas
