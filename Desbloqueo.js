@@ -50,11 +50,11 @@ function startVideo() {
                         .withFaceLandmarks()
                         .withFaceDescriptors();
 
-                    const resizedDetections = faceapi.resizeResults(detections, displaySize);
-                    overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                    // const resizedDetections = faceapi.resizeResults(detections, displaySize);
+                    // overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
 
-                    faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
-                    faceapi.draw.drawFaceLandmarks(overlayCanvas, resizedDetections);
+                    // faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                    // faceapi.draw.drawFaceLandmarks(overlayCanvas, resizedDetections);
                 }, 100);
             });
         })
@@ -97,9 +97,10 @@ captureButton.addEventListener("click", async () => {
     const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
     const threshold = 0.4;
     const isSamePerson = distance < threshold;
+    const Igualdad =  threshold - distance;
     console.log(
         "Es la misma persona: " + isSamePerson + "\n" +
-        "Igualdad: " + threshold + "\n" +
+        "Igualdad: " + Igualdad + "\n" +
         "Resultado de la comparación: " + isSamePerson
     );    console.timeEnd("Tiempo de comparación");  // Terminar contador
 

@@ -11,7 +11,6 @@ body {
     display: flex;
 }
 
-
 .background {
     background: linear-gradient(
         135deg,
@@ -49,7 +48,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: .1s;
+    transition: 0.1s;
 }
 
 .loader > img {
@@ -304,7 +303,7 @@ h1 {
     font-size: 50px;
     width: 1em;
     aspect-ratio: 1/1;
-    margin: .2em;
+    margin: 0.2em;
 }
 
 .creditos > button > svg {
@@ -334,7 +333,6 @@ h1 {
 
 /*Pagina 2 y 3*/
 
-
 .contenedor_opciones_pagina2,
 .contenedor_opciones_pagina3 {
     position: absolute;
@@ -363,6 +361,22 @@ h1 {
     mask-repeat: no-repeat;
 }
 
+.sombrapagina2y3 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14.5em;
+    height: 16.2em;
+    font-size: 40px;
+    border-radius: 5px;
+    z-index: -100;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-top: no;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
 /*Pagina 2*/
 
 .opciones_pagina2 > p {
@@ -378,13 +392,13 @@ h1 {
     top: -1.5em;
 }
 
-.opciones_pagina2 > div {
+.opciones_login_pagina2 {
     flex-direction: column;
     position: relative;
     top: -0.5em;
 }
 
-.opciones_pagina2 > div > button {
+.opciones_login_pagina2 > button {
     width: 10.5em;
     height: 2.8em;
     border: none;
@@ -392,7 +406,7 @@ h1 {
     font-size: 40px;
 }
 
-.opciones_pagina2 > div > button:nth-child(4) {
+.opciones_login_pagina2 > button:nth-child(4) {
     height: 1.8em;
     display: none;
 }
@@ -433,14 +447,14 @@ h1 {
     height: 2.3em;
 }
 
-.curso_usuario_pagina3 > select {
+.curso_usuario_pagina3 > * {
     width: 7.5em;
     height: 3.5em;
     font-size: 20px;
 }
 
 .curso_usuario_pagina3 > select > option {
-    background:#3e3d3f;
+    background: #3e3d3f;
 }
 
 .inputs_pagina_3 > input {
@@ -468,8 +482,6 @@ h1 {
 
 /*Pagina 4*/
 
-
-
 .pagina4 > div:nth-child(1) {
     height: auto;
     flex-direction: column;
@@ -486,6 +498,13 @@ h1 {
 
 .pagina4 > div > p > b {
     color: #e8cf10;
+}
+
+.pagina4 > div > span {
+    position: relative;
+    top: .5em;
+    color: #cececf;
+    font-size: 25px;
 }
 
 .desbloqueo_pagina4 {
@@ -539,7 +558,6 @@ h1 {
     flex-direction: column;
 }
 
-
 .mostrarveridicado_pagina5y6 > p {
     font-size: 80px;
     color: white;
@@ -570,7 +588,6 @@ h1 {
     height: 100%;
     flex-direction: column;
 }
-
 
 .mostrarNOverificado > p {
     margin-left: 0.7em;
@@ -636,7 +653,7 @@ h1 {
     margin-top: 1.5em;
 }
 
-.opciones_admin > div {
+.configadmin {
     width: 100vw;
     justify-content: center;
     display: grid;
@@ -646,7 +663,7 @@ h1 {
     grid-row-gap: 60px;
 }
 
-.opciones_admin > div > button {
+.configadmin > button {
     font-size: 70px;
     width: 8.2em;
     height: 2.5em;
@@ -677,10 +694,10 @@ h1 {
 
 /*Estilos por clases y tipos de elementos*/
 
-.flex_center{
+.flex_center {
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 .flex_center_evenly {
@@ -756,6 +773,7 @@ input::placeholder {
 .opacidad_blur_fade {
     animation: opacidad_blur_fade 0.2s ease-out forwards;
 }
+
 
 /*Animaciones*/
 @keyframes opacidad {
