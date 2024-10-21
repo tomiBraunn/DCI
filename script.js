@@ -168,19 +168,82 @@ document.getElementById("devolver").addEventListener("click", function (event) {
     desplazarALaPagina("pagina6");
 });
 
+
+// Función para reiniciar 
+function reiniciarEstado() {
+    // Seleccionar todas las pantallas y ocultarlas
+    const pantallas = document.querySelectorAll(".pantalla");
+    pantallas.forEach((pantalla) => {
+        pantalla.style.display = "none";
+    });
+
+    // Seleccionar todas las páginas y botones con clase 'home'
+    const paginas = document.querySelectorAll(".pagina");
+    const botonesHome = document.querySelectorAll(".home");
+
+    // // Ocultar todas las páginas excepto la primera
+    // paginas.forEach((pagina, index) => {
+    //     if (index !== 0) {
+    //         pagina.style.display = "none";
+    //     }
+    // });
+
+        // Ocultar todas las páginas
+        paginas.forEach((pagina) => {
+            pagina.style.display = "none"; // Ocultar todas las páginas
+        });
+
+    // Ocultar todos los botones con clase 'home'
+    botonesHome.forEach((boton) => {
+        boton.style.display = "none";
+    });
+
+    // Desplazar a la página 1
+    desplazarALaPagina("pagina1");
+
+    setTimeout(() => {
+        paginas.forEach((pagina) => {
+            pagina.style.display = "flex";
+        });
+
+        botonesHome.forEach((boton) => {
+            boton.style.display = "flex";
+        });
+    }, 300); 
+
+    // Limpiar todos los inputs
+    document.querySelectorAll("input").forEach((input) => {
+        input.value = "";
+    });
+
+    tipoUsuario = "";
+    document.getElementById("tipousuario").textContent = "";
+
+    // Reiniciar el estado de varios elementos
+    document.getElementById("DNIusuario").style.display = "none";
+    document.getElementById("NyAusuario").style.display = "none";
+    document.getElementById("Claveadmin").style.display = "none";
+    document.getElementById("curso_usuario").style.display = "none";
+    document.getElementById("opcionesadmin").style.display = "none";
+    document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
+    document.getElementById("usuarioverificado_pagina5").style.display = "flex";
+    document.getElementById("retirar_compu").style.display = "flex";
+    document.getElementById("devolver_compu").style.display = "flex";
+}
+
 // Botón reiniciar de la última página
 document
     .getElementById("reiniciar")
     .addEventListener("click", function (event) {
         event.preventDefault();
-        location.reload();
+        reiniciarEstado();
     });
 
 // Botones home
-document.querySelectorAll(".home").forEach((button) => {
-    button.addEventListener("click", function (event) {
+document.querySelectorAll(".home").forEach((botonHome) => {
+    botonHome.addEventListener("click", function (event) {
         event.preventDefault();
-        location.reload();
+        reiniciarEstado();
     });
 });
 

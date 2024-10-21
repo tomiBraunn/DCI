@@ -70,6 +70,7 @@ main > div {
     min-width: 100vw;
     height: 100vh;
     position: relative;
+    display: flex;
 }
 
 /*Pagina 1*/
@@ -340,7 +341,7 @@ h1 {
 }
 
 .opciones_pagina2,
-.opciones_pagina_3 {
+.opciones_pagina3 {
     width: 14.5em;
     height: 16.2em;
     font-size: 40px;
@@ -373,8 +374,8 @@ h1 {
     z-index: -100;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    border-top: no;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-top: none;
+    box-shadow: 0 8px 32px -20px rgba(0, 0, 0, 0.37);
 }
 
 /*Pagina 2*/
@@ -421,7 +422,7 @@ h1 {
 
 /*Pagina 3*/
 
-.opciones_pagina_3 > p {
+.opciones_pagina3 > p {
     position: absolute;
     width: 10.5em;
     height: 2.8em;
@@ -466,7 +467,7 @@ h1 {
     transition: 0.3s;
 }
 
-.opciones_pagina_3 > button {
+.opciones_pagina3 > button {
     position: absolute;
     top: 12.4em;
     width: 10.5em;
@@ -476,7 +477,7 @@ h1 {
     font-size: 40px;
 }
 
-.opciones_pagina_3 > button:active {
+.opciones_pagina3 > button:active {
     transform: scale(1);
 }
 
