@@ -1,32 +1,77 @@
-import { onEvent, sendEvent, startServer } from 'soquetic';
-import fs from 'fs';
+import { onEvent, sendEvent, startServer } from "soquetic";
+import fs from "fs";
 
-// Cargar usuarios del archivo JSON
-const cargarUsuarios = () => {
-  const data = fs.readFileSync('usuarios.json', 'utf8');
-  return JSON.parse(data);
+// Ruta del archivo JSON donde se guardarán los usuarios
+const usersFile = './users.json';
+
+// Función para leer el archivo JSON
+const readUsersFromFile = () => {
+  try {
+    const data = fs.readFileSync(usersFile, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error leyendo el archivo JSON:", error);
+    return [];
+  }
 };
 
-// Leer usuarios al inicio
-let usuarios = cargarUsuarios();
+// Función para escribir en el archivo JSON
+const writeUsersToFile = (users) => {
+  try {
+    fs.writeFileSync(usersFile, JSON.stringify(users, null, 2), 'utf8');
+  } catch (error) {
+    console.error("Error escribiendo en el archivo JSON:", error);
+  }
+};
 
-// Evento para verificar si el usuario está en la lista de usuarios
-onEvent('verificarUsuario', ({ tipoUsuario, dni }) => {
-  const usuarioEncontrado = usuarios.find(
-    (user) => user.dni === dni && user.tipoUsuario === tipoUsuario
-  );
+// Evento para agregar un nuevo usuario
+onEvent("addUser", (data) => {
+  const { tipoUsuario, dni, nombre, apellido } = data;
 
-  if (usuarioEncontrado) {
-    return { exito: true, usuario: usuarioEncontrado };
+  const newUser = {
+    id: uuidv4(), // Genera un ID único
+    tipoUsuario,
+    dni,
+    nombre,
+    apellido
+  };
+
+  const users = readUsersFromFile();
+  users.push(newUser);
+  writeUsersToFile(users);
+
+  console.log("Usuario agregado:", newUser);
+  return { msg: "Usuario agregado exitosamente", user: newUser };
+});
+
+// Evento para obtener todos los usuarios
+onEvent("getUsers", () => {
+  const users = readUsersFromFile();
+  return users;
+});
+
+// Evento para obtener un usuario por su ID
+onEvent("getUserById", (data) => {
+  const { id } = data;
+  const users = readUsersFromFile();
+  const user = users.find(u => u.id === id);
+  
+  if (user) {
+    return user;
   } else {
-    return { exito: false };
+    return { msg: "Usuario no encontrado" };
   }
 });
 
-// Evento para simular desconexión (no es necesario realmente en SoqueTIC)
-onEvent('disconnect', () => {
-  console.log('Usuario desconectado');
+// Ejemplo adicional: Fecha
+onEvent("date", () => {
+  const date = new Date();
+  return `${date.getUTCDate()}/${date.getUTCMonth() + 1}`;
 });
 
-// Iniciar el servidor SoqueTIC
-startServer(3000); // Puedes cambiar el puerto si lo deseas
+// Envío de eventos periódicos
+setInterval(() => {
+  sendEvent("second", null);
+}, 1000);
+
+startServer();

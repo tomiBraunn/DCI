@@ -49,7 +49,7 @@ document
 
 function establecerTipoUsuario(tipo) {
     tipoUsuario = tipo;
-    document.getElementById("tipousuario").textContent = tipo;
+    document.getElementById("mostarTipoUsuario").textContent = tipo;
 
     // Ocultar campos inicialmente
     document.getElementById("DNIusuario").style.display = "none";
@@ -168,8 +168,7 @@ document.getElementById("devolver").addEventListener("click", function (event) {
     desplazarALaPagina("pagina6");
 });
 
-
-// Función para reiniciar 
+// Función para reiniciar
 function reiniciarEstado() {
     // Seleccionar todas las pantallas y ocultarlas
     const pantallas = document.querySelectorAll(".pantalla");
@@ -188,10 +187,10 @@ function reiniciarEstado() {
     //     }
     // });
 
-        // Ocultar todas las páginas
-        paginas.forEach((pagina) => {
-            pagina.style.display = "none"; // Ocultar todas las páginas
-        });
+    // Ocultar todas las páginas
+    paginas.forEach((pagina) => {
+        pagina.style.display = "none"; // Ocultar todas las páginas
+    });
 
     // Ocultar todos los botones con clase 'home'
     botonesHome.forEach((boton) => {
@@ -209,7 +208,7 @@ function reiniciarEstado() {
         botonesHome.forEach((boton) => {
             boton.style.display = "flex";
         });
-    }, 300); 
+    }, 300);
 
     // Limpiar todos los inputs
     document.querySelectorAll("input").forEach((input) => {
@@ -217,7 +216,7 @@ function reiniciarEstado() {
     });
 
     tipoUsuario = "";
-    document.getElementById("tipousuario").textContent = "";
+    document.getElementById("mostarTipoUsuario").textContent = "";
 
     // Reiniciar el estado de varios elementos
     document.getElementById("DNIusuario").style.display = "none";
@@ -225,7 +224,8 @@ function reiniciarEstado() {
     document.getElementById("Claveadmin").style.display = "none";
     document.getElementById("curso_usuario").style.display = "none";
     document.getElementById("opcionesadmin").style.display = "none";
-    document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
+    document.getElementById("usuarioNOverificado_pagina5").style.display =
+        "flex";
     document.getElementById("usuarioverificado_pagina5").style.display = "flex";
     document.getElementById("retirar_compu").style.display = "flex";
     document.getElementById("devolver_compu").style.display = "flex";
@@ -371,11 +371,21 @@ document
 
 // SoqueTIC
 
-// document.getElementById("btn_avanzar").addEventListener("click", async () => {
-//     if ((tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") && dni !== "")  {
+// Mandar el tipo de usuario y dni al back (alumno y profesor)
+document.getElementById("btn_avanzar").addEventListener("click", async () => {
+    if (
+        (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") &&
+        dni !== ""
+    ) {
+        console.log(tipoUsuario);
+        console.log(dni);
+    }
 
-//     console.log(tipoUsuario);
-//     console.log(dni);
-// };
+    postData("mandarDatosUsuario", { tipoUsuario: tipoUsuario, dni: dni });
+});
 
-//     postData("mandarDatosUsuario"), { msg: input.value }});
+receive("Usuario");
+
+receive("nombreUsuario", () => {
+    document.getElementById("nombre").textContent = nombreUsuario;
+});
