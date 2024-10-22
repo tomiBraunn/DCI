@@ -369,6 +369,10 @@ document
         }
     });
 
+// Motrar cantidad de compus disponibles
+
+const cantidadCompus = 2;
+
 // SoqueTIC
 
 // Mandar el tipo de usuario y dni al back (alumno y profesor)
@@ -389,3 +393,34 @@ receive("Usuario");
 receive("nombreUsuario", () => {
     document.getElementById("nombre").textContent = nombreUsuario;
 });
+
+//Funcionalidad por agregar para retirar y devolver
+/*
+// Definir la cantidad de computadoras disponibles
+let cantidadCompus = 2;
+
+// Retirar computadora
+document.getElementById("retirar").addEventListener("click", function (event) {
+    event.preventDefault();
+    if (cantidadCompus > 0) {
+        cantidadCompus--; // Resta 1 a la cantidad de compus
+        console.log(`Se retiró una computadora. Quedan ${cantidadCompus}.`);
+        document.getElementById("devolver_compu").style.display = "none";
+        desplazarALaPagina("pagina6");
+    } else {
+        console.log("No hay computadoras disponibles para retirar.");
+    }
+});
+
+// Devolver computadora
+document.getElementById("devolver").addEventListener("click", function (event) {
+    event.preventDefault();
+    if (cantidadCompus < 2) {
+        cantidadCompus++; // Suma 1 a la cantidad de compus
+        console.log(`Se devolvió una computadora. Ahora hay ${cantidadCompus}.`);
+        document.getElementById("retirar_compu").style.display = "none";
+        desplazarALaPagina("pagina6");
+    } else {
+        console.log("Ya hay suficientes computadoras, no puedes devolver más.");
+    }
+}); */

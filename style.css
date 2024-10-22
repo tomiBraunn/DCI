@@ -775,6 +775,10 @@ input::placeholder {
     animation: opacidad_blur_fade 0.2s ease-out forwards;
 }
 
+.noDisponible {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgb(255 0 0 / 21%));
+    cursor: not-allowed;
+}
 
 /*Animaciones*/
 @keyframes opacidad {
