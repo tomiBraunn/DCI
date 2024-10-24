@@ -129,10 +129,10 @@ document
 
         // Manejo de avance o error
         if (valid) {
-            console.log("Tipo de usuario:", tipoUsuario);
-            console.log("DNI:", dni);
-            postData("verificarUsuario", { tipoUsuario, dni });
-            console.log("Datos enviados a SoqueTIC");
+            // console.log("Tipo de usuario:", tipoUsuario);
+            // console.log("DNI:", dni);
+            // postData("verificarUsuario", { tipoUsuario, dni });
+            // console.log("Datos enviados a SoqueTIC");
             desplazarALaPagina("pagina4");
         } else {
             // Agregar clase shake si los datos no son válidos
@@ -224,11 +224,12 @@ function reiniciarEstado() {
     document.getElementById("Claveadmin").style.display = "none";
     document.getElementById("curso_usuario").style.display = "none";
     document.getElementById("opcionesadmin").style.display = "none";
-    document.getElementById("usuarioNOverificado_pagina5").style.display =
-        "flex";
+    document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
     document.getElementById("usuarioverificado_pagina5").style.display = "flex";
     document.getElementById("retirar_compu").style.display = "flex";
     document.getElementById("devolver_compu").style.display = "flex";
+    document.getElementById("info_dci").style.display = "none";
+    document.getElementById("info_dci").classList.add("opacidad_blur_fade");
 }
 
 // Botón reiniciar de la última página
@@ -271,7 +272,7 @@ document
         const searchBarValue = searchBar.value.trim();
         searchBar.style.caretColor = "transparent";
 
-        if (searchBarValue.length > 20) {
+        if (searchBarValue.length > 40) {
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
             return;
@@ -312,7 +313,7 @@ document
                     .classList.add("opacidad_blur_fade");
             });
 
-        if (searchBarValue === "/admin") {
+        if (searchBarValue === "/admin" || searchBarValue === "/registros") {
             setTimeout(() => {
                 const claveIngresada = prompt(
                     "Ingrese clave de administrador:"
@@ -375,6 +376,11 @@ const cantidadCompus = 2;
 
 // SoqueTIC
 
+// Indicar la cantidad de computadoras disponibles
+fetchData("cantidadCompus", (data) => {
+    document.getElementById("cantidad_compus").innerHTML = data;
+});
+
 // Mandar el tipo de usuario y dni al back (alumno y profesor)
 document.getElementById("btn_avanzar").addEventListener("click", async () => {
     if (
@@ -383,10 +389,14 @@ document.getElementById("btn_avanzar").addEventListener("click", async () => {
     ) {
         console.log(tipoUsuario);
         console.log(dni);
-    }
 
-    postData("mandarDatosUsuario", { tipoUsuario: tipoUsuario, dni: dni });
+        // Mandar los datos al backend solo si la condición se cumple
+        await postData("mandarDatosUsuario", { tipoUsuario: tipoUsuario, dni: dni });
+    } else {
+        console.log("Faltan datos o tipo de usuario no válido");
+    }
 });
+
 
 receive("Usuario");
 

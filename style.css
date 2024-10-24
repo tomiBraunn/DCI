@@ -141,21 +141,25 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-radius: 15px;
+    border-radius: 20px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     background: rgba(78, 73, 73, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .navbar_info > input {
+    height: 1.3em;
+    width: 50%;
     font-size: 24px;
     font-style: italic;
     color: #cececf;
     background: none;
     border: none;
     text-align: center;
+    /* border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px; */
 }
 
 .navbar_info > input::placeholder {
@@ -165,7 +169,6 @@ h1 {
 }
 
 .navbar_info > input:focus {
-    border: none;
     outline: none;
     caret-color: transparent;
 }
@@ -503,7 +506,6 @@ h1 {
 
 .pagina4 > div > span {
     position: relative;
-    top: .5em;
     color: #cececf;
     font-size: 25px;
 }
@@ -620,7 +622,7 @@ h1 {
 
 .opciones_usuario > div {
     font-size: 60px;
-    width: auto;
+    width: 16em;
     height: 3em;
     padding: 0 1.5em;
     flex-direction: column;
