@@ -22,6 +22,7 @@
     <div class="background"></div>
     <span class="background_glass"><img src="./media/card_bg.png"></span>
     <div class="loader" id="loader"><img src="./media/card_bg.png"></div>
+    <span class="adjustmentLayer" id="adjustmentLayer"></span>
     <main class="scroll-container" style="display: none;">
         <div class="pagina1 pagina flex_center_evenly" id="pagina1">
             <h1>Desbloqueo de Carro <br> Inteligente</h1>
@@ -65,7 +66,7 @@
                         <li>Backend: Nacho Bourdieu</li>
                         <li>TIMI: Simón Nosovitzky</li>
                         <li>Hardware: Manu Szwarc</li>
-                        <li>R. Facial: face api</li>                        
+                        <li>R. Facial: Face APi</li>
                     </ul>
                 </div>
             </div>
@@ -222,14 +223,14 @@
                       <svg width="24" height="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" > <defs> <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%" > <stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; " /> <stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0); stop-opacity: 1; " /> </linearGradient> </defs> <style type="text/css"> .st0 { fill: none; } </style> <path d="M19.3,5.3L9,15.6l-4.3-4.3l-1.4,1.4l5,5L9,18.4l0.7-0.7l11-11L19.3,5.3z" fill="url(#grad1)" /> <rect class="st0" width="24" height="24" /> </svg>
                     </div>
                 </div>
-                <div class="opciones_usuario flex_center" id="opcionesnorm">
+                <div class="opciones_usuario flex_center">
                     <div id="retirar_compu" class="glass flex_center">
                         <p>Retira la laptop de la ranura <br /><b id="ranuraRetirar">Xx</b></p>
                       </div>
                       <div id="devolver_compu" class="glass flex_center">
                         <p>Deja la laptop de la ranura <br /><b id="ranuraDevolver">Xx</b></p>
                       </div>
-                      <p>Acordate de cerrar la puerta!</p>
+                      <!-- <p>Acordate de cerrar la puerta!</p> -->
                       <button id="reiniciar" class="glass flex_center">Reiniciar</button>
                     </div>
                 </div>
@@ -239,5 +240,6 @@
 <script src="SoqueTic/socket.js"></script>
 <script src="Desbloqueo.js"></script>
 <script src="script.js"></script>
+<script type="module" src="index.js"></script>
 </body>
 </html>

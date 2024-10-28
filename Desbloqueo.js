@@ -53,7 +53,7 @@ function startVideo() {
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
                     overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
 
-                    faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                    // faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
                     // faceapi.draw.drawFaceLandmarks(overlayCanvas, resizedDetections);
                 }, 100);
             });

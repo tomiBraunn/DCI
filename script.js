@@ -6,6 +6,14 @@ function desplazarALaPagina(paginaId) {
         left: document.getElementById(paginaId).offsetLeft,
         behavior: "smooth",
     });
+
+    // Verifica si estamos en la página 2
+    if (paginaId === "pagina2" || paginaId === "pagina5") {
+        const adjustmentLayer = document.getElementById("adjustmentLayer");
+
+        // Elimina todas las clases excepto "adjustmentLayer"
+        adjustmentLayer.className = "adjustmentLayer";
+    }
 }
 
 // Botón de inicio en la primera página
@@ -57,13 +65,24 @@ function establecerTipoUsuario(tipo) {
     document.getElementById("Claveadmin").style.display = "none";
     document.getElementById("curso_usuario").style.display = "none";
 
-    // Mostrar campos según el tipo de usuario
-    if (tipo === "Alumno/a" || tipo === "Profesor/a") {
+    // Mostrar campos según el tipo de usuario y agregar el adjustment layer
+    if (tipo === "Alumno/a") {
         document.getElementById("DNIusuario").style.display = "block";
+        document
+            .getElementById("adjustmentLayer")
+            .classList.add("adjustmentLayerAlumno");
+    } else if (tipo === "Profesor/a") {
+        document.getElementById("DNIusuario").style.display = "block";
+        document
+            .getElementById("adjustmentLayer")
+            .classList.add("adjustmentLayerProfe");
     } else if (tipo === "Invitado/a") {
         document.getElementById("DNIusuario").style.display = "block";
         document.getElementById("curso_usuario").style.display = "flex";
         document.getElementById("NyAusuario").style.display = "block";
+        document.
+            getElementById("adjustmentLayer")
+            .classList.add("adjustmentLayerInvitado");
     } else if (tipo === "Admin") {
         document.getElementById("DNIusuario").style.display = "block";
         document.getElementById("Claveadmin").style.display = "block";
@@ -72,6 +91,7 @@ function establecerTipoUsuario(tipo) {
 
     desplazarALaPagina("pagina3");
 }
+
 
 // Botón de avanzar una vez que se ingresaron los datos
 document
@@ -155,18 +175,49 @@ document
         desplazarALaPagina("pagina4");
     });
 
-// Retirar o devolver computadora en la última página
+// Retirar computadora
 document.getElementById("retirar").addEventListener("click", function (event) {
+    const botonRetirar = document.getElementById("retirar");
+
+    if (botonRetirar.classList.contains("noDisponible")) {
+        event.preventDefault();
+        
+        // Agrega la animación de sacudida
+        botonRetirar.classList.add("shake");
+        setTimeout(() => {
+            botonRetirar.classList.remove("shake");
+        }, 500);
+        
+        return; // Sale de la función sin hacer nada más
+    }
+
     event.preventDefault();
     document.getElementById("devolver_compu").style.display = "none";
     desplazarALaPagina("pagina6");
 });
 
+// Devolver computadora
 document.getElementById("devolver").addEventListener("click", function (event) {
+    const botonDevolver = document.getElementById("devolver");
+
+    if (botonDevolver.classList.contains("noDisponible")) {
+        event.preventDefault();
+        
+        // Agrega la animación de sacudida
+        botonDevolver.classList.add("shake");
+        setTimeout(() => {
+            botonDevolver.classList.remove("shake");
+        }, 500);
+        
+        return; // Sale de la función sin hacer nada más
+    }
+
     event.preventDefault();
     document.getElementById("retirar_compu").style.display = "none";
     desplazarALaPagina("pagina6");
 });
+
+
 
 // Función para reiniciar
 function reiniciarEstado() {
@@ -224,12 +275,16 @@ function reiniciarEstado() {
     document.getElementById("Claveadmin").style.display = "none";
     document.getElementById("curso_usuario").style.display = "none";
     document.getElementById("opcionesadmin").style.display = "none";
-    document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
+    document.getElementById("usuarioNOverificado_pagina5").style.display =
+        "flex";
     document.getElementById("usuarioverificado_pagina5").style.display = "flex";
     document.getElementById("retirar_compu").style.display = "flex";
     document.getElementById("devolver_compu").style.display = "flex";
     document.getElementById("info_dci").style.display = "none";
     document.getElementById("info_dci").classList.add("opacidad_blur_fade");
+    document.getElementById("creditos").style.display = "none";
+    document.getElementById("creditos").classList.add("opacidad_blur_fade");
+    adjustmentLayer.className = "adjustmentLayer";
 }
 
 // Botón reiniciar de la última página
@@ -290,7 +345,7 @@ document
             location.reload();
         }
 
-        if (searchBarValue === "/credits") {
+        if (searchBarValue === "/credits" || searchBarValue === "/creditos") {
             document.getElementById("creditos").style.display = "flex";
             document
                 .getElementById("creditos")
@@ -391,12 +446,14 @@ document.getElementById("btn_avanzar").addEventListener("click", async () => {
         console.log(dni);
 
         // Mandar los datos al backend solo si la condición se cumple
-        await postData("mandarDatosUsuario", { tipoUsuario: tipoUsuario, dni: dni });
+        await postData("mandarDatosUsuario", {
+            tipoUsuario: tipoUsuario,
+            dni: dni,
+        });
     } else {
         console.log("Faltan datos o tipo de usuario no válido");
     }
 });
-
 
 receive("Usuario");
 

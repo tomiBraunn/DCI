@@ -1,3 +1,9 @@
+html {
+    width: 100vw;
+    height: 10vh;
+    overflow: hidden;
+}
+
 * {
     font-family: "JetBrains ", monospace;
     user-select: none;
@@ -56,6 +62,13 @@ body {
     height: 100vh;
     transform: scale(2);
     filter: opacity(30%);
+}
+
+.adjustmentLayer {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    transition: .5s;
 }
 
 main {
@@ -478,6 +491,7 @@ h1 {
     border: none;
     margin: 0.1em 0;
     font-size: 40px;
+    transition: .3s;
 }
 
 .opciones_pagina3 > button:active {
@@ -504,6 +518,7 @@ h1 {
     position: relative;
     color: #cececf;
     font-size: 25px;
+    top: 0.5em;
 }
 
 .desbloqueo_pagina4 {
@@ -580,6 +595,7 @@ h1 {
     height: 3em;
     white-space: nowrap;
     margin: 0.3em;
+    transition: .3s;
 }
 
 .usuarioNOverificado_pagina5 {
@@ -777,15 +793,30 @@ input::placeholder {
     background: linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.1),
-        rgb(255 0 0 / 21%)
+        rgb(221 221 221 / 41%)
     );
     cursor: not-allowed;
+    opacity: 50%;
+    transform: scale(.99);
 }
 
 .gradientDCI {
     background: linear-gradient(135deg, #1c6a6a, #443562);
-    -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
+}
+.adjustmentLayerAlumno {
+    background: #41216030;
+    animation: opacidad 1s ease-out forwards;
+}
+.adjustmentLayerProfe {
+    background: #2c5e5e42;
+    animation: opacidad 1s ease-out forwards;
+}
+
+.adjustmentLayerInvitado {
+    background: #31551161;
+    animation: opacidad 1s ease-out forwards;
 }
 
 /*Animaciones*/
