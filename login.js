@@ -14,7 +14,7 @@ function verificarUsuario(dni) {
   const usuarios = cargarUsuarios();
   return usuarios.find(usuario => usuario.dni === dni);
 }
-
+const respuesta = verificarUsuario()
 function manejarLogin(dni) {
   console.log(`Verificando DNI: ${dni}`); // Agregar un log para verificar si se ejecuta
   const usuario = verificarUsuario(dni);
@@ -58,7 +58,7 @@ function iniciarModoPrueba() {
   rl.question("Ingrese el DNI para probar el login: ", (dni) => {
     manejarLogin(dni);
     rl.close();
-  });
+  });{{}}
 }
 
 function main() {
@@ -72,17 +72,26 @@ function main() {
   }
 }
 
-main();
-
 function devolverdni () {
     return (dni);
 }
 
-onEvent ("dni", devolverdni );
-
-function devolvernombre () {
-    return (nombre);
+function devolverNombre(dni) {
+  const users =  cargarUsuarios()
+  const userFind = users.find(usuario => usuario.dni === dni);
+  console.log(userFind.nombre)
+  return userFind.nombre
+  
 }
 
-onEvent ("nombre", devolvernombre );
+onEvent ("mandarDatosUsuario", )
+
+onEvent ("nombre", dni => {
+  return devolverNombre(dni)
+});
+
+onEvent("cantidadCompus", () => {
+  return 2;
+})
+iniciarServidor()
 

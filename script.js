@@ -94,13 +94,14 @@ function establecerTipoUsuario(tipo) {
 
 
 // Botón de avanzar una vez que se ingresaron los datos
+var dni;
 document
     .getElementById("btn_avanzar")
     .addEventListener("click", function (event) {
         event.preventDefault();
 
         let valid = true;
-        const dni = document.getElementById("DNIusuario").value.trim();
+        dni = document.getElementById("DNIusuario").value.trim();
         const nombreApellido = document
             .getElementById("NyAusuario")
             .value.trim();
@@ -438,24 +439,23 @@ fetchData("cantidadCompus", (data) => {
 
 // Mandar el tipo de usuario y dni al back (alumno y profesor)
 document.getElementById("btn_avanzar").addEventListener("click", async () => {
-    if (
-        (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") &&
-        dni !== ""
-    ) {
-        console.log(tipoUsuario);
+    if (dni != ""){
         console.log(dni);
 
         // Mandar los datos al backend solo si la condición se cumple
         await postData("mandarDatosUsuario", {
-            tipoUsuario: tipoUsuario,
             dni: dni,
         });
-    } else {
+    // } else {
         console.log("Faltan datos o tipo de usuario no válido");
     }
 });
 
 receive("Usuario");
+
+postData("nombre", dni =>{
+    document.getElementById("nombre").textContent = nombreUsuario;
+})
 
 receive("nombreUsuario", () => {
     document.getElementById("nombre").textContent = nombreUsuario;
