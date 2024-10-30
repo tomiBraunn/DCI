@@ -1,5 +1,8 @@
 let tipoUsuario = "";
 
+const version = "v.1.00"
+
+
 // Función para desplazar a la siguiente página
 function desplazarALaPagina(paginaId) {
     document.querySelector(".scroll-container").scrollTo({
@@ -80,8 +83,8 @@ function establecerTipoUsuario(tipo) {
         document.getElementById("DNIusuario").style.display = "block";
         document.getElementById("curso_usuario").style.display = "flex";
         document.getElementById("NyAusuario").style.display = "block";
-        document.
-            getElementById("adjustmentLayer")
+        document
+            .getElementById("adjustmentLayer")
             .classList.add("adjustmentLayerInvitado");
     } else if (tipo === "Admin") {
         document.getElementById("DNIusuario").style.display = "block";
@@ -91,7 +94,6 @@ function establecerTipoUsuario(tipo) {
 
     desplazarALaPagina("pagina3");
 }
-
 
 // Botón de avanzar una vez que se ingresaron los datos
 document
@@ -181,13 +183,13 @@ document.getElementById("retirar").addEventListener("click", function (event) {
 
     if (botonRetirar.classList.contains("noDisponible")) {
         event.preventDefault();
-        
+
         // Agrega la animación de sacudida
         botonRetirar.classList.add("shake");
         setTimeout(() => {
             botonRetirar.classList.remove("shake");
         }, 500);
-        
+
         return; // Sale de la función sin hacer nada más
     }
 
@@ -202,13 +204,13 @@ document.getElementById("devolver").addEventListener("click", function (event) {
 
     if (botonDevolver.classList.contains("noDisponible")) {
         event.preventDefault();
-        
+
         // Agrega la animación de sacudida
         botonDevolver.classList.add("shake");
         setTimeout(() => {
             botonDevolver.classList.remove("shake");
         }, 500);
-        
+
         return; // Sale de la función sin hacer nada más
     }
 
@@ -216,8 +218,6 @@ document.getElementById("devolver").addEventListener("click", function (event) {
     document.getElementById("retirar_compu").style.display = "none";
     desplazarALaPagina("pagina6");
 });
-
-
 
 // Función para reiniciar
 function reiniciarEstado() {
@@ -339,7 +339,11 @@ document
             searchBar.style.caretColor = "transparent";
         }
 
-        if (searchBarValue === "/restart") {
+        if (
+            searchBarValue === "/restart" ||
+            searchBarValue === "/reiniciar" ||
+            searchBarValue === "/reset"
+        ) {
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
             location.reload();
@@ -359,14 +363,6 @@ document
                 searchBar.value = "";
             }
         });
-
-        document
-            .getElementById("back_creditos")
-            .addEventListener("click", function () {
-                document
-                    .getElementById("creditos")
-                    .classList.add("opacidad_blur_fade");
-            });
 
         if (searchBarValue === "/admin" || searchBarValue === "/registros") {
             setTimeout(() => {
@@ -397,6 +393,34 @@ document
                 }
             }, 500);
         }
+    });
+
+document.getElementById("back_creditos").addEventListener("click", function () {
+    document.getElementById("creditos").classList.add("opacidad_blur_fade");
+});
+// Funcionalidad de la barra de búsqueda dentro de la pantalla de creditos
+document
+    .getElementById("search_credits")
+    .addEventListener("input", function () {
+        const searchBar = document.getElementById("search_credits");
+        const searchBarValue = searchBar.value.trim();
+        searchBar.style.caretColor = "transparent";
+
+        if (searchBarValue.length > 15) {
+            searchBar.value = "";
+            searchBar.placeholder = "Creditos";
+            return;
+        }
+
+        if (searchBarValue.length > 1) {
+            searchBar.style.caretColor = "#cececf";
+        } else {
+            searchBar.style.caretColor = "transparent";
+        }
+
+        if (searchBarValue === "/version") {
+            searchBar.value = version;
+        }
 
         if (searchBarValue === "/rick") {
             let rickAudio = document.getElementById("rickAudio");
@@ -423,7 +447,13 @@ document
 
             searchBar.value = "";
         }
-    });
+
+        document.addEventListener("click", function (event) {
+            if (!searchBar.contains(event.target)) {
+                searchBar.value = "";
+            }
+        });
+});
 
 // Motrar cantidad de compus disponibles
 
