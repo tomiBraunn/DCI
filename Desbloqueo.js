@@ -1,11 +1,17 @@
 // Funcionalidad api
+
+
+const base64Image = postData("imagen", {
+    dni: dni
+});
+
 const video = document.getElementById("video");
 const overlayCanvas = document.getElementById("overlayCanvas");
 const imageUpload = document.getElementById("imageUpload");
 const capturedImage = document.getElementById("capturedImage");
 const captureButton = document.getElementById("captureButton");
 
-let uploadedFaceData;
+let uploadedFaceData; // Esto se mantendrá para la imagen subida, si se necesita.
 let capturedFaceData;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -79,44 +85,54 @@ captureButton.addEventListener("click", async () => {
     capturedImage.src = imgDataUrl;
 
     const img = new Image();
-    img.src = imgDataUrl;
+    img.src = imgDataUrl; // Imagen capturada del video
     img.onload = async () => {
         capturedFaceData = await faceapi
             .detectSingleFace(img, tinyFaceDetectorOptions)
             .withFaceLandmarks()
             .withFaceDescriptor();
 
-        if (!capturedFaceData) {
-            alert("No se detectó ninguna cara en la foto");
-            return;
-        }
+        // Cargar la imagen en base64
+        const base64Img = new Image();
+        base64Img.src = base64Image; // Usar la imagen en base64
+        base64Img.onload = async () => {
+            uploadedFaceData = await faceapi
+                .detectSingleFace(base64Img, tinyFaceDetectorOptions)
+                .withFaceLandmarks()
+                .withFaceDescriptor();
 
-        if (!uploadedFaceData || !capturedFaceData) {
-            alert("Ambas imágenes necesitan ser detectadas para la comparación.");
-            return;
-        }
+            if (!capturedFaceData) {
+                alert("No se detectó ninguna cara en la captura.");
+                return;
+            }
 
-        console.time("Tiempo de comparación");
-        const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
-        const threshold = 0.55;
-        const isSamePerson = distance < threshold;
-        const Igualdad = threshold - distance;
-        console.log(
-            "Es la misma persona: " + isSamePerson + "\n" +
-            "Igualdad: " + Igualdad + "\n" +
-            "Resultado de la comparación: " + isSamePerson
-        );
-        console.timeEnd("Tiempo de comparación");
+            if (!uploadedFaceData || !capturedFaceData) {
+                alert("Ambas imágenes necesitan ser detectadas para la comparación.");
+                return;
+            }
 
-        desplazarALaPagina("pagina5");
+            console.time("Tiempo de comparación");
+            const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
+            const threshold = 0.55;
+            const isSamePerson = distance < threshold;
+            const Igualdad = threshold - distance;
+            console.log(
+                "Es la misma persona: " + isSamePerson + "\n" +
+                "Igualdad: " + Igualdad + "\n" +
+                "Resultado de la comparación: " + isSamePerson
+            );
+            console.timeEnd("Tiempo de comparación");
 
-        if (isSamePerson) {
-            document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
-            document.getElementById("usuarioverificado_pagina5").style.display = "flex";
-        } else {
-            document.getElementById("usuarioverificado_pagina5").style.display = "none";
-            document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
-        }
+            desplazarALaPagina("pagina5");
+
+            if (isSamePerson) {
+                document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
+                document.getElementById("usuarioverificado_pagina5").style.display = "flex";
+            } else {
+                document.getElementById("usuarioverificado_pagina5").style.display = "none";
+                document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
+            }
+        };
     };
 });
 
