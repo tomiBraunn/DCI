@@ -35,7 +35,6 @@ const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
 });
 
 function startVideo() {
-
     navigator.mediaDevices
         .getUserMedia({ video: true })
         .then((stream) => {
@@ -60,9 +59,6 @@ function startVideo() {
 
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
                     overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
-
-                    // faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
-                    // faceapi.draw.drawFaceLandmarks(overlayCanvas, resizedDetections);
                 }, 100);
             });
         })
@@ -75,7 +71,6 @@ function startVideo() {
 }
 
 captureButton.addEventListener("click", async () => {
-    
     const canvas = document.createElement("canvas");
     canvas.width = 1920;
     canvas.height = 1080;
@@ -83,44 +78,46 @@ captureButton.addEventListener("click", async () => {
     const imgDataUrl = canvas.toDataURL("image/jpeg");
     capturedImage.src = imgDataUrl;
 
-    const img = await faceapi.fetchImage(imgDataUrl);
-    console.log("Imagen capturada");
+    const img = new Image();
+    img.src = imgDataUrl;
+    img.onload = async () => {
+        capturedFaceData = await faceapi
+            .detectSingleFace(img, tinyFaceDetectorOptions)
+            .withFaceLandmarks()
+            .withFaceDescriptor();
 
-    capturedFaceData = await faceapi
-        .detectSingleFace(img, tinyFaceDetectorOptions)
-        .withFaceLandmarks()
-        .withFaceDescriptor();
+        if (!capturedFaceData) {
+            alert("No se detectó ninguna cara en la foto");
+            return;
+        }
 
-    if (!capturedFaceData) {
-        alert("No se detectó ninguna cara en la foto");
-        return;
-    }
+        if (!uploadedFaceData || !capturedFaceData) {
+            alert("Ambas imágenes necesitan ser detectadas para la comparación.");
+            return;
+        }
 
-    if (!uploadedFaceData || !capturedFaceData) {
-        alert("Ambas imágenes necesitan ser detectadas para la comparación.");
-        return;
-    }
+        console.time("Tiempo de comparación");
+        const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
+        const threshold = 0.55;
+        const isSamePerson = distance < threshold;
+        const Igualdad = threshold - distance;
+        console.log(
+            "Es la misma persona: " + isSamePerson + "\n" +
+            "Igualdad: " + Igualdad + "\n" +
+            "Resultado de la comparación: " + isSamePerson
+        );
+        console.timeEnd("Tiempo de comparación");
 
-    console.time("Tiempo de comparación");  // Iniciar contador
-    const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
-    const threshold = 0.55;
-    const isSamePerson = distance < threshold;
-    const Igualdad =  threshold - distance;
-    console.log(
-        "Es la misma persona: " + isSamePerson + "\n" +
-        "Igualdad: " + Igualdad + "\n" +
-        "Resultado de la comparación: " + isSamePerson
-    );    console.timeEnd("Tiempo de comparación");  // Terminar contador
+        desplazarALaPagina("pagina5");
 
-    desplazarALaPagina("pagina5");
-
-    if (isSamePerson) {
-        document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
-        document.getElementById("usuarioverificado_pagina5").style.display = "flex";
-    } else {
-        document.getElementById("usuarioverificado_pagina5").style.display = "none";
-        document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
-    }
+        if (isSamePerson) {
+            document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
+            document.getElementById("usuarioverificado_pagina5").style.display = "flex";
+        } else {
+            document.getElementById("usuarioverificado_pagina5").style.display = "none";
+            document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
+        }
+    };
 });
 
 imageUpload.addEventListener("change", async (event) => {
@@ -132,16 +129,25 @@ imageUpload.addEventListener("change", async (event) => {
         return;
     }
 
-    const img = await faceapi.fetchImage(URL.createObjectURL(file));
-    uploadedFaceData = await faceapi
-        .detectSingleFace(img, tinyFaceDetectorOptions)
-        .withFaceLandmarks()
-        .withFaceDescriptor();
+    const reader = new FileReader();
+    reader.onload = async () => {
+        const imgDataUrl = reader.result;
 
-    if (!uploadedFaceData) {
-        alert("No se detectó ninguna cara en la imagen subida");
-        return;
-    }
+        const img = new Image();
+        img.src = imgDataUrl;
+        img.onload = async () => {
+            uploadedFaceData = await faceapi
+                .detectSingleFace(img, tinyFaceDetectorOptions)
+                .withFaceLandmarks()
+                .withFaceDescriptor();
 
-    console.log("Imagen subida y detectada.");
+            if (!uploadedFaceData) {
+                alert("No se detectó ninguna cara en la imagen subida");
+                return;
+            }
+
+            console.log("Imagen subida y detectada.");
+        };
+    };
+    reader.readAsDataURL(file);
 });

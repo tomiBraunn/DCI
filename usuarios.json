@@ -2,11 +2,20 @@
     {
         "dni": "49118939",
         "nombre": "Ignacio",
-        "apellido": "Bourdieu"
+        "apellido": "Bourdieu",
+        "imagen": "s"
     },
     {
         "dni": "49006647",
         "nombre": "Tomás",
-        "apellido": "Braun"
+        "apellido": "Braun",
+        "imagen": "s"
+    },
+
+    {
+        "dni": "49194128",
+        "nombre": "Nigga",
+        "apellido": "Szwarc",
+        "imagen": "s"
     }
 ]
