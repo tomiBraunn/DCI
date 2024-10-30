@@ -79,15 +79,15 @@ function devolverdni () {
 function devolverNombre(dni) {
   const users =  cargarUsuarios()
   const userFind = users.find(usuario => usuario.dni === dni);
+  if(!userFind) return;
   console.log(userFind.nombre)
   return userFind.nombre
   
 }
 
-onEvent ("mandarDatosUsuario", )
-
-onEvent ("nombre", dni => {
-  return devolverNombre(dni)
+onEvent ("getNombre", data => {
+  console.log(data)
+  return devolverNombre(data.dni)
 });
 
 onEvent("cantidadCompus", () => {

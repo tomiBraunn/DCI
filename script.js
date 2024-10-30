@@ -1,7 +1,6 @@
 let tipoUsuario = "";
 
-const version = "v.1.00"
-
+const version = "v.1.00";
 
 // Función para desplazar a la siguiente página
 function desplazarALaPagina(paginaId) {
@@ -32,16 +31,21 @@ document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("info_dci").style.display = "flex";
     document.getElementById("info_dci").classList.remove("opacidad_blur_fade");
     document.getElementById("btn_info_dci").style.display = "none";
-    document.querySelector("h1").style.display = "none";
     document.getElementById("btn_inicio").style.display = "none";
+    document.querySelector("h1").style.display = "none";
 });
 
 // Cerrar menú de ayuda cuando se da clic al botón de cerrar
 document.getElementById("back_info").addEventListener("click", function () {
     document.getElementById("info_dci").classList.add("opacidad_blur_fade");
     document.getElementById("btn_info_dci").style.display = "flex";
-    document.querySelector("h1").style.display = "block";
     document.getElementById("btn_inicio").style.display = "block";
+    document.querySelector("h1").style.display = "block";
+    document.querySelector("h1").classList.remove("entrada");
+    document.querySelector("h1").classList.add("entrada");
+    setTimeout(() => {
+        document.querySelector("h1").classList.remove("entrada");
+    }, 1100);
 });
 
 // Definir el tipo de usuario
@@ -95,8 +99,8 @@ function establecerTipoUsuario(tipo) {
     desplazarALaPagina("pagina3");
 }
 
-// Botón de avanzar una vez que se ingresaron los datos
 var dni;
+// Botón de avanzar una vez que se ingresaron los datos
 document
     .getElementById("btn_avanzar")
     .addEventListener("click", function (event) {
@@ -152,11 +156,29 @@ document
 
         // Manejo de avance o error
         if (valid) {
-            // console.log("Tipo de usuario:", tipoUsuario);
-            // console.log("DNI:", dni);
-            // postData("verificarUsuario", { tipoUsuario, dni });
-            // console.log("Datos enviados a SoqueTIC");
-            desplazarALaPagina("pagina4");
+            if (dni != "") {
+                console.log(dni);
+
+                // Mandar los datos al backend solo si la condición se cumple
+                postData(
+                    "getNombre",
+                    {
+                        dni: dni,
+                    },
+                    (nombre) => {
+                        if (!nombre) {
+                            alert("Ese DNI no es de un Alumno");
+                        } else {
+                            console.log(nombre);
+                            document.getElementById("nombre").textContent =
+                                nombre;
+                            desplazarALaPagina("pagina4");
+                        }
+                    }
+                );
+            } else {
+                console.log("Faltan datos o tipo de usuario no válido");
+            }
         } else {
             // Agregar clase shake si los datos no son válidos
             if (botonAvanzar.classList.contains("shake")) {
@@ -286,6 +308,11 @@ function reiniciarEstado() {
     document.getElementById("creditos").style.display = "none";
     document.getElementById("creditos").classList.add("opacidad_blur_fade");
     adjustmentLayer.className = "adjustmentLayer";
+    document.querySelector("h1").classList.remove("entrada");
+    document.querySelector("h1").classList.add("entrada");
+    setTimeout(() => {
+        document.querySelector("h1").classList.remove("entrada");
+    }, 1100);
 }
 
 // Botón reiniciar de la última página
@@ -328,6 +355,12 @@ document
         const searchBarValue = searchBar.value.trim();
         searchBar.style.caretColor = "transparent";
 
+        document.addEventListener("click", function (event) {
+            if (!searchBar.contains(event.target)) {
+                searchBar.value = "";
+            }
+        });
+
         if (searchBarValue.length > 40) {
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
@@ -336,7 +369,9 @@ document
 
         if (searchBarValue.length > 1) {
             searchBar.style.caretColor = "#cececf";
-        } else {
+        }
+
+        if (searchBarValue.length < 0) {
             searchBar.style.caretColor = "transparent";
         }
 
@@ -359,11 +394,14 @@ document
             searchBar.placeholder = "¿Qué-es-DCI?";
         }
 
-        document.addEventListener("click", function (event) {
-            if (!searchBar.contains(event.target)) {
+        if (searchBarValue === "/version") {
+            searchBar.style.caretColor = "transparent";
+            searchBar.value = version;
+            setTimeout(() => {
                 searchBar.value = "";
-            }
-        });
+                searchBar.placeholder = "¿Qué-es-DCI?";
+            }, 3000);
+        }
 
         if (searchBarValue === "/admin" || searchBarValue === "/registros") {
             setTimeout(() => {
@@ -415,12 +453,10 @@ document
 
         if (searchBarValue.length > 1) {
             searchBar.style.caretColor = "#cececf";
-        } else {
-            searchBar.style.caretColor = "transparent";
         }
 
-        if (searchBarValue === "/version") {
-            searchBar.value = version;
+        if (searchBarValue.length < 0) {
+            searchBar.style.caretColor = "transparent";
         }
 
         if (searchBarValue === "/rick") {
@@ -454,47 +490,47 @@ document
                 searchBar.value = "";
             }
         });
-});
+    });
 
 // Motrar cantidad de compus disponibles
 
-const cantidadCompus = 2;
 
 // SoqueTIC
 
-// Indicar la cantidad de computadoras disponibles
-fetchData("cantidadCompus", (data) => {
-    document.getElementById("cantidad_compus").innerHTML = data;
-});
+// // Indicar la cantidad de computadoras disponibles
+// fetchData("cantidadCompus", (data) => {
+//     document.getElementById("cantidad_compus").innerHTML = data;
+// });
 
-// Mandar el tipo de usuario y dni al back (alumno y profesor)
-document.getElementById("btn_avanzar").addEventListener("click", async () => {
-    if (dni != ""){
-        console.log(dni);
+// // Mandar el tipo de usuario y dni al back (alumno y profesor)
+// document.getElementById("btn_avanzar").addEventListener("click", async () => {
+//     if (dni != "") {
+//         console.log(dni);
 
-        // Mandar los datos al backend solo si la condición se cumple
-        await postData("mandarDatosUsuario", {
-            dni: dni,
-        });
-    // } else {
-        console.log("Faltan datos o tipo de usuario no válido");
-    }
-});
-
-receive("Usuario");
-
-postData("nombre", dni =>{
-    document.getElementById("nombre").textContent = nombreUsuario;
-})
-
-receive("nombreUsuario", () => {
-    document.getElementById("nombre").textContent = nombreUsuario;
-});
+//         // Mandar los datos al backend solo si la condición se cumple
+//         await postData(
+//             "getNombre",
+//             {
+//                 dni: dni,
+//             },
+//             (nombre) => {
+//                 if(!nombre ){
+//                     alert("Ese DNI no es de un Alumno")
+//                 }
+//                 console.log(nombre);
+//                 document.getElementById("nombre").textContent = nombre;
+//             }
+//         );
+//     } else {
+//         console.log("Faltan datos o tipo de usuario no válido");
+//     }
+// });
 
 //Funcionalidad por agregar para retirar y devolver
 /*
 // Definir la cantidad de computadoras disponibles
 let cantidadCompus = 2;
+
 
 // Retirar computadora
 document.getElementById("retirar").addEventListener("click", function (event) {
@@ -508,6 +544,7 @@ document.getElementById("retirar").addEventListener("click", function (event) {
         console.log("No hay computadoras disponibles para retirar.");
     }
 });
+
 
 // Devolver computadora
 document.getElementById("devolver").addEventListener("click", function (event) {
