@@ -96,12 +96,11 @@ h1 {
     color: white;
     font-size: 90px;
     text-align: center;
-    animation: entrada 1s ease-out forwards;
 }
 
 h1:active {
-    animation: reducirYRestaurarEspacio 3s ease forwards;
-    animation-delay: .2s;
+    animation: reducirYRestaurarEspacio 6s ease forwards;
+    animation-delay: 0.2s;
 }
 
 .btn_inicio {
@@ -510,13 +509,13 @@ h1:active {
 }
 
 .camara {
-    width: 75vw;
+    width: 70vw;
     position: absolute;
     transform: rotateY(180deg);
+    font-size: 40px;
 }
 
-.camara > video,
-.camara > img {
+.camara > video {
     width: 110%;
     aspect-ratio: 16/7;
     padding: 1em;
@@ -831,6 +830,10 @@ input::placeholder {
     animation-delay: 5s;
 }
 
+.entrada {
+    animation: entrada 1s ease-out forwards;
+}
+
 /*Animaciones*/
 @keyframes opacidad {
     from {
@@ -907,32 +910,29 @@ input::placeholder {
         transform: translateX(0);
     }
 }
-
 @keyframes reducirYRestaurarEspacio {
     0% {
-        transform: translateX(0);
+        transform: translateX(0) rotate(0deg);
         letter-spacing: 0;
         line-height: 1.2;
         font-size: 90px;
     }
-    25% {
-        transform: translateX(5px);
+    40% {
+        transform: translateX(5px) rotate(.5deg);
     }
     50% {
-        transform: translateX(-5px);
-        /* letter-spacing: -0.5px;
-      line-height: 0.6; */
+        /* transform: translateX(-5px) rotate(-.5deg); */
         font-size: 70px;
     }
-    65% {
+    51% {
         letter-spacing: 0;
         line-height: 1.2;
         font-size: 90px;
     }
     75% {
-        transform: translateX(5px);
+        /* transform: translateX(5px) rotate(0deg); */
     }
     100% {
-        transform: translateX(0);
+        transform: translateX(0) rotate(0deg);
     }
 }

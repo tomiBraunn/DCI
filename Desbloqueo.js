@@ -16,9 +16,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     await faceapi.nets.faceLandmark68Net.loadFromUri("./face-api/models");
     await faceapi.nets.faceRecognitionNet.loadFromUri("./face-api/models");
     console.timeEnd("Cargar modelos");
+    document.querySelector(".loader").classList.add("opacidad_blur_fade");
+    setTimeout(() => {
+        document.querySelector(".loader").classList.remove("opacidad_blur_fade");
+    }, 1100);
     document.querySelector(".loader").style.display = "none";
-
     startVideo();
+    document.querySelector("h1").classList.remove("entrada");
+    document.querySelector("h1").classList.add("entrada");
+    setTimeout(() => {
+        document.querySelector("h1").classList.remove("entrada");
+    }, 1100);
 });
 
 const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
