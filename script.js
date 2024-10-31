@@ -200,6 +200,37 @@ document
         desplazarALaPagina("pagina4");
     });
 
+var cantidadCompus;
+
+fetchData("cantidadCompus", (data) => {
+    cantidadCompus = data
+    document.getElementById("cantidad_compus").innerHTML = data;
+});
+
+
+// Función para actualizar la disponibilidad de los botones
+function actualizarDisponibilidad() {
+    const botonRetirar = document.getElementById("retirar");
+    const botonDevolver = document.getElementById("devolver");
+
+    // Deshabilitar "Devolver computadora" si cantidadCompus es 2
+    if (cantidadCompus >= 2) {
+        botonDevolver.classList.add("noDisponible");
+    } else {
+        botonDevolver.classList.remove("noDisponible");
+    }
+
+    // Deshabilitar "Retirar computadora" si cantidadCompus es 0
+    if (cantidadCompus <= 0) {
+        botonRetirar.classList.add("noDisponible");
+    } else {
+        botonRetirar.classList.remove("noDisponible");
+    }
+}
+
+// Actualiza la disponibilidad al cargar la página
+document.addEventListener("DOMContentLoaded", actualizarDisponibilidad);
+
 // Retirar computadora
 document.getElementById("retirar").addEventListener("click", function (event) {
     const botonRetirar = document.getElementById("retirar");
@@ -213,8 +244,12 @@ document.getElementById("retirar").addEventListener("click", function (event) {
             botonRetirar.classList.remove("shake");
         }, 500);
 
-        return; // Sale de la función sin hacer nada más
+        return;
     }
+
+    // Resta uno a cantidadCompus y actualiza la disponibilidad
+    cantidadCompus--;
+    actualizarDisponibilidad();
 
     event.preventDefault();
     document.getElementById("devolver_compu").style.display = "none";
@@ -234,13 +269,18 @@ document.getElementById("devolver").addEventListener("click", function (event) {
             botonDevolver.classList.remove("shake");
         }, 500);
 
-        return; // Sale de la función sin hacer nada más
+        return;
     }
+
+    // Suma uno a cantidadCompus y actualiza la disponibilidad
+    cantidadCompus++;
+    actualizarDisponibilidad();
 
     event.preventDefault();
     document.getElementById("retirar_compu").style.display = "none";
     desplazarALaPagina("pagina6");
 });
+
 
 // Función para reiniciar
 function reiniciarEstado() {
@@ -492,69 +532,3 @@ document
         });
     });
 
-// Motrar cantidad de compus disponibles
-
-
-// SoqueTIC
-
-// // Indicar la cantidad de computadoras disponibles
-// fetchData("cantidadCompus", (data) => {
-//     document.getElementById("cantidad_compus").innerHTML = data;
-// });
-
-// // Mandar el tipo de usuario y dni al back (alumno y profesor)
-// document.getElementById("btn_avanzar").addEventListener("click", async () => {
-//     if (dni != "") {
-//         console.log(dni);
-
-//         // Mandar los datos al backend solo si la condición se cumple
-//         await postData(
-//             "getNombre",
-//             {
-//                 dni: dni,
-//             },
-//             (nombre) => {
-//                 if(!nombre ){
-//                     alert("Ese DNI no es de un Alumno")
-//                 }
-//                 console.log(nombre);
-//                 document.getElementById("nombre").textContent = nombre;
-//             }
-//         );
-//     } else {
-//         console.log("Faltan datos o tipo de usuario no válido");
-//     }
-// });
-
-//Funcionalidad por agregar para retirar y devolver
-/*
-// Definir la cantidad de computadoras disponibles
-let cantidadCompus = 2;
-
-
-// Retirar computadora
-document.getElementById("retirar").addEventListener("click", function (event) {
-    event.preventDefault();
-    if (cantidadCompus > 0) {
-        cantidadCompus--; // Resta 1 a la cantidad de compus
-        console.log(`Se retiró una computadora. Quedan ${cantidadCompus}.`);
-        document.getElementById("devolver_compu").style.display = "none";
-        desplazarALaPagina("pagina6");
-    } else {
-        console.log("No hay computadoras disponibles para retirar.");
-    }
-});
-
-
-// Devolver computadora
-document.getElementById("devolver").addEventListener("click", function (event) {
-    event.preventDefault();
-    if (cantidadCompus < 2) {
-        cantidadCompus++; // Suma 1 a la cantidad de compus
-        console.log(`Se devolvió una computadora. Ahora hay ${cantidadCompus}.`);
-        document.getElementById("retirar_compu").style.display = "none";
-        desplazarALaPagina("pagina6");
-    } else {
-        console.log("Ya hay suficientes computadoras, no puedes devolver más.");
-    }
-}); */

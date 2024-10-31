@@ -1,10 +1,3 @@
-// Funcionalidad api
-
-
-const base64Image = postData("imagen", {
-    dni: dni
-});
-
 const video = document.getElementById("video");
 const overlayCanvas = document.getElementById("overlayCanvas");
 const imageUpload = document.getElementById("imageUpload");
@@ -64,7 +57,8 @@ function startVideo() {
                         .withFaceDescriptors();
 
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-                    overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                    // overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                    // faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
                 }, 100);
             });
         })
@@ -77,6 +71,7 @@ function startVideo() {
 }
 
 captureButton.addEventListener("click", async () => {
+
     const canvas = document.createElement("canvas");
     canvas.width = 1920;
     canvas.height = 1080;
@@ -86,53 +81,69 @@ captureButton.addEventListener("click", async () => {
 
     const img = new Image();
     img.src = imgDataUrl; // Imagen capturada del video
+
     img.onload = async () => {
         capturedFaceData = await faceapi
             .detectSingleFace(img, tinyFaceDetectorOptions)
             .withFaceLandmarks()
             .withFaceDescriptor();
 
-        // Cargar la imagen en base64
-        const base64Img = new Image();
-        base64Img.src = base64Image; // Usar la imagen en base64
-        base64Img.onload = async () => {
-            uploadedFaceData = await faceapi
-                .detectSingleFace(base64Img, tinyFaceDetectorOptions)
-                .withFaceLandmarks()
-                .withFaceDescriptor();
+        try {
+            // Convertir base64 a blob
+            var base64Image;
+            postData("imagen", {
+                dni: dni
+            }, async (base64Image) => {
+                const base64Response = await fetch(base64Image);
+                const blob = await base64Response.blob();
+                const base64Img = await faceapi.bufferToImage(blob); // Convertir blob a imagen de face-api.js
+    
+                uploadedFaceData = await faceapi
+                    .detectSingleFace(base64Img, tinyFaceDetectorOptions)
+                    .withFaceLandmarks()
+                    .withFaceDescriptor();
+    
+                if (!capturedFaceData) {
+                    alert("No se detectó ninguna cara en la captura.");
+                    return;
+                }
+    
+                if (!uploadedFaceData || !capturedFaceData) {
+                    alert("Ambas imágenes necesitan ser detectadas para la comparación.");
+                    return;
+                }
+    
+                console.time("Tiempo de comparación");
+                const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
+                const threshold = 0.55;
+                const isSamePerson = distance < threshold;
+                const Igualdad = threshold - distance;
+                console.log(
+                    "Es la misma persona: " + isSamePerson + "\n" +
+                    "Igualdad: " + Igualdad + "\n" +
+                    "Resultado de la comparación: " + isSamePerson
+                );
+                console.timeEnd("Tiempo de comparación");
+    
+                desplazarALaPagina("pagina5");
+    
+                if (isSamePerson) {
+                    document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
+                    document.getElementById("usuarioverificado_pagina5").style.display = "flex";
+                } else {
+                    document.getElementById("usuarioverificado_pagina5").style.display = "none";
+                    document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
+                }
+            });
+        } catch (error) {
+            console.error("Error en la comparación de imágenes:", error);
+            alert("Ocurrió un error al procesar las imágenes.");
+        }
+    };
 
-            if (!capturedFaceData) {
-                alert("No se detectó ninguna cara en la captura.");
-                return;
-            }
-
-            if (!uploadedFaceData || !capturedFaceData) {
-                alert("Ambas imágenes necesitan ser detectadas para la comparación.");
-                return;
-            }
-
-            console.time("Tiempo de comparación");
-            const distance = faceapi.euclideanDistance(uploadedFaceData.descriptor, capturedFaceData.descriptor);
-            const threshold = 0.55;
-            const isSamePerson = distance < threshold;
-            const Igualdad = threshold - distance;
-            console.log(
-                "Es la misma persona: " + isSamePerson + "\n" +
-                "Igualdad: " + Igualdad + "\n" +
-                "Resultado de la comparación: " + isSamePerson
-            );
-            console.timeEnd("Tiempo de comparación");
-
-            desplazarALaPagina("pagina5");
-
-            if (isSamePerson) {
-                document.getElementById("usuarioNOverificado_pagina5").style.display = "none";
-                document.getElementById("usuarioverificado_pagina5").style.display = "flex";
-            } else {
-                document.getElementById("usuarioverificado_pagina5").style.display = "none";
-                document.getElementById("usuarioNOverificado_pagina5").style.display = "flex";
-            }
-        };
+    img.onerror = (error) => {
+        console.error("Error al cargar la imagen:", error);
+        alert("Error al cargar la imagen capturada. Por favor, intenta de nuevo.");
     };
 });
 

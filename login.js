@@ -4,9 +4,15 @@ import { join } from "path";
 import readline from "readline";
 
 const usersFile = join("usuarios.json");
+const configFile = join("config.json");
 
 function cargarUsuarios() {
     const data = fs.readFileSync(usersFile, "utf-8");
+    return JSON.parse(data);
+}
+
+function cargarConfig() {
+    const data = fs.readFileSync(configFile, "utf-8");
     return JSON.parse(data);
 }
 
@@ -14,9 +20,11 @@ function verificarUsuario(dni) {
     const usuarios = cargarUsuarios();
     return usuarios.find((usuario) => usuario.dni === dni);
 }
+
 const respuesta = verificarUsuario();
+
 function manejarLogin(dni) {
-    console.log(`Verificando DNI: ${dni}`); // Agregar un log para verificar si se ejecuta
+    console.log(`Verificando DNI: ${dni}`);
     const usuario = verificarUsuario(dni);
 
     if (usuario) {
@@ -28,20 +36,20 @@ function manejarLogin(dni) {
 
 function enviarRespuestaLogin(exito, usuario = null) {
     if (exito) {
-        console.log({ mensaje: "Inicio de sesión exitoso", usuario }); // Mostrar resultado en consola
+        console.log({ mensaje: "Inicio de sesión exitoso", usuario });
         sendEvent("loginSuccess", {
             mensaje: "Inicio de sesión exitoso",
             usuario,
         });
     } else {
-        console.log({ mensaje: "DNI no encontrado" }); // Mostrar resultado en consola
+        console.log({ mensaje: "DNI no encontrado" });
         sendEvent("loginError", { mensaje: "DNI no encontrado" });
     }
 }
 
 function configurarEventos() {
     onEvent("login", ({ dni }) => {
-        console.log(`Evento de login recibido: ${dni}`); // Agregar un log para confirmar el evento
+        console.log(`Evento de login recibido: ${dni}`);
         manejarLogin(dni);
     });
 }
@@ -62,10 +70,6 @@ function iniciarModoPrueba() {
         manejarLogin(dni);
         rl.close();
     });
-    {
-        {
-        }
-    }
 }
 
 function main() {
@@ -77,10 +81,6 @@ function main() {
         configurarEventos();
         iniciarServidor();
     }
-}
-
-function devolverdni() {
-    return dni;
 }
 
 function devolverNombre(dni) {
@@ -96,17 +96,20 @@ onEvent("getNombre", (data) => {
     return devolverNombre(data.dni);
 });
 
+// Leer la cantidad de computadoras desde el archivo de configuración
 onEvent("cantidadCompus", () => {
-    return 2;
+    const config = cargarConfig();
+    return config.cantidadCompus; // Retorna el valor desde config.json
 });
 
-//facu ayudaaaa
-
 onEvent("imagen", (data) => {
+    console.log(data.dni)
     const users = cargarUsuarios();
     const userFind = users.find((usuario) => usuario.dni === data.dni);
     if (!userFind) return;
+    console.log("Hay imagen")
     return userFind.imagen;
 });
 
+// Iniciar el servidor
 iniciarServidor();
