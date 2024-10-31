@@ -96,7 +96,7 @@ captureButton.addEventListener("click", async () => {
             }, async (base64Image) => {
                 const base64Response = await fetch(base64Image);
                 const blob = await base64Response.blob();
-                const base64Img = await faceapi.bufferToImage(blob); // Convertir blob a imagen de face-api.js
+                const base64Img = await faceapi.bufferToImage(blob); 
     
                 uploadedFaceData = await faceapi
                     .detectSingleFace(base64Img, tinyFaceDetectorOptions)
