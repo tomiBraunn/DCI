@@ -135,7 +135,6 @@ document
         // Manejo de avance o error
         if (valid) {
             if (dni != "") {
-                console.log(dni);
 
                 // Mandar los datos al backend solo si la condición se cumple
                 postData("getNombre", { dni: dni }, (nombre) => {
@@ -144,13 +143,12 @@ document
                             .getElementById("DNIusuario")
                             .classList.add("incompleto");
                     } else {
-                        console.log(nombre);
                         document.getElementById("nombre").textContent = nombre;
                         desplazarALaPagina("pagina4");
                     }
                 });
             } else {
-                console.log("Faltan datos o tipo de usuario no válido");
+                // console.log("Faltan datos o tipo de usuario no válido");
             }
         } else {
             // Agregar clase shake si los datos no son válidos
@@ -184,12 +182,14 @@ fetchData("cantidadCompus", (data) => {
 function actualizarDisponibilidad() {
     const botonRetirar = document.getElementById("retirar");
     const botonDevolver = document.getElementById("devolver");
+    console.log("Hay" +cantidadCompus+ "compus en el carro");
 
     // Deshabilitar "Devolver computadora" si cantidadCompus es 2
     if (cantidadCompus >= 2) {
         botonDevolver.classList.add("noDisponible");
     } else {
         botonDevolver.classList.remove("noDisponible");
+        console.log("se devolvio una compu")
     }
 
     // Deshabilitar "Retirar computadora" si cantidadCompus es 0

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capturar Foto y Convertir a Base64</title>
+</head>
+<body>
+    <h1>Capturar Foto y Convertir a Base64</h1>
+
+    <!-- Video para previsualizar la cámara -->
+    <video id="video" width="320" height="240" autoplay></video>
+    <button id="capture">Capturar Foto</button>
+
+    <!-- Canvas para mostrar la imagen capturada y convertirla a Base64 -->
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+
+    <!-- Área para mostrar el resultado en Base64 -->
+    <textarea id="outputBase64" rows="10" cols="50" placeholder="El código Base64 aparecerá aquí..." readonly></textarea>
+
+    <!-- Script de JavaScript para capturar foto y convertir a Base64 -->
+    <script>
+        // Acceder a la cámara y mostrar el video
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const outputBase64 = document.getElementById('outputBase64');
+        const captureButton = document.getElementById('capture');
+
+        // Solicitar acceso a la cámara
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(error => {
+                console.error("Error al acceder a la cámara:", error);
+            });
+
+        // Capturar la imagen de la cámara y convertirla a Base64
+        captureButton.addEventListener('click', () => {
+            // Dibujar el fotograma actual del video en el canvas
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convertir la imagen en el canvas a Base64
+            const dataURL = canvas.toDataURL('image/png');
+            outputBase64.value = dataURL;
+        });
+    </script>
+</body>
+</html>

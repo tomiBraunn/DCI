@@ -1,10 +1,11 @@
+//Funcionalidad API
 const video = document.getElementById("video");
 const overlayCanvas = document.getElementById("overlayCanvas");
 const imageUpload = document.getElementById("imageUpload");
 const capturedImage = document.getElementById("capturedImage");
 const captureButton = document.getElementById("captureButton");
 
-let uploadedFaceData; // Esto se mantendrá para la imagen subida, si se necesita.
+let uploadedFaceData; 
 let capturedFaceData;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -80,7 +81,7 @@ captureButton.addEventListener("click", async () => {
     capturedImage.src = imgDataUrl;
 
     const img = new Image();
-    img.src = imgDataUrl; // Imagen capturada del video
+    img.src = imgDataUrl;
 
     img.onload = async () => {
         capturedFaceData = await faceapi
@@ -89,7 +90,6 @@ captureButton.addEventListener("click", async () => {
             .withFaceDescriptor();
 
         try {
-            // Convertir base64 a blob
             var base64Image;
             postData("imagen", {
                 dni: dni

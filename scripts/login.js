@@ -99,7 +99,7 @@ onEvent("getNombre", (data) => {
 // Leer la cantidad de computadoras desde el archivo de configuración
 onEvent("cantidadCompus", () => {
     const config = cargarConfig();
-    return config.cantidadCompus; // Retorna el valor desde config.json
+    return config.cantidadCompus;
 });
 
 onEvent("imagen", (data) => {
