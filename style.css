@@ -86,6 +86,39 @@ main > div {
     display: flex;
 }
 
+/* menu que se muestra en caso de que no este conectado con Soquetic */
+
+.SoqueTicNoCargado {
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 40vw;
+    font-size: 30px;
+    text-align: center;
+    animation: espera 10s ease-out forwards;
+}
+
+.SoqueTicNoCargado > b {
+    font-size: 50px;
+}
+
+.SoqueTicNoCargado > code{
+    background: linear-gradient(135deg,rgba(255, 255, 255, 0.176),rgba(255, 255, 255, 0.24));
+    padding: 1em;
+    border-radius: 20px;
+    font-size: 40px;
+}
+
+.SoqueTicNoCargado > button {
+    padding: 1em;
+    border-radius: 20px;
+    font-size: 30px;
+}
+
+
 /*Pagina 1*/
 
 .pagina1 {
@@ -98,10 +131,10 @@ h1 {
     text-align: center;
 }
 
-h1:active {
+/* h1:active {
     animation: reducirYRestaurarEspacio 6s ease forwards;
     animation-delay: 0.2s;
-}
+} */
 
 .btn_inicio {
     padding: 0.7em 1.6em;
@@ -933,5 +966,19 @@ input::placeholder {
     }
     100% {
         transform: translateX(0) rotate(0deg);
+    }
+}
+
+@keyframes espera {
+    0% {
+        display: none;
+    }
+
+    99% {
+        display: none;
+    }
+
+    100% {
+        display: flex;
     }
 }

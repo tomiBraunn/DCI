@@ -24,10 +24,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     startVideo();
     document.querySelector("h1").classList.remove("entrada");
     document.querySelector("h1").classList.add("entrada");
-    setTimeout(() => {
         document.querySelector("h1").classList.remove("entrada");
+        setTimeout(() => {
     }, 1100);
-});
+    if (soquetic == undefined) {
+        document.querySelector("main").style.display = "none";
+
+    }
+    else {
+        document.getElementById("SoqueTicNoCargado").style.display = "none";
+        document.querySelector("main").style.display = "flex";
+}});
 
 const tinyFaceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
     inputSize: 160,
@@ -43,7 +50,7 @@ function startVideo() {
 
             video.addEventListener("play", () => {
                 const canvas = faceapi.createCanvasFromMedia(video);
-                document.querySelector(".scroll-container").style.display = "flex";
+                // document.querySelector(".scroll-container").style.display = "flex";
 
                 const displaySize = {
                     width: video.videoWidth,
@@ -58,8 +65,11 @@ function startVideo() {
                         .withFaceDescriptors();
 
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-                    // overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
-                    // faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                    
+                    if (overlay == true){    
+                        overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                        faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                    }
                 }, 100);
             });
         })
@@ -68,7 +78,7 @@ function startVideo() {
             alert("No se pudo acceder a la cámara");
         });
 
-    document.querySelector(".scroll-container").style.display = "flex";
+    // document.querySelector(".scroll-container").style.display = "flex";
 }
 
 captureButton.addEventListener("click", async () => {
@@ -178,3 +188,9 @@ imageUpload.addEventListener("change", async (event) => {
     };
     reader.readAsDataURL(file);
 });
+
+var overlay;
+// fetchData("overlayCamara", (data) => {
+//     overlay = data;
+
+// });

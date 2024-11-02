@@ -1,6 +1,7 @@
 {
-    "cantidadCompus": 2,
-    "mostarOverlay": false,
-    "desactivarAnimaciones": false
-  }
-  
+  "cantidadCompus": 2,
+  "compu1EnCarro": true,
+  "compu2EnCarro": true,
+  "mostarOverlay": false,
+  "desactivarAnimaciones": false
+}

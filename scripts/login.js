@@ -1,7 +1,8 @@
-import { onEvent, sendEvent, startServer } from "soquetic";
+import { onEvent, sendEvent, startServer } from "soquetic"; 
 import fs from "fs";
 import { join } from "path";
 import readline from "readline";
+import { on } from "events";
 
 const usersFile = join("usuarios.json");
 const configFile = join("config.json");
@@ -72,17 +73,6 @@ function iniciarModoPrueba() {
     });
 }
 
-function main() {
-    const modoPrueba = process.argv.includes("--prueba");
-
-    if (modoPrueba) {
-        iniciarModoPrueba();
-    } else {
-        configurarEventos();
-        iniciarServidor();
-    }
-}
-
 function devolverNombre(dni) {
     const users = cargarUsuarios();
     const userFind = users.find((usuario) => usuario.dni === dni);
@@ -91,12 +81,48 @@ function devolverNombre(dni) {
     return userFind.nombre;
 }
 
+function manejarRanuraCompu() {
+    const config = cargarConfig();
+    let compuAsignada = null;
+    let haCambiado = false;
+
+    if (config.cantidadCompus > 0) {  // Retirar computadora
+        if (!config.compu1EnCarro) {
+            compuAsignada = 1;
+            config.compu1EnCarro = true;
+            haCambiado = true;
+        } else if (!config.compu2EnCarro) {
+            compuAsignada = 2;
+            config.compu2EnCarro = true;
+            haCambiado = true;
+        }
+        config.cantidadCompus--; // Reducir la cantidad de computadoras disponibles
+    } else {  // Devolver computadora
+        if (config.compu1EnCarro) {
+            compuAsignada = 1;
+            config.compu1EnCarro = false;
+            haCambiado = true;
+        } else if (config.compu2EnCarro) {
+            compuAsignada = 2;
+            config.compu2EnCarro = false;
+            haCambiado = true;
+        }
+        config.cantidadCompus++; // Aumentar la cantidad de computadoras disponibles
+    }
+
+    // Solo guarda cambios si ha habido modificaciones
+    if (haCambiado) {
+        fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
+    }
+
+    return compuAsignada;
+}
+
 onEvent("getNombre", (data) => {
     console.log(data);
     return devolverNombre(data.dni);
 });
 
-// Leer la cantidad de computadoras desde el archivo de configuración
 onEvent("cantidadCompus", () => {
     const config = cargarConfig();
     return config.cantidadCompus;
@@ -110,6 +136,35 @@ onEvent("imagen", (data) => {
     console.log("Hay imagen")
     return userFind.imagen;
 });
+
+onEvent("verificarSoqueTic", () => {
+    return true;
+});
+
+onEvent("overlayCamara"), (data) => {
+
+}
+
+onEvent("animacionesPaginas"), (data) => {
+    
+}
+
+
+onEvent("ranuraCompu", (data) => {
+    const compuAsignada = manejarRanuraCompu(); // Llamada a la función para obtener la computadora asignada
+    if (compuAsignada) {
+        return sendEvent("compuAsignada", { 
+            mensaje: `Computadora asignada: ${compuAsignada}`, 
+            numeroCompu: compuAsignada 
+        });
+    } else {
+        return sendEvent("error", { 
+            mensaje: "No hay computadoras disponibles para asignar o recibir" 
+        });
+    }
+});
+
+
 
 // Iniciar el servidor
 iniciarServidor();

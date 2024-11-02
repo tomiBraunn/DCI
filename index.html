@@ -18,6 +18,12 @@
     <span class="background_glass"><img src="./media/card_bg.png"></span>
     <div class="loader" id="loader"><img src="./media/card_bg.png"></div>
     <span class="adjustmentLayer" id="adjustmentLayer"></span>
+    <div class="SoqueTicNoCargado glass flex_center_evenly" id="SoqueTicNoCargado" style="display: none;">
+        <b>No se pudo cargar SoqueTic</b>
+        <p>Proba de ejecutar alguno de estos comandos por terminal y reiniciar</p>
+        <code>node scripts\login.js</code>
+        <button class="flex_center glass" id="reinicioSoqueTic">Reiniciar</button>
+    </div>
     <main class="scroll-container" style="display: none;">
         <div class="pagina1 pagina flex_center_evenly" id="pagina1">
             <h1>Desbloqueo de Carro <br> Inteligente</h1>
@@ -102,6 +108,12 @@
                     <button class="glass">Configuración</button>
                     <button class="glass">Retirar/Dejar computadora</button>
                     <button id="opcionesadmin_reiniciar" class="glass">Reiniciar</button>
+                    <form>
+                        <input type="checkbox" id="mostraroverlay">
+                        <label for="mostraroverlay">Activar/Descativar overlay de la camara</label>
+                        <input type="checkbox" id="mostrarAnimaciones">
+                        <label for="mostrarAnimaciones">Activar/Descativar animaciones al pasar de pagina</label>
+                    </form>
                 </div>
             </div>
         </div>
@@ -220,9 +232,13 @@
     </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
 <script src="SoqueTic/socket.js"></script>
+<script src="./scripts/login.js"></script>
 <script src="./scripts/script.js"></script>
 <script src="./scripts/Desbloqueo.js"></script>
+<script src="./scripts/botonesNavegacion.js"></script>
+<script src="./scripts/funcionesAdmin.js"></script>
 <script src="./scripts/login.js"></script>
+<script src="./scripts/retirarDevolverCompus.js"></script>
 <script src="./scripts/searchbar.js"></script>
 </body>
 </html>
