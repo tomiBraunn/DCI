@@ -66,10 +66,10 @@ function startVideo() {
 
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
                     
-                    if (overlay == true){    
-                        overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
-                        faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
-                    }
+                    // if (overlay == true){    
+                    //     overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                    //     faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                    // }
                 }, 100);
             });
         })
@@ -114,7 +114,15 @@ captureButton.addEventListener("click", async () => {
                     .withFaceDescriptor();
     
                 if (!capturedFaceData) {
-                    alert("No se detectó ninguna cara en la captura.");
+                    // alert("No se detectó ninguna cara en la captura.");
+                    if (document.getElementById("pagina4").classList.contains("shake")) {
+                        document.getElementById("pagina4").classList.remove("shake");
+                    }
+                    document.getElementById("pagina4").classList.add("shake");
+        
+                    setTimeout(() => {
+                        document.getElementById("pagina4").classList.remove("shake");
+                    }, 500);
                     return;
                 }
     
@@ -180,7 +188,6 @@ imageUpload.addEventListener("change", async (event) => {
 
             if (!uploadedFaceData) {
                 alert("No se detectó ninguna cara en la imagen subida");
-                return;
             }
 
             console.log("Imagen subida y detectada.");
@@ -189,7 +196,7 @@ imageUpload.addEventListener("change", async (event) => {
     reader.readAsDataURL(file);
 });
 
-var overlay;
+// var overlay;
 // fetchData("overlayCamara", (data) => {
 //     overlay = data;
 

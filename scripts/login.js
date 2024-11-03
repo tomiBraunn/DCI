@@ -4,8 +4,8 @@ import { join } from "path";
 import readline from "readline";
 import { on } from "events";
 
-const usersFile = join("usuarios.json");
-const configFile = join("config.json");
+const usersFile = join("./json/usuarios.json");
+const configFile = join("./json/config.json");
 
 function cargarUsuarios() {
     const data = fs.readFileSync(usersFile, "utf-8");
@@ -141,13 +141,13 @@ onEvent("verificarSoqueTic", () => {
     return true;
 });
 
-onEvent("overlayCamara"), (data) => {
+// onEvent("overlayCamara"), (data) => {
 
-}
+// }
 
-onEvent("animacionesPaginas"), (data) => {
+// onEvent("animacionesPaginas"), (data) => {
     
-}
+// }
 
 
 onEvent("ranuraCompu", (data) => {
