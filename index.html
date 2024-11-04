@@ -110,16 +110,41 @@
             <div class="opciones_admin flex_center_evenly" id="opcionesadmin" style="display: none;">
                 <b>Modo administrador</b>
                 <div id="configadmin" class="configadmin fullWidth">
-                    <button class="glass">Registros</button>
-                    <button class="glass">Configuración</button>
-                    <button class="glass">Retirar/Dejar computadora</button>
-                    <button id="opcionesadmin_reiniciar" class="glass">Reiniciar</button>
-                    <form>
-                        <input type="checkbox" id="mostraroverlay">
-                        <label for="mostraroverlay">Activar/Descativar overlay de la camara</label>
-                        <input type="checkbox" id="mostrarAnimaciones">
-                        <label for="mostrarAnimaciones">Activar/Descativar animaciones al pasar de pagina</label>
-                    </form>
+                    <button class="btnAdmin glass">Registros</button>
+                    <button id="btn_configuracionAdmin" class="btnAdmin glass">Configuración</button>
+                    <button id="btn_agregarSacarUsuarios" class="btnAdmin glass">Agregar/Sacar usuarios</button>
+                    <button id="opcionesadmin_reiniciar" class="btnAdmin glass">Reiniciar</button>
+                    <div class="contenedorOpcionesAdmin fullHeight fullWidth pAbs" id="contenedorOpcionesAdmin" style="display: none;">
+                        <button id="salirContenedorOpcionesAdmin">X</button>
+                        <div class="agregarSacarUsuarios" id="agregarSacarUsuarios" style="display: none;">
+                            <form id="formUsuarios">
+                                <label for="dniUsuariosForm">DNI del usuario</label>
+                                <input type="text" id="dniUsuariosForm" required>
+                        
+                                <label for="nombreUsuariosForm">Nombre</label>
+                                <input type="text" id="nombreUsuariosForm" required>
+                        
+                                <label for="apellidoUsuariosForm">Apellido</label>
+                                <input type="text" id="apellidoUsuariosForm" required>
+                        
+                                <label for="foto">Sacate una foto</label>
+                                <video id="video" width="320" height="240" autoplay></video>
+                                <button id="capture">Capturar Foto</button>
+                                <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+                                <textarea id="outputBase64" name="fotoBase64" rows="5" cols="50" style="display: none;" readonly></textarea>
+                        
+                                <button type="submit" id="enviarForm">Enviar</button>
+                            </form>
+                        </div>
+                        <div class="configuracionAdmin" id="configuracionAdmin" style="display: none;">
+                            <form>
+                                <input type="checkbox" id="mostraroverlay">
+                                <label for="mostraroverlay">Activar/Descativar overlay de la camara</label>
+                                <input type="checkbox" id="mostrarAnimaciones">
+                                <label for="mostrarAnimaciones">Activar/Descativar animaciones al pasar de pagina</label>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
