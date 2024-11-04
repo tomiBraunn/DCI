@@ -10,14 +10,15 @@ fetchData("cantidadCompus", (data) => {
 function actualizarDisponibilidad() {
     const botonRetirar = document.getElementById("retirar");
     const botonDevolver = document.getElementById("devolver");
-    console.log("Hay " + cantidadCompus + " compus en el carro");
+    if (cantidadCompus !== undefined){
+        console.log("Hay " + cantidadCompus + " compus en el carro");
+    }
 
     // Deshabilitar "Devolver computadora" si cantidadCompus es 2
     if (cantidadCompus >= 2) {
         botonDevolver.classList.add("noDisponible");
     } else {
         botonDevolver.classList.remove("noDisponible");
-        console.log("se devolvio una compu");
     }
 
     // Deshabilitar "Retirar computadora" si cantidadCompus es 0
