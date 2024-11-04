@@ -14,10 +14,16 @@
         <link rel="icon" href="imagenes/logo (1).png"/>
       </head>
 <body>
-    <div class="background"></div>
-    <span class="background_glass"><img src="./media/card_bg.png"></span>
+    <div class="background fullWidth"></div>
     <div class="loader" id="loader"><img src="./media/card_bg.png"></div>
     <span class="adjustmentLayer" id="adjustmentLayer"></span>
+    <div class="contenedorCompuRetiradaSinPermiso compuRetiradaSinPermiso flex_center_evenly glass" id="compuRetiradaSinPermiso" style="display: none;">
+        <img src="./media/card_bg.png">
+        <div class="glass flex_center_evenly">
+            <b>Se retiro una computadora sin permiso</b>
+            <p>El carro quedara inhabilitado hasta que se devuelva la computadora a su lugar</p>
+        </div>
+    </div>
     <div class="SoqueTicNoCargado glass flex_center_evenly" id="SoqueTicNoCargado" style="display: none;">
         <b>No se pudo cargar SoqueTic</b>
         <p>Proba de ejecutar alguno de estos comandos por terminal y reiniciar</p>
