@@ -38,7 +38,7 @@ function desplazarALaPagina(paginaId) {
         const adjustmentLayer = document.getElementById("adjustmentLayer");
 
         // Elimina todas las clases excepto "adjustmentLayer"
-        adjustmentLayer.className = "adjustmentLayer";
+        adjustmentLayer.className = "adjustmentLayer pAbs fullWidth fullHeight";
     }
 }
 

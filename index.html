@@ -14,17 +14,17 @@
         <link rel="icon" href="imagenes/logo (1).png"/>
       </head>
 <body>
-    <div class="background fullWidth"></div>
-    <div class="loader" id="loader"><img src="./media/card_bg.png"></div>
-    <span class="adjustmentLayer" id="adjustmentLayer"></span>
-    <div class="contenedorCompuRetiradaSinPermiso compuRetiradaSinPermiso flex_center_evenly glass" id="compuRetiradaSinPermiso" style="display: none;">
-        <img src="./media/card_bg.png">
+    <div class="background fullWidth fullHeight pAbs"></div>
+    <div class="loader" id="loader"><img src="./media/card_bg.png" class="fullWidth fullHeight pAbs"></div>
+    <span class="adjustmentLayer fullWidth fullHeight fullHeight pAbs" id="adjustmentLayer"></span>
+    <div class="contenedorCompuRetiradaSinPermiso flex_center_evenly glass fullWidth fullHeight pAbs" id="compuRetiradaSinPermiso" style="display: none;">
+        <img src="./media/card_bg.png" class="fullWidth fullHeight pAbs">
         <div class="glass flex_center_evenly">
             <b>Se retiro una computadora sin permiso</b>
             <p>El carro quedara inhabilitado hasta que se devuelva la computadora a su lugar</p>
         </div>
     </div>
-    <div class="SoqueTicNoCargado glass flex_center_evenly" id="SoqueTicNoCargado" style="display: none;">
+    <div class="SoqueTicNoCargado glass flex_center_evenly pAbs" id="SoqueTicNoCargado" style="display: none;">
         <b>No se pudo cargar SoqueTic</b>
         <p>Proba de ejecutar alguno de estos comandos por terminal y reiniciar</p>
         <code>node scripts\login.js</code>
@@ -33,13 +33,13 @@
     <main class="scroll-container" style="display: none;">
         <div class="pagina1 pagina flex_center_evenly" id="pagina1">
             <h1>Desbloqueo de Carro <br> Inteligente</h1>
-            <button id="btn_inicio" class="btn_inicio glass button_hover flex_center">Iniciar</button>
-            <button id="btn_info_dci" class="btn_info_dci glass button_hover flex_center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"></stop><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"></stop></linearGradient></defs><path d="M444-288h72v-240h-72v240Zm35.79-312q15.21 0 25.71-10.29t10.5-25.5q0-15.21-10.29-25.71t-25.5-10.5q-15.21 0-25.71 10.29t-10.5 25.5q0 15.21 10.29 25.71t25.5 10.5Zm.49 504Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" fill="url(#grad1)"></path></svg></button>
-                <div id="info_dci" class="info_dci glass" style="display: none;">
+            <button id="btn_inicio" class="btn_inicio glass button_hover flex_center ">Iniciar</button>
+            <button id="btn_info_dci" class="btn_info_dci glass button_hover flex_center pAbs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"></stop><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"></stop></linearGradient></defs><path d="M444-288h72v-240h-72v240Zm35.79-312q15.21 0 25.71-10.29t10.5-25.5q0-15.21-10.29-25.71t-25.5-10.5q-15.21 0-25.71 10.29t-10.5 25.5q0 15.21 10.29 25.71t25.5 10.5Zm.49 504Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" fill="url(#grad1)"></path></svg></button>
+                <div id="info_dci" class="info_dci glass pAbs" style="display: none;">
                 <div class="navbar_info">
                     <!-- <p>¿Qué-es-DCI?</p> -->
                     <input id="search_bar_nav_bar" class="italic" type="text" placeholder="¿Qué-es-DCI?" autocomplete="off">
-                    <div class="opciones_nav_bar flex_center_evenly">
+                    <div class="opciones_nav_bar flex_center_evenly pAbs">
                         <div class="circulos_nav_bar" id="back_info">
                             <span></span>
                             <span></span>
@@ -50,7 +50,7 @@
                             <p>></p>
                         </div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly pAbs" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
                 </div>
                 <div class="info_tutorial_dci">
                     <b>¿Qué es DCI?</b>
@@ -64,10 +64,10 @@
                     <p>En caso de que seas un invitado (o sea, si el carro no está destinado a tu curso o no sos alumno), te va a pedir tu año o grado, tu división y tu especialidad, además de tu DNI, nombre y apellido. Luego, vas a tener que verificarte con el desbloqueo facial para que el sistema tenga tu cara registrada para cuando quieras devolver la compu. Es importante que sepas que, una vez que creaste tu usuario como invitado, tu sesión no se va a guardar, así que, después de devolver la compu, si querés volver a usar el sistema, tenés que iniciar sesión de nuevo.</p>
                 </div>
             </div>
-            <div class="contenedor_creditos flex_center" id="creditos"  style="display: none;">
+            <div class="contenedor_creditos flex_center fullWidth fullHeight pAbs" id="creditos"  style="display: none;">
                 <div class="creditos glass flex_center_evenly">
-                    <div class="contenedor_opciones_creditos">
-                        <div class="opciones_creditos flex_center">
+                    <div class="contenedor_opciones_creditos pAbs">
+                        <div class="opciones_creditos flex_center pAbs">
                             <div class="circulos_credits flex_center_evenly" id="back_creditos">
                                 <span></span>
                                 <span></span>
@@ -89,8 +89,8 @@
         </div>
 
         <div class="pagina2 pagina flex_center" id="pagina2">
-            <div class="contenedor_opciones_pagina2" id="contenedor_opciones_pagina2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" alt="Usuario" class="icono_Usuario"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"/></linearGradient></defs><g class="layer"><path d="m15.75,17.05a4.52,4.52 0 1 0 -4.52,-4.52a4.52,4.52 0 0 0 4.52,4.52zm0,-7.75a3.23,3.23 0 1 1 -3.23,3.23a3.23,3.23 0 0 1 3.23,-3.23z" fill="url(#grad1)"/><path d="m16.4,18.34l-1.29,0a7.11,7.11 0 0 0 -7.11,7.11a0.65,0.65 0 0 0 0.65,0.65l14.21,0a0.65,0.65 0 0 0 0.65,-0.65a7.11,7.11 0 0 0 -7.11,-7.11zm-7.07,6.46a5.82,5.82 0 0 1 5.78,-5.17l1.29,0a5.82,5.82 0 0 1 5.78,5.17l-12.84,0z" fill="url(#grad1)"/><circle cx="16" cy="17.23" fill="none" r="12.64" stroke="url(#grad1)" stroke-width="1.2"/></g></svg>
+            <div class="contenedor_opciones_pagina2 pAbs" id="contenedor_opciones_pagina2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" alt="Usuario" class="icono_Usuario pAbs"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"/></linearGradient></defs><g class="layer"><path d="m15.75,17.05a4.52,4.52 0 1 0 -4.52,-4.52a4.52,4.52 0 0 0 4.52,4.52zm0,-7.75a3.23,3.23 0 1 1 -3.23,3.23a3.23,3.23 0 0 1 3.23,-3.23z" fill="url(#grad1)"/><path d="m16.4,18.34l-1.29,0a7.11,7.11 0 0 0 -7.11,7.11a0.65,0.65 0 0 0 0.65,0.65l14.21,0a0.65,0.65 0 0 0 0.65,-0.65a7.11,7.11 0 0 0 -7.11,-7.11zm-7.07,6.46a5.82,5.82 0 0 1 5.78,-5.17l1.29,0a5.82,5.82 0 0 1 5.78,5.17l-12.84,0z" fill="url(#grad1)"/><circle cx="16" cy="17.23" fill="none" r="12.64" stroke="url(#grad1)" stroke-width="1.2"/></g></svg>
                 <div class="opciones_pagina2 glass" id="opciones_pagina2">
                     <p>¿Cómo queres ingresar?</p>
                     <p>(<b id="cantidad_compus">Xx</b> computadoras disponibles)</p>
@@ -101,7 +101,7 @@
                         <!-- <button id="admin" class="glass button_hover">Admin</button> -->
                     </div>
                 </div>
-                <div class="sombrapagina2y3"></div>
+                <div class="sombrapagina2y3 pAbs"></div>
             </div>
             <div class="contenedor_home_back" id="contenedor_home_back">
                 <button class="home glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1; "/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="url(#grad1)"/></svg></button>
@@ -109,7 +109,7 @@
             </div>
             <div class="opciones_admin flex_center_evenly" id="opcionesadmin" style="display: none;">
                 <b>Modo administrador</b>
-                <div id="configadmin" class="configadmin">
+                <div id="configadmin" class="configadmin fullWidth">
                     <button class="glass">Registros</button>
                     <button class="glass">Configuración</button>
                     <button class="glass">Retirar/Dejar computadora</button>
@@ -125,11 +125,11 @@
         </div>
 
         <div class="pagina3 pagina flex_center" id="pagina3">
-            <div class="contenedor_opciones_pagina3">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" alt="Usuario" class="icono_Usuario"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"/></linearGradient></defs><g class="layer"><path d="m15.75,17.05a4.52,4.52 0 1 0 -4.52,-4.52a4.52,4.52 0 0 0 4.52,4.52zm0,-7.75a3.23,3.23 0 1 1 -3.23,3.23a3.23,3.23 0 0 1 3.23,-3.23z" fill="url(#grad1)"/><path d="m16.4,18.34l-1.29,0a7.11,7.11 0 0 0 -7.11,7.11a0.65,0.65 0 0 0 0.65,0.65l14.21,0a0.65,0.65 0 0 0 0.65,-0.65a7.11,7.11 0 0 0 -7.11,-7.11zm-7.07,6.46a5.82,5.82 0 0 1 5.78,-5.17l1.29,0a5.82,5.82 0 0 1 5.78,5.17l-12.84,0z" fill="url(#grad1)"/><circle cx="16" cy="17.23" fill="none" r="12.64" stroke="url(#grad1)" stroke-width="1.2"/></g></svg>
+            <div class="contenedor_opciones_pagina3 pAbs">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" alt="Usuario" class="icono_Usuario pAbs"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"/></linearGradient></defs><g class="layer"><path d="m15.75,17.05a4.52,4.52 0 1 0 -4.52,-4.52a4.52,4.52 0 0 0 4.52,4.52zm0,-7.75a3.23,3.23 0 1 1 -3.23,3.23a3.23,3.23 0 0 1 3.23,-3.23z" fill="url(#grad1)"/><path d="m16.4,18.34l-1.29,0a7.11,7.11 0 0 0 -7.11,7.11a0.65,0.65 0 0 0 0.65,0.65l14.21,0a0.65,0.65 0 0 0 0.65,-0.65a7.11,7.11 0 0 0 -7.11,-7.11zm-7.07,6.46a5.82,5.82 0 0 1 5.78,-5.17l1.29,0a5.82,5.82 0 0 1 5.78,5.17l-12.84,0z" fill="url(#grad1)"/><circle cx="16" cy="17.23" fill="none" r="12.64" stroke="url(#grad1)" stroke-width="1.2"/></g></svg>
                 <div class="opciones_pagina3 glass" id="opciones_pagina3">
-                    <p id="mostarTipoUsuario" class="glass flex_center">Usuario</p>
-                    <div class="inputs_pagina_3 flex_center_evenly">
+                    <p id="mostarTipoUsuario" class="glass flex_center pAbs">Usuario</p>
+                    <div class="inputs_pagina_3 flex_center_evenly pAbs">
                       <div class="curso_usuario_pagina3 flex_center" id="curso_usuario">
                         <select id="año_grado" class="glass">
                           <option selected hidden>Año o Grado</option>
@@ -155,9 +155,9 @@
                       <input id="NyAusuario" class="glass" type="text" placeholder="Nombre y apellido..." autocomplete="off"/>
                       <!-- <input id="Claveadmin" class="glass" type="password" placeholder="Clave de administrador" autocomplete="off"/> -->
                     </div>
-                    <button class="avanzar_pagina3 glass button_hover" id="btn_avanzar">Avanzar</button>
+                    <button class="avanzar_pagina3 glass button_hover pAbs" id="btn_avanzar">Avanzar</button>
                 </div>
-                <div class="sombrapagina2y3"></div>
+                <div class="sombrapagina2y3 pAbs"></div>
             </div>
             <div class="contenedor_home_back">
                 <button class="home glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1; "/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="url(#grad1)"/></svg></button>
@@ -167,14 +167,14 @@
 
         <div class="pagina4 pagina flex_center" id="pagina4">
             <div class="contenedor_pagina4 flex_center_evenly">
-                <p class="bienvenida_pagina4">Bienvenido/a, (<b id="nombre" class="gradientDCI">nombre</b>)</p>
+                <p class="bienvenida_pagina4 fullWidth">Bienvenido/a, (<b id="nombre" class="gradientDCI">nombre</b>)</p>
                 <span>Mirá a la cámara!</span>
-                <div class="desbloqueo_pagina4 flex_center" id="cara">
-                    <div class="camara glass flex_center">
+                <div class="desbloqueo_pagina4 flex_center fullWidth" id="cara">
+                    <div class="camara glass flex_center pAbs">
                         <video id="video" autoplay playsinline></video>
                         <img id="capturedImage" style="display: none;"/>
                         <canvas id="overlayCanvas" width="640" height="480" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: block;"></canvas></div>
-                    <div class="opciones_camara flex_center_evenly">
+                    <div class="opciones_camara flex_center_evenly pAbs">
                         <button id="captureButton" class="glass button_hover flex_center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="url(#grad1)"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1;"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1;"/></linearGradient></defs><path d="M479.5-267q72.5 0 121.5-49t49-121.5q0-72.5-49-121T479.5-607q-72.5 0-121 48.5t-48.5 121q0 72.5 48.5 121.5t121 49Zm0-60q-47.5 0-78.5-31.5t-31-79q0-47.5 31-78.5t78.5-31q47.5 0 79 31t31.5 78.5q0 47.5-31.5 79t-79 31.5ZM140-120q-24 0-42-18t-18-42v-513q0-23 18-41.5t42-18.5h147l73-87h240l73 87h147q23 0 41.5 18.5T880-693v513q0 24-18.5 42T820-120H140Zm0-60h680v-513H645l-73-87H388l-73 87H140v513Zm340-257Z"/></svg></button>
                         <img id="capturedImage" style="display: none;"/>
                         <!-- <button id="compareButton" class="glass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="url(#grad1)"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1;"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1;"/></linearGradient></defs><path d="M273-160 80-353l193-193 42 42-121 121h316v60H194l121 121-42 42Zm414-254-42-42 121-121H450v-60h316L645-758l42-42 193 193-193 193Z"/></svg></button> -->
