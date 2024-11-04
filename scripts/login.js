@@ -1,4 +1,4 @@
-import { onEvent, sendEvent, startServer } from "soquetic"; 
+import { onEvent, sendEvent, startServer } from "soquetic";
 import fs from "fs";
 import { join } from "path";
 import readline from "readline";
@@ -6,6 +6,62 @@ import { on } from "events";
 
 const usersFile = join("./json/usuarios.json");
 const configFile = join("./json/config.json");
+const carroFile = join("./json/carroData.json");
+
+
+function getPrimeraCompuParaAgarrar() {
+    const data = JSON.parse(fs.readFileSync(carroFile, "utf-8")); // Parseamos el JSON a un objeto
+    console.log(data.estadoRanuraCompus);
+
+    if (data.estadoRanuraCompus["1"]) {
+        console.log("Retira la compu 1");
+        data.estadoRanuraCompus["1"] = false;
+        fs.writeFileSync(carroFile, JSON.stringify(data, null, 2));
+
+        return 1;
+    } else if (data.estadoRanuraCompus["2"]) {
+        console.log("Retira la compu 2");
+        data.estadoRanuraCompus["2"] = false;
+        fs.writeFileSync(carroFile, JSON.stringify(data, null, 2));
+
+        return 2;
+    } else {
+        console.log("No hay compus");
+        return -1;
+    }
+}
+
+onEvent("ranuraCompuRetirar", () => {
+    const n = getPrimeraCompuParaAgarrar();
+    return n;
+});
+
+function getPrimeraCompuParaDevolver() {
+    const data = JSON.parse(fs.readFileSync(carroFile, "utf-8")); // Parseamos el JSON a un objeto
+
+    if (!data.estadoRanuraCompus["1"]) {
+        console.log("Guarda la compu en 1");
+        data.estadoRanuraCompus["1"] = true;
+        fs.writeFileSync(carroFile, JSON.stringify(data, null, 2));
+
+        return 1;
+    } else if (!data.estadoRanuraCompus["2"]) {
+        console.log("Guarda la compu en 2");
+        data.estadoRanuraCompus["2"] = true;
+        fs.writeFileSync(carroFile, JSON.stringify(data, null, 2));
+
+        return 2;
+    } else {
+        console.log("No hay espacios para guardar tu compu.");
+        return -1;
+    }
+}
+
+onEvent("ranuraCompuDevolver", () => {
+    const n = getPrimeraCompuParaDevolver();
+    return n;
+});
+
 
 function cargarUsuarios() {
     const data = fs.readFileSync(usersFile, "utf-8");
@@ -146,20 +202,20 @@ onEvent("verificarSoqueTic", () => {
 // }
 
 // onEvent("animacionesPaginas"), (data) => {
-    
+
 // }
 
 
 onEvent("ranuraCompu", (data) => {
     const compuAsignada = manejarRanuraCompu(); // Llamada a la función para obtener la computadora asignada
     if (compuAsignada) {
-        return sendEvent("compuAsignada", { 
-            mensaje: `Computadora asignada: ${compuAsignada}`, 
-            numeroCompu: compuAsignada 
+        return sendEvent("compuAsignada", {
+            mensaje: `Computadora asignada: ${compuAsignada}`,
+            numeroCompu: compuAsignada
         });
     } else {
-        return sendEvent("error", { 
-            mensaje: "No hay computadoras disponibles para asignar o recibir" 
+        return sendEvent("error", {
+            mensaje: "No hay computadoras disponibles para asignar o recibir"
         });
     }
 });
