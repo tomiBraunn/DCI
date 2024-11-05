@@ -197,14 +197,26 @@ onEvent("verificarSoqueTic", () => {
     return true;
 });
 
+
 onEvent("overlayCamara", (data) => {
     const config = cargarConfig()
     return config.mostarOverlay;
 });
 
-// onEvent("animacionesPaginas"), (data) => {
+onEvent("overlayCamaraTrue", (data) => {
+    const config = cargarConfig();
+    config.mostrarOverlay = true;
+});
 
-// }
+onEvent("overlayCamaraFalse", (data) => {
+    const config = cargarConfig();
+    config.mostrarOverlay = false;
+});
+
+onEvent("animacionesPaginas", (data) => {
+    const config = cargarConfig()
+    return config.desactivarAnimaciones;
+});
 
 
 onEvent("ranuraCompu", (data) => {

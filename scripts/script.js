@@ -15,23 +15,18 @@ if (soquetic == undefined) {
 const version = "v.1.00";
 let tipoUsuario = "";
 
-// Función para desplazar a la siguiente página
 var animaciones;
+fetchData("animacionesPaginas", (data) => {
+    animaciones = data;
+});
+
+// Función para desplazar a la siguiente página
 
 function desplazarALaPagina(paginaId) {
     document.querySelector(".scroll-container").scrollTo({
         left: document.getElementById(paginaId).offsetLeft,
-        // if(animaciones = true) {
-            behavior: "smooth",
-        // } else {
-        //     behavior: "auto",
-        // }
+        behavior: animaciones ? "auto" : "smooth",
     });
-
-    var animaciones;
-    // fetchData("animacionesPaginas", (data) => {
-    //     animaciones = data;
-    // });
 
     // Verifica si estamos en la página 2
     if (paginaId === "pagina2" || paginaId === "pagina5") {
@@ -166,14 +161,24 @@ document
                         document
                             .getElementById("DNIusuario")
                             .classList.add("incompleto");
-                            if (document.getElementById("pagina3").classList.contains("shake")) {
-                                document.getElementById("pagina3").classList.remove("shake");
-                            }
-                            document.getElementById("pagina3").classList.add("shake");
-                
-                            setTimeout(() => {
-                                document.getElementById("pagina3").classList.remove("shake");
-                            }, 500);
+                        if (
+                            document
+                                .getElementById("pagina3")
+                                .classList.contains("shake")
+                        ) {
+                            document
+                                .getElementById("pagina3")
+                                .classList.remove("shake");
+                        }
+                        document
+                            .getElementById("pagina3")
+                            .classList.add("shake");
+
+                        setTimeout(() => {
+                            document
+                                .getElementById("pagina3")
+                                .classList.remove("shake");
+                        }, 500);
                     } else {
                         document.getElementById("nombre").textContent = nombre;
                         desplazarALaPagina("pagina4");

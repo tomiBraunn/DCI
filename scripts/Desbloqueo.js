@@ -73,6 +73,10 @@ function startVideo() {
                     if (overlay == true){    
                         overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
                         faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                        document.getElementById("overlayCanvas").style.display = "block"
+                    }
+                    else {
+                        document.getElementById("overlayCanvas").style.display = "none"
                     }
                 }, 100);
             });

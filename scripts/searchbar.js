@@ -1,130 +1,107 @@
-// Funcionalidad de la barra de búsqueda dentro de la página con información
-document.getElementById("search_bar_nav_bar").addEventListener("input", function () {
-    const searchBar = document.getElementById("search_bar_nav_bar");
+// Funcionalidad de la barra de búsqueda
+const searchBar = document.getElementById("search_bar_nav_bar");
+searchBar.addEventListener("input", function () {
     const searchBarValue = searchBar.value.trim();
-    searchBar.style.caretColor = "transparent";
 
+    // Limpiar el valor si se hace clic fuera del campo
     document.addEventListener("click", function (event) {
         if (!searchBar.contains(event.target)) {
             searchBar.value = "";
         }
     });
 
-    if (searchBarValue.length > 40) {
-        searchBar.value = "";
-        searchBar.placeholder = "¿Qué-es-DCI?";
-        return;
-    }
-
+    // Cambiar caret color según longitud del texto
     if (searchBarValue.length > 1) {
         searchBar.style.caretColor = "#cececf";
-    }
-
-    if (searchBarValue.length < 0) {
+    } else {
         searchBar.style.caretColor = "transparent";
     }
 
+    // Limitar longitud del input y restablecer placeholder
+    if (searchBarValue.length > 40) {
+        searchBar.value = "";
+        searchBar.placeholder = "¿Qué-es-DCI?";
+    }
+
+    // Comandos específicos
     if (searchBarValue === "/restart" || searchBarValue === "/reiniciar" || searchBarValue === "/reset") {
         searchBar.value = "";
         searchBar.placeholder = "¿Qué-es-DCI?";
         location.reload();
-    }
-
-    if (searchBarValue === "/credits" || searchBarValue === "/creditos") {
+    } else if (searchBarValue === "/credits" || searchBarValue === "/creditos") {
         document.getElementById("creditos").style.display = "flex";
         document.getElementById("creditos").classList.remove("opacidad_blur_fade");
         searchBar.value = "";
         searchBar.placeholder = "¿Qué-es-DCI?";
-    }
-
-    if (searchBarValue === "/version") {
-        searchBar.style.caretColor = "transparent";
-        setTimeout(() => {
+    } else if (searchBarValue === "/version") {
         searchBar.value = version;
         setTimeout(() => {
             searchBar.value = "";
             searchBar.placeholder = "¿Qué-es-DCI?";
         }, 3000);
-    }, 100);
     }
+});
 
-    if (searchBarValue === "/admin" || searchBarValue === "/registros") {
-        setTimeout(() => {
-            searchBar.style.caretColor = "transparent";
-            searchBar.value = "";
-            searchBar.type = "password";
-        }, 100);
+// Verificación de administrador
+let adminVerificado = false;
+searchBar.addEventListener("input", function () {
+    const searchBarValue = searchBar.value.trim();
+    
+    if (searchBarValue === "/admin" && adminVerificado != true) {
+    // if (searchBarValue === "/admin" || searchBarValue === "/registros") {
 
+        searchBar.type = "password";
         setTimeout(() => {
             const claveIngresada = searchBar.value.trim();
-
             if (claveIngresada === "admin") {
-                document.getElementById("contenedor_opciones_pagina2").style.display = "none";
-                document.getElementById("contenedor_home_back").style.display = "none";
-                document.getElementById("opcionesadmin").style.display = "flex";
-                desplazarALaPagina("pagina2");
-            } else {
-                searchBar.type = "text";
-                searchBar.value = "";
-                searchBar.type = "text";
-                searchBar.placeholder = "¿Qué-es-DCI?";
+                adminVerificado = true;
+                alert("Acceso administrador verificado");
             }
+            searchBar.value = "";
+            searchBar.type = "text";
+            searchBar.placeholder = "¿Qué-es-DCI?";
         }, 3000);
     }
-});
 
-document.getElementById("back_creditos").addEventListener("click", function () {
-    document.getElementById("creditos").classList.add("opacidad_blur_fade");
-});
+//     if (adminVerificado && (searchBarValue === "/admin/overlay/true" || searchBarValue === "/admin/overlay/false")) {
+//         const overlay = searchBarValue === "/admin/overlay/true";
+//         document.getElementById("overlayCanvas").style.display = overlay ? "block" : "none";
+//         alert(`Overlay ${overlay ? "activado" : "desactivado"}`);
+//         searchBar.value = "";
+//         searchBar.type = "text";
+//     }
+// });
 
-// Funcionalidad de la barra de búsqueda dentro de la pantalla de créditos
-document.getElementById("search_credits").addEventListener("input", function () {
-    const searchBar = document.getElementById("search_credits");
-    const searchBarValue = searchBar.value.trim();
-    searchBar.style.caretColor = "transparent";
+// Funcionalidad de barra de búsqueda en pantalla de créditos
+const searchCredits = document.getElementById("search_credits");
+searchCredits.addEventListener("input", function () {
+    const searchBarValue = searchCredits.value.trim();
+    searchCredits.style.caretColor = searchBarValue.length > 1 ? "#cececf" : "transparent";
 
     if (searchBarValue.length > 15) {
-        searchBar.value = "";
-        searchBar.placeholder = "Creditos";
-        return;
-    }
-
-    if (searchBarValue.length > 1) {
-        searchBar.style.caretColor = "#cececf";
-    }
-
-    if (searchBarValue.length < 0) {
-        searchBar.style.caretColor = "transparent";
+        searchCredits.value = "";
+        searchCredits.placeholder = "Creditos";
     }
 
     if (searchBarValue === "/rick") {
-        let rickAudio = document.getElementById("rickAudio");
-
-        if (!rickAudio) {
-            rickAudio = document.createElement("audio");
+        let rickAudio = document.getElementById("rickAudio") || document.createElement("audio");
+        if (!rickAudio.src) {
             rickAudio.id = "rickAudio";
-
-            const source = document.createElement("source");
-            source.src = "media/rick.mp3";
-            source.type = "audio/mpeg";
-
-            rickAudio.appendChild(source);
+            rickAudio.src = "media/rick.mp3";
+            rickAudio.type = "audio/mpeg";
             document.body.appendChild(rickAudio);
         }
-
         rickAudio.currentTime = 0;
         rickAudio.play();
-
-        setTimeout(function () {
-            rickAudio.pause();
-        }, 18000);
-
-        searchBar.value = "";
+        setTimeout(() => rickAudio.pause(), 18000);
+        searchCredits.value = "";
     }
+});
+
 
     document.addEventListener("click", function (event) {
         if (!searchBar.contains(event.target)) {
             searchBar.value = "";
         }
     });
-});
+
