@@ -8,6 +8,11 @@ const captureButton = document.getElementById("captureButton");
 let uploadedFaceData; 
 let capturedFaceData;
 
+var overlay;
+fetchData("overlayCamara", (data) => {
+    overlay = data;
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("Carga inicial: DOMContentLoaded");
 
@@ -65,11 +70,10 @@ function startVideo() {
                         .withFaceDescriptors();
 
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-                    
-                    // if (overlay == true){    
-                    //     overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
-                    //     faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
-                    // }
+                    if (overlay == true){    
+                        overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                        faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                    }
                 }, 100);
             });
         })
@@ -195,9 +199,3 @@ imageUpload.addEventListener("change", async (event) => {
     };
     reader.readAsDataURL(file);
 });
-
-// var overlay;
-// fetchData("overlayCamara", (data) => {
-//     overlay = data;
-
-// });

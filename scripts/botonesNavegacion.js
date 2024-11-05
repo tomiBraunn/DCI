@@ -40,13 +40,13 @@ document
     });
 
 // botones de pagina admin
-document
-    .getElementById("btn_agregarSacarUsuarios")
-    .addEventListener("click", function (event) {
-        document.getElementById("contenedorOpcionesAdmin").style.display =
-            "flex";
-        document.getElementById("agregarSacarUsuarios").style.display = "flex";
-    });
+// document
+//     .getElementById("btn_agregarSacarUsuarios")
+//     .addEventListener("click", function (event) {
+//         document.getElementById("contenedorOpcionesAdmin").style.display =
+//             "flex";
+//         document.getElementById("agregarSacarUsuarios").style.display = "flex";
+//     });
 
 document
     .getElementById("btn_configuracionAdmin")

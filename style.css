@@ -676,13 +676,56 @@ h1 {
 }
 
 .contenedorOpcionesAdmin {
+    top: -10em;
+    min-height: 100vh;
     backdrop-filter: blur(15px);
     z-index: 200;
     background: #0000001b;
     animation: opacidad_blur 0.3s ease-out forwards;
 }
 
-/*Botones navegacion*/
+.contenedorOpcionesAdmin > button {
+    right: 0;
+    top: 0;
+    margin: .5em;
+    width: 2em;
+    aspect-ratio: 1/1;
+    font-size: 30px;
+}
+
+.contenedorOpcionesAdmin > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.agregarSacarUsuarios > form {
+    width: 30vw;
+    height: 70vh;
+    flex-direction: column;
+}
+
+.configuracionAdmin > form {
+    flex-direction: column;
+    color: white;
+    font-size: 30px;
+}
+
+.configuracionAdmin > form > div {
+    padding: 2em;
+    margin: 2em 0;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.configuracionAdmin > form > div > input {
+    position: relative;
+    width: 5em;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+}
 
 .contenedor_home_back {
     position: absolute;

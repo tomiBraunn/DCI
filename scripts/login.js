@@ -197,9 +197,10 @@ onEvent("verificarSoqueTic", () => {
     return true;
 });
 
-// onEvent("overlayCamara"), (data) => {
-
-// }
+onEvent("overlayCamara", (data) => {
+    const config = cargarConfig()
+    return config.mostarOverlay;
+});
 
 // onEvent("animacionesPaginas"), (data) => {
 

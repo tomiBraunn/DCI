@@ -74,7 +74,7 @@
                                 <span></span>
                             </div>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly pAbs" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
                         <input class="italic" id="search_credits" type="text" placeholder="Creditos" autocomplete="off">
                     </div>
                     <ul>
@@ -110,14 +110,14 @@
             <div class="opciones_admin flex_center_evenly" id="opcionesadmin" style="display: none;">
                 <b>Modo administrador</b>
                 <div id="configadmin" class="configadmin fullWidth">
-                    <button class="btnAdmin glass">Registros</button>
+                    <button class="btnAdmin glass noDisponible">Registros</button>
                     <button id="btn_configuracionAdmin" class="btnAdmin glass">Configuración</button>
-                    <button id="btn_agregarSacarUsuarios" class="btnAdmin glass">Agregar/Sacar usuarios</button>
+                    <button id="btn_agregarSacarUsuarios" class="btnAdmin glass noDisponible">Agregar/Sacar usuarios</button>
                     <button id="opcionesadmin_reiniciar" class="btnAdmin glass">Reiniciar</button>
-                    <div class="contenedorOpcionesAdmin fullHeight fullWidth pAbs" id="contenedorOpcionesAdmin" style="display: none;">
-                        <button id="salirContenedorOpcionesAdmin">X</button>
+                    <div class="contenedorOpcionesAdmin fullHeight fullWidth pAbs flex_center_evenly" id="contenedorOpcionesAdmin" style="display: none;">
+                        <button id="salirContenedorOpcionesAdmin" class="glass flex_center pAbs">X</button>
                         <div class="agregarSacarUsuarios" id="agregarSacarUsuarios" style="display: none;">
-                            <form id="formUsuarios">
+                            <!-- <form id="formUsuarios" class="glass flex_center_evenly">
                                 <label for="dniUsuariosForm">DNI del usuario</label>
                                 <input type="text" id="dniUsuariosForm" required>
                         
@@ -127,21 +127,25 @@
                                 <label for="apellidoUsuariosForm">Apellido</label>
                                 <input type="text" id="apellidoUsuariosForm" required>
                         
-                                <label for="foto">Sacate una foto</label>
-                                <video id="video" width="320" height="240" autoplay></video>
-                                <button id="capture">Capturar Foto</button>
-                                <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
-                                <textarea id="outputBase64" name="fotoBase64" rows="5" cols="50" style="display: none;" readonly></textarea>
+                                <label for="videoForm">Sacate una foto</label>
+                                <video id="videoForm" width="320" height="240" autoplay></video>
+                                <button id="captureForm">Capturar Foto</button>
+                                <canvas id="canvasForm" width="320" height="240" style="display: none;"></canvas>
+                                <textarea id="Base64" name="fotoBase64" rows="5" cols="50" style="display: none;" readonly></textarea>
                         
                                 <button type="submit" id="enviarForm">Enviar</button>
-                            </form>
+                            </form> -->
                         </div>
                         <div class="configuracionAdmin" id="configuracionAdmin" style="display: none;">
                             <form>
-                                <input type="checkbox" id="mostraroverlay">
+                                <div>
+                                    <input type="checkbox" id="mostraroverlay">
                                 <label for="mostraroverlay">Activar/Descativar overlay de la camara</label>
-                                <input type="checkbox" id="mostrarAnimaciones">
-                                <label for="mostrarAnimaciones">Activar/Descativar animaciones al pasar de pagina</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="mostrarAnimaciones">
+                                    <label for="mostrarAnimaciones">Activar/Descativar animaciones al pasar de pagina</label>
+                                </div>
                             </form>
                         </div>
                     </div>
