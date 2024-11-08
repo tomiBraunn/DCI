@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="info_dci" class="info_dci glass pAbs">
+        <div class="navbar_info">
+            <input id="search_bar_nav_bar" class="italic" type="text" placeholder="¿Qué-es-DCI?" autocomplete="off">
+            <div class="opciones_nav_bar flex_center_evenly pAbs">
+                <div class="circulos_nav_bar" id="back_info">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="flechas_nav_bar flex_center">
+                    <p><</p>
+                    <p>></p>
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly pAbs" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
+        </div>
+        <div class="info_tutorial_dci">
+            <b>¿Qué es DCI?</b>
+            <p>Nuestro proyecto, Desbloqueo de Carro Inteligente, tiene como objetivo mejorar la experiencia con los carros donde se guardan las compus, dándole más seguridad.</p>
+            <div class="btns_alm_profe_info">
+                <button class="glass">Alumno/a</button>
+                <button class="glass">Profesor/a</button>
+            </div>
+            <p>Si sos un alumno del curso al que está destinado este carro, o un profe, vas a tener que indicar tu DNI y verificarte con un sistema de desbloqueo facial. Después, te va a dar la opción de retirar o devolver una computadora y te va a indicar en qué ranura del carro tenés que sacar o dejar tu laptop.</p>
+            <button class="glass">Invitado/a</button> 
+            <p>En caso de que seas un invitado (o sea, si el carro no está destinado a tu curso o no sos alumno), te va a pedir tu año o grado, tu división y tu especialidad, además de tu DNI, nombre y apellido. Luego, vas a tener que verificarte con el desbloqueo facial para que el sistema tenga tu cara registrada para cuando quieras devolver la compu. Es importante que sepas que, una vez que creaste tu usuario como invitado, tu sesión no se va a guardar, así que, después de devolver la compu, si querés volver a usar el sistema, tenés que iniciar sesión de nuevo.</p>
+        </div>
+    </div>
+    <div class="contenedor_creditos flex_center fullWidth fullHeight pAbs" id="creditos"  style="display: none;">
+        <div class="creditos glass flex_center_evenly">
+            <div class="contenedor_opciones_creditos pAbs">
+                <div class="opciones_creditos flex_center pAbs">
+                    <div class="circulos_credits flex_center_evenly" id="back_creditos">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly pAbs" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
+                <input class="italic" id="search_credits" type="text" placeholder="Creditos" autocomplete="off">
+            </div>
+            <ul>
+                <li>Fontend: Tomás Braun</li>
+                <li>Backend: Nacho Bourdieu</li>
+                <li>TIMI: Simón Nosovitzky</li>
+                <li>Hardware: Manu Szwarc</li>
+                <li>R. Facial: Face APi</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <style>/*Navbar de la parte de ayuda*/
+
+        .info_dci {
+            width: auto;
+            height: auto;
+            font-size: 40px;
+            margin: 2em;
+            z-index: 100;
+            display: flex;
+            justify-items: flex-start;
+            flex-direction: column;
+            animation: opacidad_blur 0.3s ease-out forwards;
+        }
+        
+        .info_dci > * {
+            padding: 0.5em;
+            display: block;
+        }
+        
+        .navbar_info {
+            height: 0.05em;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 20px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background: rgba(78, 73, 73, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        .opciones_nav_bar {
+            width: auto;
+            height: auto;
+            left: 0;
+            margin-left: 0.2em;
+        }
+        
+        .circulos_nav_bar,
+        .circulos_credits {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .circulos_nav_bar > span,
+        .circulos_credits > span {
+            border-radius: 100%;
+            width: 0.4em;
+            aspect-ratio: 1/1;
+            margin: 0 0.1em;
+        }
+        
+        .circulos_nav_bar > span:nth-child(1),
+        .circulos_credits > span:nth-child(1) {
+            background: #ff5f56;
+            margin-left: 0.2em;
+        }
+        .circulos_nav_bar > span:nth-child(2),
+        .circulos_credits > span:nth-child(2) {
+            background: #ffbd2e;
+        }
+        
+        .circulos_nav_bar > span:nth-child(3),
+        .circulos_credits > span:nth-child(3) {
+            background: #27c93f;
+        }
+        
+        .flechas_nav_bar {
+            position: relative;
+            font-size: 25px;
+            top: -0.05em;
+        }
+        
+        .flechas_nav_bar > p {
+            padding: 0 0.1em;
+            color: #cececf;
+        }
+        
+        .flechas_nav_bar > p:active {
+            transform: scale(1.1);
+        }
+        
+        .flechas_nav_bar > p:nth-child(2) {
+            margin-left: 0.2em;
+        }
+        
+        .share_nav_bar {
+            width: auto;
+            height: auto;
+            right: 0;
+            aspect-ratio: 1/1;
+            width: 0.6em;
+            margin-right: 0.2em;
+        }
+        
+        .flechas_nav_bar > p:active,
+        .share_nav_bar:active {
+            transform: scale(1.1);
+        }
+        
+        /*Ayuda posta*/
+        
+        .info_tutorial_dci {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+        
+        .info_tutorial_dci > b {
+            font-size: 40px;
+            padding-bottom: 0.4em;
+        }
+        
+        .info_tutorial_dci > p {
+            font-size: 22px;
+        }
+        
+        .info_tutorial_dci > button,
+        .btns_alm_profe_info > button {
+            position: relative;
+            left: -2em;
+            width: 10.5em;
+            height: 2.8em;
+            border: none;
+            font-size: 40px;
+            transform: scale(0.6);
+            cursor: default;
+        }
+        
+        .btns_alm_profe_info > button:nth-child(2) {
+            left: -6em;
+        }
+        
+        .info_tutorial_dci > button:active,
+        .btns_alm_profe_info > button:active {
+            transform: scale(0.7);
+        }
+        
+        /*Creditos*/
+        
+        .contenedor_creditos {
+            backdrop-filter: blur(15px);
+            z-index: 200;
+            background: #0000001b;
+            animation: opacidad_blur 0.3s ease-out forwards;
+        }
+        
+        .creditos {
+            width: 30vw;
+            height: 60vh;
+            z-index: 300;
+            font-size: 24px;
+            flex-direction: column;
+        }
+        
+        .contenedor_opciones_creditos {
+            top: 0;
+            height: 1em;
+            width: 100%;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 20px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background: rgba(78, 73, 73, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        .contenedor_opciones_creditos > input::placeholder {
+            color: white;
+            font-style: normal;
+        }
+        
+        .opciones_creditos {
+            left: 0;
+            top: auto;
+            margin-left: 0.1em;
+        }
+        
+        .creditos > ul > li {
+            padding: 0.5em 0;
+        }
+        
+        .flex_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex_center_evenly {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.glass {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(80px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    color: white;
+}
+
+.glass_blur {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(80px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    color: white;
+    background-image: url(./media/card_bg.png);
+}
+.shake {
+    animation: shake 0.5s ease-in-out forwards;
+}
+
+.incompleto {
+    background: linear-gradient(
+        135deg,
+        rgba(136, 75, 75, 0.694),
+        rgba(133, 12, 12, 0.162)
+    );
+    backdrop-filter: blur(80px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(137, 75, 75, 0.37);
+    color: white;
+}
+
+img {
+    pointer-events: none;
+}
+
+button {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.button_hover:hover {
+    transform: scale(1.05);
+}
+
+input::placeholder {
+    color: white;
+}
+
+.opacidad_blur_fade {
+    animation: opacidad_blur_fade 0.2s ease-out forwards;
+}
+
+.noDisponible {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgb(221 221 221 / 41%)
+    );
+    cursor: not-allowed;
+    opacity: 50%;
+    transform: scale(0.99);
+}
+
+.gradientDCI {
+    background: linear-gradient(135deg, #1c6a6a, #443562);
+    background-clip: text;
+    color: transparent;
+}
+.adjustmentLayerAlumno {
+    background: #41216030;
+    animation: opacidad 1s ease-out forwards;
+}
+.adjustmentLayerProfe {
+    background: #2c5e5e42;
+    animation: opacidad 1s ease-out forwards;
+}
+
+.adjustmentLayerInvitado {
+    background: #31551161;
+    animation: opacidad 1s ease-out forwards;
+}
+
+.italic {
+    height: 1.3em;
+    width: 50%;
+    font-size: 24px;
+    font-style: italic;
+    color: #cececf;
+    background: none;
+    border: none;
+    text-align: center;
+    /*border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;*/
+}
+
+.italic::placeholder {
+    font-size: 24px;
+    font-style: italic;
+    color: #cececf;
+}
+
+.italic:focus {
+    outline: none;
+    caret-color: transparent;
+}
+
+.fullWidth {
+    width: 100vw;
+}
+
+.fullHeight {
+    height: 100vh
+}
+
+.pAbs {
+    position: absolute;
+}
+</style>
+</body>
+</html>

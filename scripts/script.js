@@ -60,11 +60,6 @@ document.getElementById("back_info").addEventListener("click", function () {
     document.getElementById("btn_info_dci").style.display = "flex";
     document.getElementById("btn_inicio").style.display = "block";
     document.querySelector("h1").style.display = "block";
-    document.querySelector("h1").classList.remove("entrada");
-    document.querySelector("h1").classList.add("entrada");
-    setTimeout(() => {
-        document.querySelector("h1").classList.remove("entrada");
-    }, 1100);
 });
 
 // Definir el tipo de usuario
@@ -266,9 +261,4 @@ function reiniciarEstado() {
     document.getElementById("creditos").style.display = "none";
     document.getElementById("creditos").classList.add("opacidad_blur_fade");
     adjustmentLayer.className = "adjustmentLayer";
-    document.querySelector("h1").classList.remove("entrada");
-    document.querySelector("h1").classList.add("entrada");
-    setTimeout(() => {
-        document.querySelector("h1").classList.remove("entrada");
-    }, 1100);
 }

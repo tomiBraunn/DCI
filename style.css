@@ -126,6 +126,7 @@ h1 {
     color: white;
     font-size: 90px;
     text-align: center;
+    animation: entrada 1s ease-out forwards;
 }
 
 /* h1:active {
@@ -882,15 +883,6 @@ input::placeholder {
 .italic:focus {
     outline: none;
     caret-color: transparent;
-}
-
-/* .reducirYRestaurarEspacio:active {
-    animation: reducirYRestaurarEspacio 3s ease forwards;
-    animation-delay: 5s;
-} */
-
-.entrada {
-    animation: entrada 1s ease-out forwards;
 }
 
 .fullWidth {

@@ -27,11 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 1100);
     document.querySelector(".loader").style.display = "none";
     startVideo();
-    document.querySelector("h1").classList.remove("entrada");
-    document.querySelector("h1").classList.add("entrada");
-        document.querySelector("h1").classList.remove("entrada");
-        setTimeout(() => {
-    }, 1100);
     if (soquetic == undefined) {
         document.querySelector("main").style.display = "none";
 
