@@ -10,6 +10,9 @@ const carroFile = join("./json/carroData.json");
 
 
 function getPrimeraCompuParaAgarrar() {
+
+    console.log("entro aca");
+
     const data = JSON.parse(fs.readFileSync(carroFile, "utf-8")); // Parseamos el JSON a un objeto
     console.log(data.estadoRanuraCompus);
 

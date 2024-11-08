@@ -40,12 +40,12 @@ document.getElementById("search_bar_nav_bar").addEventListener("input", function
     if (searchBarValue === "/version") {
         searchBar.style.caretColor = "transparent";
         setTimeout(() => {
-        searchBar.value = version;
-        setTimeout(() => {
-            searchBar.value = "";
-            searchBar.placeholder = "¿Qué-es-DCI?";
-        }, 3000);
-    }, 100);
+            searchBar.value = version;
+            setTimeout(() => {
+                searchBar.value = "";
+                searchBar.placeholder = "¿Qué-es-DCI?";
+            }, 3000);
+        }, 100);
     }
 
     if (searchBarValue === "/admin" || searchBarValue === "/registros") {
@@ -69,9 +69,9 @@ document.getElementById("search_bar_nav_bar").addEventListener("input", function
                 searchBar.type = "text";
                 searchBar.placeholder = "¿Qué-es-DCI?";
             }
-        }, 3000);
+        }, 3000); H
     }
-});
+}); yy
 
 document.getElementById("back_creditos").addEventListener("click", function () {
     document.getElementById("creditos").classList.add("opacidad_blur_fade");
@@ -80,7 +80,7 @@ document.getElementById("back_creditos").addEventListener("click", function () {
 // Funcionalidad de la barra de búsqueda dentro de la pantalla de créditos
 document.getElementById("search_credits").addEventListener("input", function () {
     const searchBar = document.getElementById("search_credits");
-    const searchBarValue = searchBar.value.trim();
+    const searchBarValue = seatrchBar.value.trim();
     searchBar.style.caretColor = "transparent";
 
     if (searchBarValue.length > 15) {
