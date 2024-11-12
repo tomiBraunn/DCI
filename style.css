@@ -25,14 +25,10 @@ body {
     );
     background-image: url(./media/bg.svg);
     filter: blur(80px);
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
     z-index: -500;
 }
 
 .loader {
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -40,34 +36,20 @@ body {
 }
 
 .loader > img {
-    width: 100vw;
-    height: 100vh;
     transform: scale(2);
     filter: opacity(30%);
 }
 
 .adjustmentLayer {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
     transition: 0.5s;
 }
 
 .contenedorCompuRetiradaSinPermiso {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
     flex-direction: column;
     z-index: 100;
 }
 
-.contenedorCompuRetiradaSinPermiso > img {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-}
-
-.compuRetiradaSinPermiso::after {
+.contenedorCompuRetiradaSinPermiso::after {
     content: "";
     position: absolute;
     width: 100vw;
@@ -106,7 +88,6 @@ main > div {
 
 .SoqueTicNoCargado {
     flex-direction: column;
-    position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -145,6 +126,7 @@ h1 {
     color: white;
     font-size: 90px;
     text-align: center;
+    animation: entrada 1s ease-out forwards;
 }
 
 /* h1:active {
@@ -164,7 +146,6 @@ h1 {
 }
 
 .btn_info_dci {
-    position: absolute;
     right: 0;
     bottom: 0;
     width: auto;
@@ -186,7 +167,6 @@ h1 {
 .info_dci {
     width: auto;
     height: auto;
-    position: absolute;
     font-size: 40px;
     margin: 2em;
     z-index: 100;
@@ -216,7 +196,6 @@ h1 {
 }
 
 .opciones_nav_bar {
-    position: absolute;
     width: auto;
     height: auto;
     left: 0;
@@ -273,7 +252,6 @@ h1 {
 }
 
 .share_nav_bar {
-    position: absolute;
     width: auto;
     height: auto;
     right: 0;
@@ -329,9 +307,6 @@ h1 {
 /*Creditos*/
 
 .contenedor_creditos {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
     backdrop-filter: blur(15px);
     z-index: 200;
     background: #0000001b;
@@ -347,7 +322,6 @@ h1 {
 }
 
 .contenedor_opciones_creditos {
-    position: absolute;
     top: 0;
     height: 1em;
     width: 100%;
@@ -369,7 +343,6 @@ h1 {
 }
 
 .opciones_creditos {
-    position: absolute;
     left: 0;
     top: auto;
     margin-left: 0.1em;
@@ -383,7 +356,6 @@ h1 {
 
 .contenedor_opciones_pagina2,
 .contenedor_opciones_pagina3 {
-    position: absolute;
     top: 6em;
 }
 
@@ -410,7 +382,6 @@ h1 {
 }
 
 .sombrapagina2y3 {
-    position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -460,7 +431,6 @@ h1 {
 
 .icono_Usuario {
     width: 12em;
-    position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
@@ -469,7 +439,6 @@ h1 {
 /*Pagina 3*/
 
 .opciones_pagina3 > p {
-    position: absolute;
     width: 10.5em;
     height: 2.8em;
     border: none;
@@ -479,7 +448,6 @@ h1 {
 
 .inputs_pagina_3 {
     top: 5.5em;
-    position: absolute;
     flex-direction: column;
     width: auto;
 }
@@ -514,7 +482,6 @@ h1 {
 }
 
 .opciones_pagina3 > button {
-    position: absolute;
     top: 12.4em;
     width: 10.5em;
     height: 2.8em;
@@ -536,7 +503,6 @@ h1 {
 }
 
 .pagina4 > div > p {
-    width: 100vw;
     font-size: 80px;
     text-align: center;
     color: white;
@@ -552,13 +518,11 @@ h1 {
 }
 
 .desbloqueo_pagina4 {
-    width: 100vw;
     height: 40vw;
 }
 
 .camara {
     width: 70vw;
-    position: absolute;
     transform: rotateY(180deg);
     font-size: 40px;
 }
@@ -570,7 +534,6 @@ h1 {
 }
 
 .opciones_camara {
-    position: absolute;
     right: 0px;
     flex-direction: column;
     padding: 2.5em;
@@ -699,7 +662,6 @@ h1 {
 }
 
 .configadmin {
-    width: 100vw;
     justify-content: center;
     display: grid;
     grid-template-columns: auto auto;
@@ -714,7 +676,57 @@ h1 {
     height: 2.5em;
 }
 
-/*Botones navegacion*/
+.contenedorOpcionesAdmin {
+    top: -10em;
+    min-height: 100vh;
+    backdrop-filter: blur(15px);
+    z-index: 200;
+    background: #0000001b;
+    animation: opacidad_blur 0.3s ease-out forwards;
+}
+
+.contenedorOpcionesAdmin > button {
+    right: 0;
+    top: 0;
+    margin: .5em;
+    width: 2em;
+    aspect-ratio: 1/1;
+    font-size: 30px;
+}
+
+.contenedorOpcionesAdmin > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.agregarSacarUsuarios > form {
+    width: 30vw;
+    height: 70vh;
+    flex-direction: column;
+}
+
+.configuracionAdmin > form {
+    flex-direction: column;
+    color: white;
+    font-size: 30px;
+}
+
+.configuracionAdmin > form > div {
+    padding: 2em;
+    margin: 2em 0;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.configuracionAdmin > form > div > input {
+    position: relative;
+    width: 5em;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+}
 
 .contenedor_home_back {
     position: absolute;
@@ -873,17 +885,16 @@ input::placeholder {
     caret-color: transparent;
 }
 
-/* .reducirYRestaurarEspacio:active {
-    animation: reducirYRestaurarEspacio 3s ease forwards;
-    animation-delay: 5s;
-} */
-
-.entrada {
-    animation: entrada 1s ease-out forwards;
-}
-
 .fullWidth {
     width: 100vw;
+}
+
+.fullHeight {
+    height: 100vh
+}
+
+.pAbs {
+    position: absolute;
 }
 
 /*Animaciones*/

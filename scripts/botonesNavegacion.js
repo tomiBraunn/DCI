@@ -30,7 +30,6 @@ document
         location.reload();
     });
 
-
 // Boton de reinicio en caso de que no se conecte SoqueTic
 
 document
@@ -38,4 +37,30 @@ document
     .addEventListener("click", function (event) {
         event.preventDefault();
         location.reload();
+    });
+
+// botones de pagina admin
+// document
+//     .getElementById("btn_agregarSacarUsuarios")
+//     .addEventListener("click", function (event) {
+//         document.getElementById("contenedorOpcionesAdmin").style.display =
+//             "flex";
+//         document.getElementById("agregarSacarUsuarios").style.display = "flex";
+//     });
+
+document
+    .getElementById("btn_configuracionAdmin")
+    .addEventListener("click", function (event) {
+        document.getElementById("contenedorOpcionesAdmin").style.display =
+            "flex";
+        document.getElementById("configuracionAdmin").style.display = "flex";
+    });
+
+document
+    .getElementById("salirContenedorOpcionesAdmin")
+    .addEventListener("click", function (event) {
+        document.getElementById("contenedorOpcionesAdmin").style.display =
+            "none";
+        document.getElementById("agregarSacarUsuarios").style.display = "none";
+        document.getElementById("configuracionAdmin").style.display = "none";
     });

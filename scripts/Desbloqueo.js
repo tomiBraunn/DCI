@@ -8,6 +8,11 @@ const captureButton = document.getElementById("captureButton");
 let uploadedFaceData; 
 let capturedFaceData;
 
+var overlay;
+fetchData("overlayCamara", (data) => {
+    overlay = data;
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("Carga inicial: DOMContentLoaded");
 
@@ -22,11 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 1100);
     document.querySelector(".loader").style.display = "none";
     startVideo();
-    document.querySelector("h1").classList.remove("entrada");
-    document.querySelector("h1").classList.add("entrada");
-        document.querySelector("h1").classList.remove("entrada");
-        setTimeout(() => {
-    }, 1100);
     if (soquetic == undefined) {
         document.querySelector("main").style.display = "none";
 
@@ -65,11 +65,14 @@ function startVideo() {
                         .withFaceDescriptors();
 
                     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-                    
-                    // if (overlay == true){    
-                    //     overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
-                    //     faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
-                    // }
+                    if (overlay == true){    
+                        overlayCanvas.getContext("2d").clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                        faceapi.draw.drawDetections(overlayCanvas, resizedDetections);
+                        document.getElementById("overlayCanvas").style.display = "block"
+                    }
+                    else {
+                        document.getElementById("overlayCanvas").style.display = "none"
+                    }
                 }, 100);
             });
         })
@@ -195,9 +198,3 @@ imageUpload.addEventListener("change", async (event) => {
     };
     reader.readAsDataURL(file);
 });
-
-// var overlay;
-// fetchData("overlayCamara", (data) => {
-//     overlay = data;
-
-// });

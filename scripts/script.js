@@ -15,30 +15,25 @@ if (soquetic == undefined) {
 const version = "v.1.00";
 let tipoUsuario = "";
 
-// Función para desplazar a la siguiente página
 var animaciones;
+fetchData("animacionesPaginas", (data) => {
+    animaciones = data;
+});
+
+// Función para desplazar a la siguiente página
 
 function desplazarALaPagina(paginaId) {
     document.querySelector(".scroll-container").scrollTo({
         left: document.getElementById(paginaId).offsetLeft,
-        // if(animaciones = true) {
-            behavior: "smooth",
-        // } else {
-        //     behavior: "auto",
-        // }
+        behavior: animaciones ? "auto" : "smooth",
     });
-
-    var animaciones;
-    // fetchData("animacionesPaginas", (data) => {
-    //     animaciones = data;
-    // });
 
     // Verifica si estamos en la página 2
     if (paginaId === "pagina2" || paginaId === "pagina5") {
         const adjustmentLayer = document.getElementById("adjustmentLayer");
 
         // Elimina todas las clases excepto "adjustmentLayer"
-        adjustmentLayer.className = "adjustmentLayer";
+        adjustmentLayer.className = "adjustmentLayer pAbs fullWidth fullHeight";
     }
 }
 
@@ -65,11 +60,6 @@ document.getElementById("back_info").addEventListener("click", function () {
     document.getElementById("btn_info_dci").style.display = "flex";
     document.getElementById("btn_inicio").style.display = "block";
     document.querySelector("h1").style.display = "block";
-    document.querySelector("h1").classList.remove("entrada");
-    document.querySelector("h1").classList.add("entrada");
-    setTimeout(() => {
-        document.querySelector("h1").classList.remove("entrada");
-    }, 1100);
 });
 
 // Definir el tipo de usuario
@@ -166,14 +156,24 @@ document
                         document
                             .getElementById("DNIusuario")
                             .classList.add("incompleto");
-                            if (document.getElementById("pagina3").classList.contains("shake")) {
-                                document.getElementById("pagina3").classList.remove("shake");
-                            }
-                            document.getElementById("pagina3").classList.add("shake");
-                
-                            setTimeout(() => {
-                                document.getElementById("pagina3").classList.remove("shake");
-                            }, 500);
+                        if (
+                            document
+                                .getElementById("pagina3")
+                                .classList.contains("shake")
+                        ) {
+                            document
+                                .getElementById("pagina3")
+                                .classList.remove("shake");
+                        }
+                        document
+                            .getElementById("pagina3")
+                            .classList.add("shake");
+
+                        setTimeout(() => {
+                            document
+                                .getElementById("pagina3")
+                                .classList.remove("shake");
+                        }, 500);
                     } else {
                         document.getElementById("nombre").textContent = nombre;
                         desplazarALaPagina("pagina4");
@@ -261,9 +261,4 @@ function reiniciarEstado() {
     document.getElementById("creditos").style.display = "none";
     document.getElementById("creditos").classList.add("opacidad_blur_fade");
     adjustmentLayer.className = "adjustmentLayer";
-    document.querySelector("h1").classList.remove("entrada");
-    document.querySelector("h1").classList.add("entrada");
-    setTimeout(() => {
-        document.querySelector("h1").classList.remove("entrada");
-    }, 1100);
 }
