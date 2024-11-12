@@ -39,8 +39,6 @@ var ranuraCompuRetirar;
 
 // Retirar computadora
 document.getElementById("retirar").addEventListener("click", function (event) {
-
-    console.log("hola");
     const botonRetirar = document.getElementById("retirar");
 
     if (botonRetirar.classList.contains("noDisponible")) {
@@ -57,11 +55,12 @@ document.getElementById("retirar").addEventListener("click", function (event) {
     cantidadCompus--;
     actualizarDisponibilidad();
     fetchData("ranuraCompuRetirar", (data) => {
-        console.log("esto es " + data)
         ranuraCompuRetirar = data;
-        document.getElementById("ranuraRetirar").value = data;
+        document.getElementById("ranuraRetirar").innerHTML = data;
+
     })
 
+    event.preventDefault();
     document.getElementById("devolver_compu").style.display = "none";
     desplazarALaPagina("pagina6");
 });
@@ -85,7 +84,7 @@ document.getElementById("devolver").addEventListener("click", function (event) {
     actualizarDisponibilidad();
     fetchData("ranuraCompuDevolver", (data) => {
         ranuraCompuDevolver = data;
-        document.getElementById("ranuraDevolver").value = data;
+        document.getElementById("ranuraDevolver").innerHTML = data;
     })
 
     // Mostrar que compu retirar

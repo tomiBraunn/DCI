@@ -52,15 +52,9 @@ document.getElementById("btn_info_dci").addEventListener("click", function () {
     document.getElementById("btn_info_dci").style.display = "none";
     document.getElementById("btn_inicio").style.display = "none";
     document.querySelector("h1").style.display = "none";
+    document.getElementById("tutorialesDci ").className = "tutorialesDci  flex_center";
 });
 
-// Cerrar menú de ayuda cuando se da clic al botón de cerrar
-document.getElementById("back_info").addEventListener("click", function () {
-    document.getElementById("info_dci").classList.add("opacidad_blur_fade");
-    document.getElementById("btn_info_dci").style.display = "flex";
-    document.getElementById("btn_inicio").style.display = "block";
-    document.querySelector("h1").style.display = "block";
-});
 
 // Definir el tipo de usuario
 document
@@ -261,4 +255,7 @@ function reiniciarEstado() {
     document.getElementById("creditos").style.display = "none";
     document.getElementById("creditos").classList.add("opacidad_blur_fade");
     adjustmentLayer.className = "adjustmentLayer";
+    sidebar.style.display = "flex";
+    sidebar.style.width = "auto";
+    tutorial.style.width = "75%";
 }

@@ -1,5 +1,5 @@
 {
   "cantidadCompus": 2,
-  "mostarOverlay": true,
-  "desactivarAnimaciones": true
+  "mostarOverlay": false,
+  "desactivarAnimaciones": false
 }

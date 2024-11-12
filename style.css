@@ -65,7 +65,7 @@ body {
     height: 30vw;
     flex-direction: column;
     font-size: 40px;
-    padding: .3em;
+    padding: 0.3em;
     text-align: center;
 }
 
@@ -102,8 +102,12 @@ main > div {
     font-size: 50px;
 }
 
-.SoqueTicNoCargado > code{
-    background: linear-gradient(135deg,rgba(255, 255, 255, 0.176),rgba(255, 255, 255, 0.24));
+.SoqueTicNoCargado > code {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.176),
+        rgba(255, 255, 255, 0.24)
+    );
     padding: 1em;
     border-radius: 20px;
     font-size: 40px;
@@ -114,7 +118,6 @@ main > div {
     border-radius: 20px;
     font-size: 30px;
 }
-
 
 /*Pagina 1*/
 
@@ -165,8 +168,8 @@ h1 {
 /*Navbar de la parte de ayuda*/
 
 .info_dci {
-    width: auto;
-    height: auto;
+    width: 90vw;
+    height: 90vh;
     font-size: 40px;
     margin: 2em;
     z-index: 100;
@@ -174,6 +177,7 @@ h1 {
     justify-items: flex-start;
     flex-direction: column;
     animation: opacidad_blur 0.3s ease-out forwards;
+    overflow: hidden;
 }
 
 .info_dci > * {
@@ -204,6 +208,7 @@ h1 {
 
 .circulos_nav_bar,
 .circulos_credits {
+    height: 100%;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -251,6 +256,23 @@ h1 {
     margin-left: 0.2em;
 }
 
+.sideBarIcon,
+.sideBarIcon > svg {
+    width: 1em;
+    aspect-ratio: 1/1;
+    position: relative;
+    margin: 0;
+    margin: 0 0.1em;
+}
+
+.opciones_nav_bar  > span {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin: 0.5em;
+    font-size: 20px;
+}
+
 .share_nav_bar {
     width: auto;
     height: auto;
@@ -267,27 +289,85 @@ h1 {
 
 /*Ayuda posta*/
 
-.info_tutorial_dci {
+.tutorialesDci {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0;
+}
+
+.contenedorSeleccionarTutoriales {
+    position: relative;
+    top: 0;
+    padding: 0;
+    height: 106.5%;
+    font-size: 22px;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    margin: 0 0.7em;
+}
+
+.contenedorSeleccionarTutoriales > ul {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+    position: relative;
+    left: -1em;
+}
+
+.contenedorSeleccionarTutoriales > ul > * {
+    margin: 0.2em 0;
+    padding: 0.2em 0.3em;
+    width: 11em;
+    height: 2em;
+    border: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.contenedorSeleccionarTutoriales > ul > li:nth-child(4) > p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 9.8em;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.contenedorTutorialesDci {
+    height: 100%;
+    width: 75%;
+    margin-right: 0.7em;
+}
+
+/* parte usuarios */
+.contenedorContenidoTutorialesDci > div {
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
     flex-direction: column;
+    height: 100%;
 }
 
-.info_tutorial_dci > b {
+.contenedorContenidoTutorialesDci > div > b {
     font-size: 40px;
     padding-bottom: 0.4em;
 }
 
-.info_tutorial_dci > p {
-    font-size: 22px;
+.contenedorContenidoTutorialesDci > div > p {
+    font-size: 20px;
 }
 
-.info_tutorial_dci > button,
-.btns_alm_profe_info > button {
+.contenedorContenidoTutorialesDci > div > button,
+.btnsAlmProfeInfo > button, .btnsInfo {
     position: relative;
     left: -2em;
-    width: 10.5em;
+    min-width: 10.5em;
     height: 2.8em;
     border: none;
     font-size: 40px;
@@ -295,13 +375,34 @@ h1 {
     cursor: default;
 }
 
-.btns_alm_profe_info > button:nth-child(2) {
+.btnsAlmProfeInfo > button:nth-child(2) {
     left: -6em;
 }
 
-.info_tutorial_dci > button:active,
-.btns_alm_profe_info > button:active {
+.contenedorContenidoTutorialesDci > div > button:active,
+.btnsAlmProfeInfo > button:active, .btnsInfo:active {
     transform: scale(0.7);
+}
+
+.desbloqueoSidebar > p {
+    padding: .5em 0;
+}
+
+.navegacionSidebar > ul > li {
+    font-size: 20px;
+    padding: .5em 0;
+    margin-left: .7em;
+    padding: .5em 0;
+}
+
+.guiaAdminSidebar > div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.guiaAdminSidebar > div > p {
+    font-size: 20px;
 }
 
 /*Creditos*/
@@ -350,6 +451,12 @@ h1 {
 
 .creditos > ul > li {
     padding: 0.5em 0;
+}
+
+.creditos > i {
+    position: absolute;
+    top: 2.5em;
+    font-size: 20px;
 }
 
 /*Pagina 2 y 3*/
@@ -688,7 +795,7 @@ h1 {
 .contenedorOpcionesAdmin > button {
     right: 0;
     top: 0;
-    margin: .5em;
+    margin: 0.5em;
     width: 2em;
     aspect-ratio: 1/1;
     font-size: 30px;
@@ -843,10 +950,11 @@ input::placeholder {
 }
 
 .gradientDCI {
-    background: linear-gradient(135deg, #1c6a6a, #443562);
+    background: linear-gradient(135deg, #69ff7e, #5300fa);
     background-clip: text;
     color: transparent;
 }
+
 .adjustmentLayerAlumno {
     background: #41216030;
     animation: opacidad 1s ease-out forwards;
@@ -890,13 +998,37 @@ input::placeholder {
 }
 
 .fullHeight {
-    height: 100vh
+    height: 100vh;
 }
 
 .pAbs {
     position: absolute;
 }
 
+.moverContainerIzquierda {
+    animation: moverContainerIzquierda 0.2s ease-out forwards;
+    left: -24%;
+}
+
+.moverContainerIzquierdaReverse {
+    animation: moverContainerIzquierda 0.2s ease-out reverse;
+    left: 0%;
+}
+
+.cambiarWidth {
+    animation: cambiarWidth 0.1s ease-out forwards;
+}
+
+.cambiarWidthReverse {
+    animation: cambiarWidth 0.1s ease-out reverse;
+}
+
+.SideBarElementClicked {
+    background: linear-gradient(135deg, #64976b9e, #5300fa);
+    backdrop-filter: blur(80px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
 /*Animaciones*/
 @keyframes opacidad {
     from {
@@ -981,7 +1113,7 @@ input::placeholder {
         font-size: 90px;
     }
     40% {
-        transform: translateX(5px) rotate(.5deg);
+        transform: translateX(5px) rotate(0.5deg);
     }
     50% {
         /* transform: translateX(-5px) rotate(-.5deg); */
@@ -1023,5 +1155,30 @@ input::placeholder {
 
     100% {
         box-shadow: inset 0 0 5em rgba(255, 0, 0, 0.3);
+    }
+}
+
+@keyframes moverContainerIzquierda {
+    from {
+        left: 0%;
+    }
+
+    to {
+        left: -24%;
+    }
+}
+
+@keyframes cambiarWidth {
+    0% {
+        opacity: 1;
+        width: 100%;
+    }
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        width: 124%;
     }
 }
