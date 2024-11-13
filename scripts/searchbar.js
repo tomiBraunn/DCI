@@ -225,9 +225,11 @@ searchBar.addEventListener("input", function () {
         } else if (searchBarValue === "/animaciones/true") {
             animaciones = true;
             searchBar.value = "";
+            alert("Animaciones activadas");
         } else if (searchBarValue === "/animaciones/false") {
             animaciones = false;
             searchBar.value = "";
+            alert("Animaciones Desactivadas");
         }
     }
 });
