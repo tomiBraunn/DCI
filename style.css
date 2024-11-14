@@ -494,15 +494,31 @@ h1 {
     margin-left: 0.1em;
 }
 
-.creditos > ul > li {
-    padding: 0.5em 0;
-}
-
 .creditos > i {
     position: absolute;
     top: 2.5em;
     font-size: 20px;
 }
+
+.nombresAgradecimientosCreditos {
+    flex-direction: column;
+}
+
+.nombresAgradecimientosCreditos > p {
+    font-size: 20px;
+    bottom: 0;
+    padding-bottom: 1em;
+}
+
+.nombresCreditos {
+    gap: .5em;
+}
+
+.nombresCreditos > div > ul > li {
+    list-style: none;
+    padding: .4em 0;
+}
+
 
 /*Pagina 2 y 3*/
 
@@ -1074,6 +1090,12 @@ input::placeholder {
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
+
+.backgroundCover {
+    background-size: cover;
+    transition: .3s;
+}
+
 /*Animaciones*/
 @keyframes opacidad {
     from {

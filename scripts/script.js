@@ -258,4 +258,5 @@ function reiniciarEstado() {
     sidebar.style.display = "flex";
     sidebar.style.width = "auto";
     tutorial.style.width = "75%";
+    document.getElementById("background").classList.remove("backgroundCover");
 }
