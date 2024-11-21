@@ -1,4 +1,3 @@
-1)Hacer que te muestre el numero de compu
-2 LISTO) Hacer que funcione las funciones de admin (mostrarOverlay y deshabilitar animaciones) (scripts\script.js ln21-34 y scripts\Desbloqueo.js ln69-72 y ln199-203)
+
 3)Hacer invitado
 4)Hacer que aparezca el menu de cuando se saca mal una compu cuando pasa (scripts\compuRetiradaSinPermiso.js)

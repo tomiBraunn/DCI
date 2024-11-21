@@ -2,6 +2,7 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
+    "serialport": "^12.0.0",
     "soquetic": "^1.1.1"
   },
   "name": "dci",
@@ -9,7 +10,6 @@
   "description": "",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/T-311/DCI/issues"
   },
-  "homepage": "https://github.com/T-311/DCI#readme"
+  "homepage": "https://github.com/T-311/DCI#readme",
+  "devDependencies": {}
 }

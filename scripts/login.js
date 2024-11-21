@@ -1,4 +1,5 @@
 import { onEvent, sendEvent, startServer } from "soquetic";
+import { ReadlineParser, SerialPort } from "serialport";
 import fs from "fs";
 import { join } from "path";
 import readline from "readline";
@@ -8,6 +9,18 @@ const usersFile = join("./json/usuarios.json");
 const configFile = join("./json/config.json");
 const carroFile = join("./json/carroData.json");
 
+const port = new SerialPort({
+    //Completar con el puerto correcto
+    path: "COM3",
+    baudRate: 9600,
+});
+
+const parser = new ReadlineParser();
+port.pipe(parser);
+
+port.on("open", () => {
+    console.log("Puerto serial abierto");
+});
 
 function getPrimeraCompuParaAgarrar() {
     const data = JSON.parse(fs.readFileSync(carroFile, "utf-8")); // Parseamos el JSON a un objeto
@@ -33,6 +46,7 @@ function getPrimeraCompuParaAgarrar() {
 
 onEvent("ranuraCompuRetirar", () => {
     const n = getPrimeraCompuParaAgarrar();
+    enviarDatosArduino("open:" + n)
     return n;
 });
 
@@ -59,6 +73,7 @@ function getPrimeraCompuParaDevolver() {
 
 onEvent("ranuraCompuDevolver", () => {
     const n = getPrimeraCompuParaDevolver();
+    enviarDatosArduino("open:" + n)
     return n;
 });
 
@@ -231,6 +246,54 @@ onEvent("ranuraCompu", (data) => {
             mensaje: "No hay computadoras disponibles para asignar o recibir"
         });
     }
+});
+
+function enviarDatosArduino(msg) {
+    console.log("datos enviados: " + msg)
+    port.write(msg)
+}
+
+
+onEvent("abrirHardware", () => {
+    enviarDatosArduino("caca")
+})
+
+// Ver la data que LLEGA del Hardware (no anda)
+port.on("open", () => {
+    console.log("Puerto serial abierto");
+});
+
+let sensor1 = false;
+let sensor2 = false;
+
+parser.on("data", function (status) {
+    console.log("Respuesta recibida del Arduino:", status.trim());
+    const sensor = status.trim().split(":")[0];
+    const value = status.trim().split(":")[1] == "ABIERTO";
+    if (status.trim() == "Sensores:CERRADOS") {
+        sensor1 = false;
+        sensor2 = false;
+    }
+    else if (sensor == "Sensor1") {
+        sensor1 = value;
+        sensor2 = false;
+    }
+    else if (sensor == "Sensor2") {
+        sensor1 = false;
+        sensor2 = value;
+    }
+    console.log({
+        sensor1,
+        sensor2
+    })
+    if (!sensor1) {
+        console.log("Se saco la compu 1");
+    }
+
+    if (!sensor2) {
+        console.log("Se saco la compu 2");
+    }
+
 });
 
 
