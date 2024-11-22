@@ -63,9 +63,18 @@ document
 document
     .getElementById("profesor")
     .addEventListener("click", () => establecerTipoUsuario("Profesor/a"));
-document
-    .getElementById("invitado")
-    .addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
+// document
+//     .getElementById("invitado")
+//     .addEventListener("click", () => establecerTipoUsuario("Invitado/a"));
+document.getElementById("invitado").addEventListener("click", function () {
+    document.getElementById("invitado").classList.contains("shake");
+document.getElementById("invitado").classList.remove("shake");
+document.getElementById("invitado").classList.add("shake");
+setTimeout(() => {
+document.getElementById("invitado").classList.remove("shake");
+}, 500);
+});
+
 
 function establecerTipoUsuario(tipo) {
     tipoUsuario = tipo;

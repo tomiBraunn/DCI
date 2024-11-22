@@ -15,18 +15,18 @@ sideBarBtn.addEventListener("click", function () {
         tutorialesContainer.classList.remove("moverContainerIzquierda");
         tutorialesContainer.offsetWidth;
         tutorialesContainer.classList.add("moverContainerIzquierdaReverse");
-        // document
-        //     .getElementById("contenedorContenidoTutorialesDci")
-        //     .classList.remove("cambiarWidth");
-        // document.getElementById("contenedorContenidoTutorialesDci").classList.add("cambiarWidthReverse");
+        document
+            .getElementById("contenedorContenidoTutorialesDci")
+            .classList.remove("cambiarWidth");
+        document.getElementById("contenedorContenidoTutorialesDci").classList.add("cambiarWidthReverse");
     } else {
         tutorialesContainer.classList.remove("moverContainerIzquierdaReverse");
         tutorialesContainer.offsetWidth;
         tutorialesContainer.classList.add("moverContainerIzquierda");
-        // document.getElementById("contenedorContenidoTutorialesDci").classList.remove("cambiarWidthReverse");
-        // document
-        //     .getElementById("contenedorContenidoTutorialesDci")
-        //     .classList.add("cambiarWidth");
+        document.getElementById("contenedorContenidoTutorialesDci").classList.remove("cambiarWidthReverse");
+        document
+            .getElementById("contenedorContenidoTutorialesDci")
+            .classList.add("cambiarWidth");
     }
 });
 
