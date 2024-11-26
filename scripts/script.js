@@ -80,13 +80,13 @@ function establecerTipoUsuario(tipo) {
     tipoUsuario = tipo;
     document.getElementById("mostarTipoUsuario").textContent = tipo;
 
-    // Ocultar campos inicialmente
+    // Ocultar elementos
     document.getElementById("DNIusuario").style.display = "none";
     document.getElementById("NyAusuario").style.display = "none";
     document.getElementById("curso_usuario").style.display = "none";
     document.getElementById("DNIusuario").value = "";
 
-    // Mostrar inputs segun el tipo de usuario y agregar el adjustment layer
+    // Mostrar inputs segun el tipo de usuario y agregar adjustment layer
     if (tipo === "Alumno/a") {
         document.getElementById("DNIusuario").style.display = "block";
         document
@@ -127,7 +127,6 @@ document
             .querySelectorAll(".incompleto")
             .forEach((el) => el.classList.remove("incompleto"));
 
-        // Validación según tipo de usuario
         if (tipoUsuario === "Alumno/a" || tipoUsuario === "Profesor/a") {
             if (!dni) {
                 valid = false;
@@ -150,10 +149,8 @@ document
             }
         }
 
-        // Manejo de avance o error
         if (valid) {
             if (dni != "") {
-                // Mandar los datos al backend solo si la condición se cumple
                 postData("getNombre", { dni: dni }, (nombre) => {
                     if (!nombre) {
                         document
@@ -186,7 +183,6 @@ document
                 // console.log("Faltan datos o tipo de usuario no válido");
             }
         } else {
-            // Agregar clase shake si los datos no son válidos
             if (botonAvanzar.classList.contains("shake")) {
                 botonAvanzar.classList.remove("shake");
             }
@@ -208,27 +204,22 @@ document
 
 // Función para reiniciar
 function reiniciarEstado() {
-    // Seleccionar todas las pantallas y ocultarlas
     const pantallas = document.querySelectorAll(".pantalla");
     pantallas.forEach((pantalla) => {
         pantalla.style.display = "none";
     });
 
-    // Seleccionar todas las páginas y botones con clase 'home'
     const paginas = document.querySelectorAll(".pagina");
     const botonesHome = document.querySelectorAll(".home");
 
-    // Ocultar todas las páginas
     paginas.forEach((pagina) => {
-        pagina.style.display = "none"; // Ocultar todas las páginas
+        pagina.style.display = "none";
     });
 
-    // Ocultar todos los botones con clase 'home'
     botonesHome.forEach((boton) => {
         boton.style.display = "none";
     });
 
-    // Desplazar a la página 1
     desplazarALaPagina("pagina1");
 
     setTimeout(() => {
@@ -241,7 +232,6 @@ function reiniciarEstado() {
         });
     }, 300);
 
-    // Limpiar todos los inputs
     document.querySelectorAll("input").forEach((input) => {
         input.value = "";
     });
