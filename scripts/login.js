@@ -113,11 +113,11 @@ function enviarRespuestaLogin(exito, usuario = null) {
             mensaje: "Inicio de sesión exitoso",
             usuario,
         });
-    } else {
-        console.log({ mensaje: "DNI no encontrado" });
-        sendEvent("loginError", { mensaje: "DNI no encontrado" });
-    }
-}
+    } else{
+    console.log({ mensaje: "DNI no encontrado" });
+    sendEvent("loginError", {mensaje: "DNI no encontrado"});
+    }}
+
 
 function configurarEventos() {
     onEvent("login", ({ dni }) => {
