@@ -15,10 +15,10 @@ if (soquetic == undefined) {
 const version = "v.1.00";
 let tipoUsuario = "";
 
-var animaciones;
-fetchData("animacionesPaginas", (data) => {
-    animaciones = data;
-});
+var animaciones = false;
+// fetchData("animacionesPaginas", (data) => {
+//     animaciones = data;
+// });
 
 // Función para desplazar a la siguiente página
 
@@ -258,4 +258,5 @@ function reiniciarEstado() {
     sidebar.style.display = "flex";
     sidebar.style.width = "auto";
     tutorial.style.width = "75%";
+    document.getElementById("background").classList.remove("backgroundCover");
 }

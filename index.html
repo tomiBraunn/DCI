@@ -1,186 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width"/>
-        <meta name="google" content="notranslate">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="google" content="notranslate" />
         <title>DCI (Desbloqueo de Carro Inteligente)</title>
-        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="style.css" rel="stylesheet" type="text/css" />
         <script src="./face-api/face-api.min.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet"/>
-        <link rel="icon" href="imagenes/logo (1).png"/>
-      </head>
-<body>
-    <div class="background fullWidth fullHeight pAbs"></div>
-    <div class="loader" id="loader"><img src="./media/card_bg.png" class="fullWidth fullHeight pAbs"></div>
-    <span class="adjustmentLayer fullWidth fullHeight fullHeight pAbs" id="adjustmentLayer"></span>
-    <div class="contenedorCompuRetiradaSinPermiso flex_center_evenly glass fullWidth fullHeight pAbs" id="compuRetiradaSinPermiso" style="display: none;">
-        <img src="./media/card_bg.png" class="fullWidth fullHeight pAbs">
-        <div class="glass flex_center_evenly">
-            <b>Se retiro una computadora sin permiso</b>
-            <p>El carro quedara inhabilitado hasta que se devuelva la computadora a su lugar</p>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" href="imagenes/logo (1).png" />
+    </head>
+    <body>
+        <div class="background fullWidth fullHeight pAbs" id="background"></div>
+        <div class="loader" id="loader">
+            <img src="./media/card_bg.png" class="fullWidth fullHeight pAbs" />
         </div>
-    </div>
-    <div class="SoqueTicNoCargado glass flex_center_evenly pAbs" id="SoqueTicNoCargado" style="display: none;">
-        <b>No se pudo cargar SoqueTic</b>
-        <p>Proba de ejecutar alguno de estos comandos por terminal y reiniciar</p>
-        <code>node scripts\login.js</code>
-        <button class="flex_center glass" id="reinicioSoqueTic">Reiniciar</button>
-    </div>
-    <main class="scroll-container" style="display: none;">
-        <div class="pagina1 pagina flex_center_evenly" id="pagina1">
-            <h1>Desbloqueo de Carro <br> Inteligente</h1>
-            <button id="btn_inicio" class="btn_inicio glass button_hover flex_center ">Iniciar</button>
-            <button id="btn_info_dci" class="btn_info_dci glass button_hover flex_center pAbs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"></stop><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"></stop></linearGradient></defs><path d="M444-288h72v-240h-72v240Zm35.79-312q15.21 0 25.71-10.29t10.5-25.5q0-15.21-10.29-25.71t-25.5-10.5q-15.21 0-25.71 10.29t-10.5 25.5q0 15.21 10.29 25.71t25.5 10.5Zm.49 504Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" fill="url(#grad1)"></path></svg></button>
-            <div id="info_dci" class="info_dci glass pAbs" style="display: none;">
-            <div class="navbar_info">
-                    <input id="search_bar_nav_bar" class="italic" type="text" placeholder="¿Qué-es-DCI?" autocomplete="off">
-                    <div class="opciones_nav_bar flex_center_evenly pAbs">
-                        <div class="circulos_nav_bar" id="back_info">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+        <span
+            class="adjustmentLayer fullWidth fullHeight fullHeight pAbs"
+            id="adjustmentLayer"
+        ></span>
+        <div
+            class="contenedorCompuRetiradaSinPermiso flex_center_evenly glass fullWidth fullHeight pAbs"
+            id="compuRetiradaSinPermiso"
+            style="display: none"
+        >
+            <img src="./media/card_bg.png" class="fullWidth fullHeight pAbs" />
+            <div class="glass flex_center_evenly">
+                <b>Se retiro una computadora sin permiso</b>
+                <p>
+                    El carro quedara inhabilitado hasta que se devuelva la
+                    computadora a su lugar
+                </p>
+            </div>
+        </div>
+        <div
+            class="SoqueTicNoCargado glass flex_center_evenly pAbs"
+            id="SoqueTicNoCargado"
+            style="display: none"
+        >
+            <b>No se pudo cargar SoqueTic</b>
+            <p>Proba de ejecutar este comandos por terminal y reiniciar</p>
+            <code>node scripts\login.js</code>
+            <button class="flex_center glass" id="reinicioSoqueTic">
+                Reiniciar
+            </button>
+        </div>
+        <main class="scroll-container" style="display: none">
+            <div class="pagina1 pagina flex_center_evenly" id="pagina1">
+                <h1>
+                    Desbloqueo de Carro <br />
+                    Inteligente
+                </h1>
+                <button
+                    id="btn_inicio"
+                    class="btn_inicio glass button_hover flex_center"
+                >
+                    Iniciar
+                </button>
+                <button
+                    id="btn_info_dci"
+                    class="btn_info_dci glass button_hover flex_center pAbs"
+                >
+                    <img src="media/icons/info.svg" />
+                </button>
+                <div
+                    id="info_dci"
+                    class="info_dci glass pAbs"
+                    style="display: none"
+                >
+                    <div class="navbar_info">
+                        <input
+                            id="search_bar_nav_bar"
+                            class="italic"
+                            type="text"
+                            placeholder="¿Qué-es-DCI?"
+                            autocomplete="off"
+                        />
+                        <div class="opciones_nav_bar flex_center_evenly pAbs">
+                            <div class="circulos_nav_bar" id="back_info">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div
+                                class="sideBarIcon flex_center"
+                                id="sideBarIcon"
+                            >
+                                <img src="media/icons/sideBar.svg" />
+                            </div>
+                            <div class="flechas_nav_bar flex_center">
+                                <p><</p>
+                                <p>></p>
+                            </div>
+                            <span
+                                id="mostrarAdminVerificado"
+                                class="flex_center"
+                                style="display: none"
+                                >Admin verificado</span
+                            >
                         </div>
-                        <div class="sideBarIcon flex_center" id="sideBarIcon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24px" fill="#cececf" class="share_nav_bar flex_center_evenly pAbs">
-                                <path d="M140-160q-24.75 0-42.37-17.63Q80-195.25 80-220v-520q0-24.75 17.63-42.38Q115.25-800 140-800h680q24.75 0 42.38 17.62Q880-764.75 880-740v520q0 24.75-17.62 42.37Q844.75-160 820-160H140Zm260-60h420v-520H400v520Zm-60 0v-520H140v520h200Zm-200 0v-520 520Zm200 0h60-60Zm0-520h60-60Z"/>
-                            </svg>
-                        </div>
-                        <div class="flechas_nav_bar flex_center">
-                            <p><</p>
-                            <p>></p>
-                        </div>
-                        <span id="mostrarAdminVerificado" class="flex_center" style="display: none;">Admin verificado</span>
+                        <img
+                            src="media/icons/share.svg"
+                            class="share_nav_bar flex_center_evenly pAbs"
+                        />
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly pAbs" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
-                </div>
-                <div class="tutorialesDci  flex_center" id="tutorialesDci ">
-                    <div class="contenedorSeleccionarTutoriales" id="sideBar">
-                        <ul>
-                            <li id="introduccionTutorial" class="btnSideBar"><p>¿Qué es DCI?</p></li>
-                            <li id="tiposUsuariosTutorial" class="btnSideBar"><p>Tipos de Usuarios</p></li>
-                            <li id="desbloqueTutorial" class="btnSideBar"><p>Desbloqueo Facial<p/p></li>
-                            <li id="navegacionTutorial" class="btnSideBar"><p>Botones de navegacion</p></li>
-                            <li id="creditosTutorial" class="btnSideBar"><p>Creditos</p></li>
-                            <li id="GuiaAdminTutorial" class="btnSideBar" style="display: none;">Guía admin</li>
-                        </ul>
-                    </div>
-                    <div class="contenedorTutorialesDci" id="contenedorTutorialesDci">
-                        <div class="contenedorContenidoTutorialesDci" id="contenedorContenidoTutorialesDci">
-                            <div class="queEsDciSideBar" id="queEsDciSideBar">
-                                <b>¿Qué es DCI?</b>
-                                <p>Nuestro proyecto, Desbloqueo de Carro Inteligente, tiene como objetivo mejorar la experiencia con los carros donde se guardan las compus, dándole más seguridad.</p>
-                            </div>
-                            <div class="tiposUsuariosSideBar" id="tiposUsuariosSideBar">
-                                <b>Tipos de Usuarios:</b>
-                                <div class="btnsAlmProfeInfo">
-                                    <button class="glass">Alumno/a</button>
-                                    <button class="glass">Profesor/a</button>
+                    <div class="tutorialesDci flex_center" id="tutorialesDci ">
+                        <div
+                            class="contenedorSeleccionarTutoriales"
+                            id="sideBar"
+                        >
+                            <ul>
+                                <li
+                                    id="introduccionTutorial"
+                                    class="btnSideBar"
+                                >
+                                    <p>¿Qué es DCI?</p>
+                                </li>
+                                <li
+                                    id="tiposUsuariosTutorial"
+                                    class="btnSideBar"
+                                >
+                                    <p>Tipos de Usuarios</p>
+                                </li>
+                                <li id="desbloqueTutorial" class="btnSideBar">
+                                    <p>Desbloqueo Facial<p/p></p>
+                                </li>
+                                <li id="navegacionTutorial" class="btnSideBar">
+                                    <p>Botones de navegacion</p>
+                                </li>
+                                <li id="creditosTutorial" class="btnSideBar">
+                                    <p>Creditos</p>
+                                </li>
+                                <li
+                                    id="GuiaAdminTutorial"
+                                    class="btnSideBar"
+                                    style="display: none"
+                                >
+                                    Guía admin
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class="contenedorTutorialesDci"
+                            id="contenedorTutorialesDci"
+                        >
+                            <div
+                                class="contenedorContenidoTutorialesDci"
+                                id="contenedorContenidoTutorialesDci"
+                            >
+                                <div
+                                    class="queEsDciSideBar"
+                                    id="queEsDciSideBar"
+                                >
+                                    <b>¿Qué es DCI?</b>
+                                    <p>
+                                        Nuestro proyecto, Desbloqueo de Carro
+                                        Inteligente, tiene como objetivo mejorar
+                                        la experiencia con los carros donde se
+                                        guardan las compus, dándole más
+                                        seguridad.
+                                    </p>
                                 </div>
-                                <p>Si sos un alumno del curso al que está destinado este carro, o un profe, vas a tener que indicar tu DNI y verificarte con un sistema de desbloqueo facial. Después, te va a dar la opción de retirar o devolver una computadora y te va a indicar en qué ranura del carro tenés que sacar o dejar tu laptop.</p>
-                                <button class="glass">Invitado/a</button> 
-                                <p>En caso de que seas un invitado (o sea, si el carro no está destinado a tu curso o no sos alumno), te va a pedir tu año o grado, tu división y tu especialidad, además de tu DNI, nombre y apellido. Luego, vas a tener que verificarte con el desbloqueo facial para que el sistema tenga tu cara registrada para cuando quieras devolver la compu. Es importante que sepas que, una vez que creaste tu usuario como invitado, tu sesión no se va a guardar, así que, después de devolver la compu, si querés volver a usar el sistema, tenés que iniciar sesión de nuevo.</p>
-                            </div>
-                            <div class="desbloqueoSidebar" id="desbloqueoSidebar">
-                                <b>Desbloqueo Facial:</b>
-                                <p>Después de verificar tu DNI, se te pedirá realizar un desbloqueo facial usando la API face-api.js para retirar o devolver una computadora.</p>
-                                <p>Para esto, deberás tomarte una foto que será comparada con la que tenemos en nuestra base de datos. Si se confirma que es la misma persona, se te ofrecerán las opciones de devolver o retirar. Si no coincide, se te pedirá que realices la verificación nuevamente.</p>
-                                <p>Intenta no usar anteojos ni nada sobre tu cara para asegurarse de que te pueda reconocer bien.</p>
-                            </div>
-                            <div class="navegacionSidebar" id="navegacionSidebar">
-                                <b>Botones de navegacion:</b>
-                                <p>La navegacion de DCI es bastante simple. Los unicos botones que estan repetidos son estos:</p>
-                                <ul>
-                                    <li>Boton Home: con un toque vuelve a la pantalla de inicio, reiniciando todos los valores.</li>
-                                    <li>Boton Back: sirve para ir a la pagina anterior.</li>
-                                </ul>
-                            </div>
-                            <div class="guiaAdminSidebar" id="guiaAdminSidebar">
-                                <b>Guia de administrador:</b>
-                                <p>A continuación te dejamos los comandos que podes usar como administrador.</p>
-                                <div>
-                                    <button class="glass btnsInfo">/admin</button>
-                                    <p>Te permite iniciar sesion como admin</p>
+                                <div
+                                    class="tiposUsuariosSideBar"
+                                    id="tiposUsuariosSideBar"
+                                >
+                                    <b>Tipos de Usuarios:</b>
+                                    <div class="btnsAlmProfeInfo">
+                                        <button class="glass">Alumno/a</button>
+                                        <button class="glass">
+                                            Profesor/a
+                                        </button>
+                                    </div>
+                                    <p>
+                                        Si sos un alumno del curso al que está
+                                        destinado este carro, o un profe, vas a
+                                        tener que indicar tu DNI y verificarte
+                                        con un sistema de desbloqueo facial.
+                                        Después, te va a dar la opción de
+                                        retirar o devolver una computadora y te
+                                        va a indicar en qué ranura del carro
+                                        tenés que sacar o dejar tu laptop.
+                                    </p>
+                                    <button class="glass">Invitado/a</button>
+                                    <p>
+                                        En caso de que seas un invitado (o sea,
+                                        si el carro no está destinado a tu curso
+                                        o no sos alumno), te va a pedir tu año o
+                                        grado, tu división y tu especialidad,
+                                        además de tu DNI, nombre y apellido.
+                                        Luego, vas a tener que verificarte con
+                                        el desbloqueo facial para que el sistema
+                                        tenga tu cara registrada para cuando
+                                        quieras devolver la compu. Es importante
+                                        que sepas que, una vez que creaste tu
+                                        usuario como invitado, tu sesión no se
+                                        va a guardar, así que, después de
+                                        devolver la compu, si querés volver a
+                                        usar el sistema, tenés que iniciar
+                                        sesión de nuevo.
+                                    </p>
                                 </div>
-                                <div>
-                                    <button class="glass btnsInfo">/logout</button>
-                                    <p>Te permite cerrar sesion como admin</p>
+                                <div
+                                    class="desbloqueoSidebar"
+                                    id="desbloqueoSidebar"
+                                >
+                                    <b>Desbloqueo Facial:</b>
+                                    <p>
+                                        Después de verificar tu DNI, se te
+                                        pedirá realizar un desbloqueo facial
+                                        usando la API face-api.js para retirar o
+                                        devolver una computadora.
+                                    </p>
+                                    <p>
+                                        Para esto, deberás tomarte una foto que
+                                        será comparada con la que tenemos en
+                                        nuestra base de datos. Si se confirma
+                                        que es la misma persona, se te ofrecerán
+                                        las opciones de devolver o retirar. Si
+                                        no coincide, se te pedirá que realices
+                                        la verificación nuevamente.
+                                    </p>
+                                    <p>
+                                        Intenta no usar anteojos ni nada sobre
+                                        tu cara para asegurarse de que te pueda
+                                        reconocer bien.
+                                    </p>
+                                    <div class="btnCapturaTutorial">
+                                        <button class="glass flex_center">
+                                            <img src="media/icons/cam.svg">
+                                        </button>
+                                        <p>Este es el boton de captura para sacarte la foto</p>
+                                    </div>
+                                    <p>En caso de que no te identifique como la misma persona, comunicate con un administrador para que te ayude a resolver el problema.</p>
                                 </div>
-                                <div>
-                                    <button class="glass btnsInfo">/overlay</button>
-                                    <p>Sus valores pueden ser /true o /false (se ponen inmediatamente despues de /overlay)</p>                                
+                                <div
+                                    class="navegacionSidebar"
+                                    id="navegacionSidebar"
+                                >
+                                    <b>Botones de navegacion:</b>
+                                    <p>
+                                        La navegacion de DCI es bastante simple.
+                                        Los unicos botones que estan repetidos
+                                        son estos:
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <button class="glass button_hover">
+                                                <img src="media/icons/home.svg" />
+                                            </button>
+                                            Boton Home: con un toque vuelve a la
+                                            pantalla de inicio, reiniciando
+                                            todos los valores.
+                                        </li>
+                                        <li>
+                                            <button class="glass button_hover">
+                                                <img src="media/icons/back.svg"/>
+                                            </button>
+                                            Boton Back: sirve para ir a la
+                                            pagina anterior.
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div>
-                                    <button class="glass btnsInfo">/animaciones</button>
-                                    <p>Sus valores pueden ser /true o /false (se ponen inmediatamente despues de /animaciones)</p>                                
-                                </div>
-                                <div>
-                                    <button class="glass btnsInfo">/reset</button>
-                                    <p>Te permite reiniciar la pagina (como un F5). Recomendamos usarlo lo menos posible ya que hace que se reinicien las opciones de admin y hace que la compu tenga muy mal rendimiento hasta que se cargue todo.</p>
+                                <div
+                                    class="guiaAdminSidebar"
+                                    id="guiaAdminSidebar"
+                                >
+                                    <b>Guia de administrador:</b>
+                                    <p>
+                                        A continuación te dejamos los comandos
+                                        que podes usar como administrador:
+                                    </p>
+                                    <div>
+                                        <button class="glass btnsInfo">
+                                            /admin
+                                        </button>
+                                        <p>
+                                            Te permite iniciar sesion como admin
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <button class="glass btnsInfo">
+                                            /logout
+                                        </button>
+                                        <p>
+                                            Te permite cerrar sesion como admin
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <button class="glass btnsInfo">
+                                            /overlay
+                                        </button>
+                                        <p>
+                                            Sus valores pueden ser /true o
+                                            /false (se ponen inmediatamente
+                                            despues de /overlay)
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <button class="glass btnsInfo">
+                                            /animaciones
+                                        </button>
+                                        <p>
+                                            Sus valores pueden ser /true o
+                                            /false (se ponen inmediatamente
+                                            despues de /animaciones)
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <button class="glass btnsInfo">
+                                            /reset
+                                        </button>
+                                        <p>
+                                            Te permite reiniciar la pagina (como
+                                            un F5). Recomendamos usarlo lo menos
+                                            posible ya que hace que se reinicien
+                                            las opciones de admin y hace que la
+                                            compu tenga muy mal rendimiento
+                                            hasta que se cargue todo.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
-            <div class="contenedor_creditos flex_center fullWidth fullHeight pAbs" id="creditos"  style="display: none;">
+            <div
+                class="contenedor_creditos flex_center fullWidth fullHeight pAbs"
+                id="creditos"
+                style="display: none"
+            >
                 <div class="creditos glass flex_center_evenly">
                     <div class="contenedor_opciones_creditos pAbs">
                         <div class="opciones_creditos flex_center pAbs">
-                            <div class="circulos_credits flex_center_evenly" id="back_creditos">
+                            <div
+                                class="circulos_credits flex_center_evenly"
+                                id="back_creditos"
+                            >
                                 <span></span>
                                 <span></span>
                                 <span></span>
                             </div>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="share_nav_bar flex_center_evenly pAbs" id=""><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#cececf" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>  
-                        <input class="italic" id="search_credits" type="text" placeholder="Creditos" autocomplete="off">
+                        <img
+                            src="media/icons/share.svg"
+                            class="share_nav_bar flex_center_evenly pAbs"
+                        />
+                        <input
+                            class="italic"
+                            id="search_credits"
+                            type="text"
+                            placeholder="Creditos"
+                            autocomplete="off"
+                        />
                     </div>
                     <i id="mostrarVersion">Xx</i>
-                    <ul>
-                        <li>Fontend: Tomás Braun</li>
-                        <li>Backend: Nacho Bourdieu</li>
-                        <li>TIMI: Simón Nosovitzky</li>
-                        <li>Hardware: Manu Szwarc</li>
-                        <li>R. Facial: Face APi</li>
-                    </ul>
+                    <div class="nombresAgradecimientosCreditos flex_center">
+                        <div class="nombresCreditos flex_center">
+                            <div>
+                                <ul>
+                                    <li>Fontend:</li>
+                                    <li>Backend:</li>
+                                    <li>TIMI:</li>
+                                    <li>Hardware:</li>
+                                    <li>R. Facial:</li>
+                                </ul> 
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>Tomás Braun</li>
+                                    <li>Nacho Bourdieu</li>
+                                    <li>Simón Nosovitzky</li>
+                                    <li>Manu Szwarc</li>
+                                    <li>Face APi</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="pAbs">Agradecimientos: Facu Jarma</p>
+                    </div>
                 </div>
             </div>
 
-        <div class="pagina2 pagina flex_center" id="pagina2">
-            <div class="contenedor_opciones_pagina2 pAbs" id="contenedor_opciones_pagina2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" alt="Usuario" class="icono_Usuario pAbs"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"/></linearGradient></defs><g class="layer"><path d="m15.75,17.05a4.52,4.52 0 1 0 -4.52,-4.52a4.52,4.52 0 0 0 4.52,4.52zm0,-7.75a3.23,3.23 0 1 1 -3.23,3.23a3.23,3.23 0 0 1 3.23,-3.23z" fill="url(#grad1)"/><path d="m16.4,18.34l-1.29,0a7.11,7.11 0 0 0 -7.11,7.11a0.65,0.65 0 0 0 0.65,0.65l14.21,0a0.65,0.65 0 0 0 0.65,-0.65a7.11,7.11 0 0 0 -7.11,-7.11zm-7.07,6.46a5.82,5.82 0 0 1 5.78,-5.17l1.29,0a5.82,5.82 0 0 1 5.78,5.17l-12.84,0z" fill="url(#grad1)"/><circle cx="16" cy="17.23" fill="none" r="12.64" stroke="url(#grad1)" stroke-width="1.2"/></g></svg>
-                <div class="opciones_pagina2 glass" id="opciones_pagina2">
-                    <p>¿Cómo queres ingresar?</p>
-                    <p>(<b id="cantidad_compus">Xx</b> computadoras disponibles)</p>
-                    <div class="opciones_login_pagina2 flex_center_evenly">
-                        <button id="alumno" class="glass button_hover">Alumno/a</button>
-                        <button id="profesor" class="glass button_hover">Profesor/a</button>
-                        <button id="invitado" class="glass button_hover">Invitado/a</button>
-                        <!-- <button id="admin" class="glass button_hover">Admin</button> -->
+            <div class="pagina2 pagina flex_center" id="pagina2">
+                <div
+                    class="contenedor_opciones_pagina2 pAbs"
+                    id="contenedor_opciones_pagina2"
+                >
+                    <img
+                        src="media/icons/userIcon.svg"
+                        alt="Usuario"
+                        class="icono_Usuario pAbs"
+                    />
+                    <div class="opciones_pagina2 glass" id="opciones_pagina2">
+                        <p>¿Cómo queres ingresar?</p>
+                        <p>
+                            (<b id="cantidad_compus">Xx</b> computadoras
+                            disponibles)
+                        </p>
+                        <div class="opciones_login_pagina2 flex_center_evenly">
+                            <button id="alumno" class="glass button_hover">
+                                Alumno/a
+                            </button>
+                            <button id="profesor" class="glass button_hover">
+                                Profesor/a
+                            </button>
+                            <button id="invitado" class="glass button_hover">
+                                Invitado/a
+                            </button>
+                            <!-- <button id="admin" class="glass button_hover">Admin</button> -->
+                        </div>
                     </div>
+                    <div class="sombrapagina2y3 pAbs"></div>
                 </div>
-                <div class="sombrapagina2y3 pAbs"></div>
-            </div>
-            <div class="contenedor_home_back" id="contenedor_home_back">
-                <button class="home glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1; "/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="url(#grad1)"/></svg></button>
-                <button id="back2" class="glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; "/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0); stop-opacity: 1"/></linearGradient></defs><path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="url(#grad1)"/></svg></button>
-            </div>
-            <div class="opciones_admin flex_center_evenly" id="opcionesadmin" style="display: none;">
-                <b>Modo administrador</b>
-                <div id="configadmin" class="configadmin fullWidth">
-                    <button class="btnAdmin glass noDisponible">Registros</button>
-                    <button id="btn_configuracionAdmin" class="btnAdmin glass">Configuración</button>
-                    <button id="btn_agregarSacarUsuarios" class="btnAdmin glass noDisponible">Agregar/Sacar usuarios</button>
-                    <button id="opcionesadmin_reiniciar" class="btnAdmin glass">Reiniciar</button>
-                    <div class="contenedorOpcionesAdmin fullHeight fullWidth pAbs flex_center_evenly" id="contenedorOpcionesAdmin" style="display: none;">
-                        <button id="salirContenedorOpcionesAdmin" class="glass flex_center pAbs">X</button>
-                        <div class="agregarSacarUsuarios" id="agregarSacarUsuarios" style="display: none;">
-                            <!-- <form id="formUsuarios" class="glass flex_center_evenly">
+                <div class="contenedor_home_back" id="contenedor_home_back">
+                    <button class="home glass button_hover">
+                        <img src="media/icons/home.svg" />
+                    </button>
+                    <button id="back2" class="glass button_hover">
+                        <img src="media/icons/back.svg" />
+                    </button>
+                </div>
+                <div
+                    class="opciones_admin flex_center_evenly"
+                    id="opcionesadmin"
+                    style="display: none"
+                >
+                    <b>Modo administrador</b>
+                    <div id="configadmin" class="configadmin fullWidth">
+                        <button class="btnAdmin glass noDisponible">
+                            Registros
+                        </button>
+                        <button
+                            id="btn_configuracionAdmin"
+                            class="btnAdmin glass"
+                        >
+                            Configuración
+                        </button>
+                        <button
+                            id="btn_agregarSacarUsuarios"
+                            class="btnAdmin glass noDisponible"
+                        >
+                            Agregar/Sacar usuarios
+                        </button>
+                        <button
+                            id="opcionesadmin_reiniciar"
+                            class="btnAdmin glass"
+                        >
+                            Reiniciar
+                        </button>
+                        <div
+                            class="contenedorOpcionesAdmin fullHeight fullWidth pAbs flex_center_evenly"
+                            id="contenedorOpcionesAdmin"
+                            style="display: none"
+                        >
+                            <button
+                                id="salirContenedorOpcionesAdmin"
+                                class="glass flex_center pAbs"
+                            >
+                                X
+                            </button>
+                            <div
+                                class="agregarSacarUsuarios"
+                                id="agregarSacarUsuarios"
+                                style="display: none"
+                            >
+                                <!-- <form id="formUsuarios" class="glass flex_center_evenly">
                                 <label for="dniUsuariosForm">DNI del usuario</label>
                                 <input type="text" id="dniUsuariosForm" required>
                         
@@ -198,145 +492,271 @@
                         
                                 <button type="submit" id="enviarForm">Enviar</button>
                             </form> -->
+                            </div>
+                            <div
+                                class="configuracionAdmin"
+                                id="configuracionAdmin"
+                                style="display: none"
+                            >
+                                <form>
+                                    <div>
+                                        <input
+                                            type="checkbox"
+                                            id="mostraroverlay"
+                                        />
+                                        <label for="mostraroverlay"
+                                            >Activar/Descativar overlay de la
+                                            camara</label
+                                        >
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="checkbox"
+                                            id="mostrarAnimaciones"
+                                        />
+                                        <label for="mostrarAnimaciones"
+                                            >Activar/Descativar animaciones al
+                                            pasar de pagina</label
+                                        >
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="configuracionAdmin" id="configuracionAdmin" style="display: none;">
-                            <form>
-                                <div>
-                                    <input type="checkbox" id="mostraroverlay">
-                                <label for="mostraroverlay">Activar/Descativar overlay de la camara</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="mostrarAnimaciones">
-                                    <label for="mostrarAnimaciones">Activar/Descativar animaciones al pasar de pagina</label>
-                                </div>
-                            </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagina3 pagina flex_center" id="pagina3">
+                <div class="contenedor_opciones_pagina3 pAbs">
+                    <img
+                        src="media/icons/userIcon.svg"
+                        alt="Usuario"
+                        class="icono_Usuario pAbs"
+                    />
+                    <div class="opciones_pagina3 glass" id="opciones_pagina3">
+                        <p
+                            id="mostarTipoUsuario"
+                            class="glass flex_center pAbs"
+                        >
+                            Usuario
+                        </p>
+                        <div class="inputs_pagina_3 flex_center_evenly pAbs">
+                            <div
+                                class="curso_usuario_pagina3 flex_center"
+                                id="curso_usuario"
+                            >
+                                <select id="año_grado" class="glass">
+                                    <option selected hidden>Año o Grado</option>
+                                    <option>7º grado</option>
+                                    <option>1º año</option>
+                                    <option>2º año</option>
+                                    <option>3º año</option>
+                                    <option>4º año</option>
+                                    <option>5º año</option>
+                                </select>
+                                <input
+                                    id="division"
+                                    class="glass"
+                                    type="text"
+                                    placeholder="División"
+                                    autocomplete="off"
+                                />
+                                <select id="especialidad" class="glass">
+                                    <option selected hidden>
+                                        Especialidad
+                                    </option>
+                                    <option>-</option>
+                                    <option>Diseño</option>
+                                    <option>Gestión</option>
+                                    <option>Humanidades</option>
+                                    <option>Medios</option>
+                                    <option>TIC</option>
+                                </select>
+                            </div>
+                            <input
+                                id="DNIusuario"
+                                class="glass"
+                                type="text"
+                                placeholder="Ingresá tu DNI"
+                                autocomplete="off"
+                            />
+                            <input
+                                id="NyAusuario"
+                                class="glass"
+                                type="text"
+                                placeholder="Nombre y apellido..."
+                                autocomplete="off"
+                            />
+                            <!-- <input id="Claveadmin" class="glass" type="password" placeholder="Clave de administrador" autocomplete="off"/> -->
+                        </div>
+                        <button
+                            class="avanzar_pagina3 glass button_hover pAbs"
+                            id="btn_avanzar"
+                        >
+                            Avanzar
+                        </button>
+                    </div>
+                    <div class="sombrapagina2y3 pAbs"></div>
+                </div>
+                <div class="contenedor_home_back">
+                    <button class="home glass button_hover">
+                        <img src="media/icons/home.svg" />
+                    </button>
+                    <button id="back3" class="glass button_hover">
+                        <img src="media/icons/back.svg" />
+                    </button>
+                </div>
+            </div>
+
+            <div class="pagina4 pagina flex_center" id="pagina4">
+                <div class="contenedor_pagina4 flex_center_evenly">
+                    <p class="bienvenida_pagina4 fullWidth">
+                        Bienvenido/a, (<b id="nombre" class="gradientDCI"
+                            >nombre</b
+                        >)
+                    </p>
+                    <span>Mirá a la cámara!</span>
+                    <div
+                        class="desbloqueo_pagina4 flex_center fullWidth"
+                        id="cara"
+                    >
+                        <div class="camara glass flex_center pAbs">
+                            <video id="video" autoplay playsinline></video>
+                            <img id="capturedImage" style="display: none" />
+                            <canvas
+                                id="overlayCanvas"
+                                width="640"
+                                height="480"
+                                style="
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    display: block;
+                                "
+                            ></canvas>
+                        </div>
+                        <div class="opciones_camara flex_center_evenly pAbs">
+                            <button
+                                id="captureButton"
+                                class="glass button_hover flex_center"
+                            >
+                                <img src="media/icons/cam.svg" />
+                            </button>
+                            <img id="capturedImage" style="display: none" />
+                            <!-- <button id="compareButton" class="glass"></button> -->
+                            <!-- <button id="retry" class="glass"></button> -->
+                            <img id="uploadedImage" style="display: none" />
                         </div>
                     </div>
+                    <input
+                        type="file"
+                        id="imageUpload"
+                        accept="image/*"
+                        style="display: none"
+                    />
+                </div>
+                <div class="contenedor_home_back">
+                    <button class="home glass button_hover">
+                        <img src="media/icons/home.svg" />
+                    </button>
+                    <button id="back4" class="glass button_hover">
+                        <img src="media/icons/back.svg" />
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <div class="pagina3 pagina flex_center" id="pagina3">
-            <div class="contenedor_opciones_pagina3 pAbs">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" alt="Usuario" class="icono_Usuario pAbs"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1"/></linearGradient></defs><g class="layer"><path d="m15.75,17.05a4.52,4.52 0 1 0 -4.52,-4.52a4.52,4.52 0 0 0 4.52,4.52zm0,-7.75a3.23,3.23 0 1 1 -3.23,3.23a3.23,3.23 0 0 1 3.23,-3.23z" fill="url(#grad1)"/><path d="m16.4,18.34l-1.29,0a7.11,7.11 0 0 0 -7.11,7.11a0.65,0.65 0 0 0 0.65,0.65l14.21,0a0.65,0.65 0 0 0 0.65,-0.65a7.11,7.11 0 0 0 -7.11,-7.11zm-7.07,6.46a5.82,5.82 0 0 1 5.78,-5.17l1.29,0a5.82,5.82 0 0 1 5.78,5.17l-12.84,0z" fill="url(#grad1)"/><circle cx="16" cy="17.23" fill="none" r="12.64" stroke="url(#grad1)" stroke-width="1.2"/></g></svg>
-                <div class="opciones_pagina3 glass" id="opciones_pagina3">
-                    <p id="mostarTipoUsuario" class="glass flex_center pAbs">Usuario</p>
-                    <div class="inputs_pagina_3 flex_center_evenly pAbs">
-                      <div class="curso_usuario_pagina3 flex_center" id="curso_usuario">
-                        <select id="año_grado" class="glass">
-                          <option selected hidden>Año o Grado</option>
-                          <option>7º grado</option>
-                          <option>1º año</option>
-                          <option>2º año</option>
-                          <option>3º año</option>
-                          <option>4º año</option>
-                          <option>5º año</option>
-                        </select>
-                        <input id="division" class="glass"  type="text" placeholder="División" autocomplete="off">
-                        <select id="especialidad" class="glass">
-                          <option selected hidden>Especialidad</option>
-                          <option>-</option>
-                          <option>Diseño</option>
-                          <option>Gestión</option>
-                          <option>Humanidades</option>
-                          <option>Medios</option>
-                          <option>TIC</option>
-                        </select>
-                      </div>
-                      <input id="DNIusuario" class="glass" type="text" placeholder="Ingresá tu DNI" autocomplete="off"/>
-                      <input id="NyAusuario" class="glass" type="text" placeholder="Nombre y apellido..." autocomplete="off"/>
-                      <!-- <input id="Claveadmin" class="glass" type="password" placeholder="Clave de administrador" autocomplete="off"/> -->
+            <div class="pagina5 pagina flex_center" id="pagina5">
+                <div class="contenedor_pagina5 flex_center_evenly">
+                    <div
+                        class="usuarioverificado_pagina5 flex_center"
+                        id="usuarioverificado_pagina5"
+                    >
+                        <div
+                            class="mostrarveridicado_pagina5y6 flex_center_evenly"
+                        >
+                            <p>Usuario verificado</p>
+                            <img src="media/icons/verificado.svg" />
+                        </div>
+                        <div class="verificado_retirar_devolver">
+                            <button id="retirar" class="glass">
+                                Retirar compu
+                            </button>
+                            <button id="devolver" class="glass noDisponible">
+                                Devolver compu
+                            </button>
+                        </div>
                     </div>
-                    <button class="avanzar_pagina3 glass button_hover pAbs" id="btn_avanzar">Avanzar</button>
+                    <div
+                        class="usuarioNOverificado_pagina5 flex_center"
+                        id="usuarioNOverificado_pagina5"
+                    >
+                        <div class="mostrarNOverificado flex_center_evenly">
+                            <p><b>Error</b> en la <br />verificación</p>
+                            <img src="media/icons/noVerificado.svg" />
+                        </div>
+                        <button
+                            class="btn_volver_a_intentar_pagina5 glass button_hover"
+                            id="volver_a_intentar"
+                        >
+                            Volver a Intentar
+                        </button>
+                    </div>
                 </div>
-                <div class="sombrapagina2y3 pAbs"></div>
+                <div class="contenedor_home_back">
+                    <button class="home glass button_hover">
+                        <img src="media/icons/home.svg" />
+                    </button>
+                </div>
             </div>
-            <div class="contenedor_home_back">
-                <button class="home glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1; "/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="url(#grad1)"/></svg></button>
-                <button id="back3" class="glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; "/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0); stop-opacity: 1"/></linearGradient></defs><path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="url(#grad1)"/></svg></button>
-            </div>
-        </div>
 
-        <div class="pagina4 pagina flex_center" id="pagina4">
-            <div class="contenedor_pagina4 flex_center_evenly">
-                <p class="bienvenida_pagina4 fullWidth">Bienvenido/a, (<b id="nombre" class="gradientDCI">nombre</b>)</p>
-                <span>Mirá a la cámara!</span>
-                <div class="desbloqueo_pagina4 flex_center fullWidth" id="cara">
-                    <div class="camara glass flex_center pAbs">
-                        <video id="video" autoplay playsinline></video>
-                        <img id="capturedImage" style="display: none;"/>
-                        <canvas id="overlayCanvas" width="640" height="480" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: block;"></canvas></div>
-                    <div class="opciones_camara flex_center_evenly pAbs">
-                        <button id="captureButton" class="glass button_hover flex_center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="url(#grad1)"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1;"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1;"/></linearGradient></defs><path d="M479.5-267q72.5 0 121.5-49t49-121.5q0-72.5-49-121T479.5-607q-72.5 0-121 48.5t-48.5 121q0 72.5 48.5 121.5t121 49Zm0-60q-47.5 0-78.5-31.5t-31-79q0-47.5 31-78.5t78.5-31q47.5 0 79 31t31.5 78.5q0 47.5-31.5 79t-79 31.5ZM140-120q-24 0-42-18t-18-42v-513q0-23 18-41.5t42-18.5h147l73-87h240l73 87h147q23 0 41.5 18.5T880-693v513q0 24-18.5 42T820-120H140Zm0-60h680v-513H645l-73-87H388l-73 87H140v513Zm340-257Z"/></svg></button>
-                        <img id="capturedImage" style="display: none;"/>
-                        <!-- <button id="compareButton" class="glass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="url(#grad1)"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1;"/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1;"/></linearGradient></defs><path d="M273-160 80-353l193-193 42 42-121 121h316v60H194l121 121-42 42Zm414-254-42-42 121-121H450v-60h316L645-758l42-42 193 193-193 193Z"/></svg></button> -->
-                        <!-- <button id="retry" class="glass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg></button> -->
-                        <img id="uploadedImage" style="display: none;"/>
+            <div class="pagina6 pagina" id="pagina6">
+                <div
+                    class="contenedor_pagina6 flex_center_evenly"
+                    id="contenedor_pagina6"
+                >
+                    <div class="usuarioverificado_pagina5_6">
+                        <div
+                            class="mostrarveridicado_pagina5y6 flex_center_evenly"
+                        >
+                            <p>Usuario verificado</p>
+                            <img src="media/icons/verificado.svg" />
+                        </div>
                     </div>
-                  </div>
-                  <input type="file" id="imageUpload" accept="image/*" style="display: none;"/>
-            </div>
-            <div class="contenedor_home_back">
-                <button class="home glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1; "/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="url(#grad1)"/></svg></button>
-                <button id="back4" class="glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; "/><stop offset="100%" style="stop-color: rgba(255, 255, 255, 0); stop-opacity: 1"/></linearGradient></defs><path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="url(#grad1)"/></svg></button>
-            </div>
-        </div>
-
-        <div class="pagina5 pagina flex_center" id="pagina5">
-            <div class="contenedor_pagina5 flex_center_evenly">
-                <div class="usuarioverificado_pagina5 flex_center" id="usuarioverificado_pagina5">
-                    <div class="mostrarveridicado_pagina5y6 flex_center_evenly">
-                      <p>Usuario verificado</p>
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0); stop-opacity: 1; "/></linearGradient></defs><style type="text/css"> .st0 { fill: none; } </style><path d="M19.3,5.3L9,15.6l-4.3-4.3l-1.4,1.4l5,5L9,18.4l0.7-0.7l11-11L19.3,5.3z" fill="url(#grad1)"/><rect class="st0" width="24" height="24"/></svg>
-                    </div>
-                    <div class="verificado_retirar_devolver">
-                        <button id="retirar" class="glass">Retirar compu</button>
-                        <button id="devolver" class="glass noDisponible">Devolver compu</button>
-                    </div>
-                </div>
-                <div class="usuarioNOverificado_pagina5 flex_center" id="usuarioNOverificado_pagina5">
-                    <div class="mostrarNOverificado flex_center_evenly">
-                        <p><b>Error</b> en la <br/>verificación</p>
-                        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0); stop-opacity: 1; "/></linearGradient></defs><rect x="0" fill="none" width="20" height="20"/><g><path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z" fill="url(#grad1)"/></g></svg>
-                    </div>
-                    <button class="btn_volver_a_intentar_pagina5 glass button_hover" id="volver_a_intentar">Volver a Intentar</button>
-                </div>
-            </div>
-            <div class="contenedor_home_back">
-                <button class="home glass button_hover"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.7); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0.4); stop-opacity: 1; "/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="url(#grad1)"/></svg></button>
-            </div>
-        </div>
-
-        <div class="pagina6 pagina" id="pagina6">
-            <div class="contenedor_pagina6 flex_center_evenly" id="contenedor_pagina6">
-                <div class="usuarioverificado_pagina5_6">
-                    <div class="mostrarveridicado_pagina5y6 flex_center_evenly">
-                      <p>Usuario verificado</p>
-                      <svg width="24" height="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style=" stop-color: rgba(255, 255, 255, 0.1); stop-opacity: 1; "/><stop offset="100%" style=" stop-color: rgba(255, 255, 255, 0); stop-opacity: 1; "/></linearGradient></defs><style type="text/css"> .st0 { fill: none; } </style><path d="M19.3,5.3L9,15.6l-4.3-4.3l-1.4,1.4l5,5L9,18.4l0.7-0.7l11-11L19.3,5.3z" fill="url(#grad1)"/><rect class="st0" width="24" height="24"/></svg>
-                    </div>
-                </div>
-                <div class="opciones_usuario flex_center">
-                    <div id="retirar_compu" class="glass flex_center">
-                        <p>Retira la laptop de la ranura <br/><b id="ranuraRetirar">Xx</b></p>
-                      </div>
-                      <div id="devolver_compu" class="glass flex_center">
-                        <p>Deja la laptop de la ranura <br/><b id="ranuraDevolver">Xx</b></p>
-                      </div>
-                      <!-- <p>Acordate de cerrar la puerta!</p> -->
-                      <button id="reiniciar" class="glass flex_center">Reiniciar</button>
+                    <div class="opciones_usuario flex_center">
+                        <div id="retirar_compu" class="glass flex_center">
+                            <p>
+                                Retira la laptop de la ranura <br /><b
+                                    id="ranuraRetirar"
+                                    >Xx</b
+                                >
+                            </p>
+                        </div>
+                        <div id="devolver_compu" class="glass flex_center">
+                            <p>
+                                Deja la laptop de la ranura <br /><b
+                                    id="ranuraDevolver"
+                                    >Xx</b
+                                >
+                            </p>
+                        </div>
+                        <!-- <p>Acordate de cerrar la puerta!</p> -->
+                        <button id="reiniciar" class="glass flex_center">
+                            Reiniciar
+                        </button>
                     </div>
                 </div>
             </div>
-    </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
-<script src="SoqueTic/socket.js"></script>
-<script src="./scripts/login.js"></script>
-<script src="./scripts/script.js"></script>
-<script src="./scripts/Desbloqueo.js"></script>
-<script src="./scripts/botonesNavegacion.js"></script>
-<script src="./scripts/agregarEliminarUsuarios.js"></script>
-<script src="./scripts/login.js"></script>
-<script src="./scripts/retirarDevolverCompus.js"></script>
-<script src="./scripts/searchbar.js"></script>
-</body>
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
+        <script src="SoqueTic/socket.js"></script>
+        <script src="./scripts/login.js"></script>
+        <script src="./scripts/script.js"></script>
+        <script src="./scripts/Desbloqueo.js"></script>
+        <script src="./scripts/botonesNavegacion.js"></script>
+        <script src="./scripts/agregarEliminarUsuarios.js"></script>
+        <script src="./scripts/login.js"></script>
+        <script src="./scripts/retirarDevolverCompus.js"></script>
+        <script src="./scripts/searchbar.js"></script>
+    </body>
 </html>

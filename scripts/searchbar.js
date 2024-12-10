@@ -15,18 +15,18 @@ sideBarBtn.addEventListener("click", function () {
         tutorialesContainer.classList.remove("moverContainerIzquierda");
         tutorialesContainer.offsetWidth;
         tutorialesContainer.classList.add("moverContainerIzquierdaReverse");
-        document
-            .getElementById("contenedorContenidoTutorialesDci")
-            .classList.remove("cambiarWidth");
+        // document
+        //     .getElementById("contenedorContenidoTutorialesDci")
+        //     .classList.remove("cambiarWidth");
         // document.getElementById("contenedorContenidoTutorialesDci").classList.add("cambiarWidthReverse");
     } else {
         tutorialesContainer.classList.remove("moverContainerIzquierdaReverse");
         tutorialesContainer.offsetWidth;
         tutorialesContainer.classList.add("moverContainerIzquierda");
         // document.getElementById("contenedorContenidoTutorialesDci").classList.remove("cambiarWidthReverse");
-        document
-            .getElementById("contenedorContenidoTutorialesDci")
-            .classList.add("cambiarWidth");
+        // document
+        //     .getElementById("contenedorContenidoTutorialesDci")
+        //     .classList.add("cambiarWidth");
     }
 });
 
@@ -223,11 +223,13 @@ searchBar.addEventListener("input", function () {
             alert("Overlay desactivado");
             searchBar.value = "";
         } else if (searchBarValue === "/animaciones/true") {
-            animaciones = true;
-            searchBar.value = "";
-        } else if (searchBarValue === "/animaciones/false") {
             animaciones = false;
             searchBar.value = "";
+            alert("Animaciones activadas");
+        } else if (searchBarValue === "/animaciones/false") {
+            animaciones = true;
+            searchBar.value = "";
+            alert("Animaciones Desactivadas");
         }
     }
 });
@@ -313,6 +315,17 @@ searchCredits.addEventListener("input", function () {
     if (searchBarValue.length > 15) {
         searchCredits.value = "";
         searchCredits.placeholder = "Créditos";
+    }
+
+    if (searchBarValue === "/backgroundNormal") {
+        document.getElementById("background").classList.remove("backgroundCover");
+        searchCredits.value = "";
+    }
+
+    if (searchBarValue === "/background2") {
+        document.getElementById("background").classList.add("backgroundCover");
+        console.log("sad")
+        searchCredits.value = "";
     }
 
     if (searchBarValue === "/rick") {

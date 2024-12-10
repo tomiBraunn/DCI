@@ -161,7 +161,7 @@ h1 {
     animation: opacidad 0.2s ease-out forwards;
 }
 
-.btn_info_dci > svg {
+.btn_info_dci > img {
     width: 1em;
 }
 
@@ -257,7 +257,7 @@ h1 {
 }
 
 .sideBarIcon,
-.sideBarIcon > svg {
+.sideBarIcon > img {
     width: 1em;
     aspect-ratio: 1/1;
     position: relative;
@@ -343,6 +343,7 @@ h1 {
     height: 100%;
     width: 75%;
     margin-right: 0.7em;
+    transition: width .1s, height .1s;
 }
 
 /* parte usuarios */
@@ -363,7 +364,7 @@ h1 {
     font-size: 20px;
 }
 
-.contenedorContenidoTutorialesDci > div > button,
+.tiposUsuariosSideBar > button,
 .btnsAlmProfeInfo > button, .btnsInfo {
     position: relative;
     left: -2em;
@@ -388,17 +389,61 @@ h1 {
     padding: .5em 0;
 }
 
+.btnCapturaTutorial {
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.btnCapturaTutorial > p {
+    margin-left: 1em;
+}
+
+.btnCapturaTutorial > button {
+    width: 7em;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    margin: 0.5em 0;
+}
+
+.btnCapturaTutorial > button > img {
+    width: 4em;
+    aspect-ratio: 1 / 1;
+}
+
+
 .navegacionSidebar > ul > li {
     font-size: 20px;
     padding: .5em 0;
     margin-left: .7em;
     padding: .5em 0;
+    display: flex;
+    align-items:center;
+}
+
+.navegacionSidebar > ul > li > button {
+    min-width: 7em;
+    aspect-ratio: 1/1;
+    padding: 0.2em;
+    margin: 0.7em;
+    border: none;
+    color: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .guiaAdminSidebar > div {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.guiaAdminSidebar > div > b {
+    font-size: 30px;
+    white-space: nowrap;
 }
 
 .guiaAdminSidebar > div > p {
@@ -449,15 +494,31 @@ h1 {
     margin-left: 0.1em;
 }
 
-.creditos > ul > li {
-    padding: 0.5em 0;
-}
-
 .creditos > i {
     position: absolute;
     top: 2.5em;
     font-size: 20px;
 }
+
+.nombresAgradecimientosCreditos {
+    flex-direction: column;
+}
+
+.nombresAgradecimientosCreditos > p {
+    font-size: 20px;
+    bottom: 0;
+    padding-bottom: 1em;
+}
+
+.nombresCreditos {
+    gap: .5em;
+}
+
+.nombresCreditos > div > ul > li {
+    list-style: none;
+    padding: .4em 0;
+}
+
 
 /*Pagina 2 y 3*/
 
@@ -653,7 +714,7 @@ h1 {
     margin: 0.5em 0;
 }
 
-.opciones_camara > button > svg {
+.opciones_camara > button > img {
     width: 4em;
     aspect-ratio: 1/1;
 }
@@ -677,7 +738,7 @@ h1 {
     color: white;
 }
 
-.mostrarveridicado_pagina5y6 > svg {
+.mostrarveridicado_pagina5y6 > img {
     height: 10em;
     width: 10em;
     aspect-ratio: 1/1;
@@ -710,7 +771,7 @@ h1 {
     color: white;
 }
 
-.mostrarNOverificado > svg {
+.mostrarNOverificado > img {
     width: 12em;
     aspect-ratio: 1/1;
 }
@@ -1016,11 +1077,11 @@ input::placeholder {
 }
 
 .cambiarWidth {
-    animation: cambiarWidth 0.1s ease-out forwards;
+    animation: cambiarWidth .1s ease-out forwards;
 }
 
 .cambiarWidthReverse {
-    animation: cambiarWidth 0.1s ease-out reverse;
+    animation: cambiarWidth .1s ease-out reverse;
 }
 
 .SideBarElementClicked {
@@ -1029,6 +1090,12 @@ input::placeholder {
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
+
+.backgroundCover {
+    background-size: cover;
+    transition: .3s;
+}
+
 /*Animaciones*/
 @keyframes opacidad {
     from {

@@ -115,16 +115,16 @@ captureButton.addEventListener("click", async () => {
                     .detectSingleFace(base64Img, tinyFaceDetectorOptions)
                     .withFaceLandmarks()
                     .withFaceDescriptor();
-    
+
                 if (!capturedFaceData) {
                     // alert("No se detectó ninguna cara en la captura.");
-                    if (document.getElementById("pagina4").classList.contains("shake")) {
-                        document.getElementById("pagina4").classList.remove("shake");
+                    if (document.querySelector(".contenedor_pagina4").classList.contains("shake")) {
+                        document.querySelector(".contenedor_pagina4").classList.remove("shake");
                     }
-                    document.getElementById("pagina4").classList.add("shake");
+                    document.querySelector(".contenedor_pagina4").classList.add("shake");
         
                     setTimeout(() => {
-                        document.getElementById("pagina4").classList.remove("shake");
+                        document.querySelector(".contenedor_pagina4").classList.remove("shake");
                     }, 500);
                     return;
                 }

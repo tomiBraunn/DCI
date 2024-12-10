@@ -1,3 +1,0 @@
-
-3)Hacer invitado
-4)Hacer que aparezca el menu de cuando se saca mal una compu cuando pasa (scripts\compuRetiradaSinPermiso.js)
