@@ -570,8 +570,9 @@ h1 {
     color: white;
     position: relative;
     margin-top: 2em;
+    /* top: 2.5em;
+    position: absolute; */
 }
-
 .opciones_pagina2 > p:nth-child(2) {
     color: #cececf;
     font-size: 25px;

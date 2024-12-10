@@ -15,18 +15,18 @@ sideBarBtn.addEventListener("click", function () {
         tutorialesContainer.classList.remove("moverContainerIzquierda");
         tutorialesContainer.offsetWidth;
         tutorialesContainer.classList.add("moverContainerIzquierdaReverse");
-        // document
-        //     .getElementById("contenedorContenidoTutorialesDci")
-        //     .classList.remove("cambiarWidth");
-        // document.getElementById("contenedorContenidoTutorialesDci").classList.add("cambiarWidthReverse");
+        document
+            .getElementById("contenedorContenidoTutorialesDci")
+            .classList.remove("cambiarWidth");
+        document.getElementById("contenedorContenidoTutorialesDci").classList.add("cambiarWidthReverse");
     } else {
         tutorialesContainer.classList.remove("moverContainerIzquierdaReverse");
         tutorialesContainer.offsetWidth;
         tutorialesContainer.classList.add("moverContainerIzquierda");
-        // document.getElementById("contenedorContenidoTutorialesDci").classList.remove("cambiarWidthReverse");
-        // document
-        //     .getElementById("contenedorContenidoTutorialesDci")
-        //     .classList.add("cambiarWidth");
+        document.getElementById("contenedorContenidoTutorialesDci").classList.remove("cambiarWidthReverse");
+        document
+            .getElementById("contenedorContenidoTutorialesDci")
+            .classList.add("cambiarWidth");
     }
 });
 
@@ -269,11 +269,6 @@ document.getElementById("back_info").addEventListener("click", function () {
                 .classList.add("opacidad_blur_fade");
             document.getElementById("btn_info_dci").style.display = "flex";
             document.getElementById("btn_inicio").style.display = "block";
-            document.querySelector("h1").style.display = "block";
-            console.log(
-                "PantallaSidebar se ha definido como:",
-                PantallaSidebar
-            );
             document.getElementById("mostrarAdminVerificado").style.display =
                 "none";
         }
@@ -282,7 +277,6 @@ document.getElementById("back_info").addEventListener("click", function () {
         document.getElementById("btn_info_dci").style.display = "flex";
         document.getElementById("btn_inicio").style.display = "block";
         document.querySelector("h1").style.display = "block";
-        console.log("PantallaSidebar se ha definido como:", PantallaSidebar);
         pantallaSidebar = "queEsDci";
             placeholder = "¿Qué-es-DCI?";
             reiniciarPantallasSideBar();
@@ -317,14 +311,13 @@ searchCredits.addEventListener("input", function () {
         searchCredits.placeholder = "Créditos";
     }
 
-    if (searchBarValue === "/backgroundNormal") {
+    if (searchBarValue === "/background1") {
         document.getElementById("background").classList.remove("backgroundCover");
         searchCredits.value = "";
     }
 
     if (searchBarValue === "/background2") {
         document.getElementById("background").classList.add("backgroundCover");
-        console.log("sad")
         searchCredits.value = "";
     }
 

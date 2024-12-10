@@ -8,7 +8,7 @@ function reproducirSirena() {
         sirenaAudio.id = "sirenaAudio";
 
         const source = document.createElement("source");
-        source.src = "media/sirena.mp3"; //falta agregar
+        source.src = "media/sirena.mp3";
         source.type = "audio/mpeg";
 
         sirenaAudio.appendChild(source);
