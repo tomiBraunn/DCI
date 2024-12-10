@@ -4,7 +4,7 @@ import { onEvent } from "soquetic";
 
 const port = new SerialPort({
     //Completar con el puerto correcto
-    path: "COM3",
+    path: "COM4",
     baudRate: 9600,
 });
 
@@ -28,6 +28,6 @@ port.on("open", () => {
 
 
 parser.on("data", function (status) {
-    console.log("Respuesta recibida del Arduino:", status.trim());
+    console.log ("Respuesta recibida del Arduino:", status.trim());
 
 });

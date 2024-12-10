@@ -11,7 +11,7 @@ const carroFile = join("./json/carroData.json");
 
 const port = new SerialPort({
     //Completar con el puerto correcto
-    path: "COM3",
+    path: "COM4",
     baudRate: 9600,
 });
 
@@ -237,6 +237,8 @@ onEvent("animacionesPaginas", (data) => {
 onEvent("ranuraCompu", (data) => {
     const compuAsignada = manejarRanuraCompu(); // Llamada a la función para obtener la computadora asignada
     if (compuAsignada) {
+        enviarDatosArduino("d")
+
         return sendEvent("compuAsignada", {
             mensaje: `Computadora asignada: ${compuAsignada}`,
             numeroCompu: compuAsignada
@@ -254,9 +256,9 @@ function enviarDatosArduino(msg) {
 }
 
 
-onEvent("abrirHardware", () => {
-    enviarDatosArduino("caca")
-})
+// onEvent("abrirHardware", () => {
+//     enviarDatosArduino("d")
+// })
 
 // Ver la data que LLEGA del Hardware (no anda)
 port.on("open", () => {
