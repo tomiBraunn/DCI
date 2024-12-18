@@ -1,0 +1,45 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: calibri;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    border-radius: 1em;
+    height: 17em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ddd;
+    padding-inline: 2em;
+}
+
+label {
+    padding-left: 0.3em;
+}
+form > input{
+    font-size: 14px;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    height: 2em;
+    width: 15em;
+    padding-left: 0.3em;
+    border: 1px solid black;
+}
+
+input[type="submit"]{
+    cursor: pointer;
+    border: none;
+    background: #333;
+    color: #ddd;
+    font-weight: bold;
+    font-size: 14px;
+}

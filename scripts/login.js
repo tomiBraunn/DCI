@@ -113,10 +113,11 @@ function enviarRespuestaLogin(exito, usuario = null) {
             mensaje: "Inicio de sesión exitoso",
             usuario,
         });
-    } else{
-    console.log({ mensaje: "DNI no encontrado" });
-    sendEvent("loginError", {mensaje: "DNI no encontrado"});
-    }}
+    } else {
+        console.log({ mensaje: "DNI no encontrado" });
+        sendEvent("loginError", { mensaje: "DNI no encontrado" });
+    }
+}
 
 
 function configurarEventos() {
@@ -297,6 +298,35 @@ parser.on("data", function (status) {
     }
 
 });
+
+
+
+function register(data) {
+    let usuariosActuales = [];
+    try {
+        const datosJSON = fs.readFileSync(usersFile, 'utf-8');
+        usuariosActuales = JSON.parse(datosJSON);
+
+        if (!Array.isArray(usuariosActuales)) {
+            usuariosActuales = [];
+        }
+    } catch (error) {
+        console.log("Error al leer el archivo o archivo inexistente, creando uno nuevo.");
+    }
+
+    usuariosActuales.push(data);
+
+    const info = JSON.stringify(usuariosActuales, null, 2);
+    fs.writeFileSync(usersFile, info);
+
+    console.log("Nuevo usuario registrado!");
+
+}
+
+onEvent("createUser", (data) => {
+    console.log(data);
+    register(data);
+})
 
 
 
